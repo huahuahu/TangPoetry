@@ -1,0 +1,651 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		268D1F5D20E76517000C6AA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D1F5C20E76517000C6AA9 /* AppDelegate.swift */; };
+		268D1F5F20E76517000C6AA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D1F5E20E76517000C6AA9 /* ViewController.swift */; };
+		268D1F6220E76517000C6AA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 268D1F6020E76517000C6AA9 /* Main.storyboard */; };
+		268D1F6420E76518000C6AA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 268D1F6320E76518000C6AA9 /* Assets.xcassets */; };
+		268D1F6720E76518000C6AA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 268D1F6520E76518000C6AA9 /* LaunchScreen.storyboard */; };
+		268D1F7220E76518000C6AA9 /* TangPoetryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D1F7120E76518000C6AA9 /* TangPoetryTests.swift */; };
+		268D1F7D20E76518000C6AA9 /* TangPoetryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D1F7C20E76518000C6AA9 /* TangPoetryUITests.swift */; };
+		371676705799498C7014A77A /* Pods_TangPoetry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BC4972E4B57E36A372D99C /* Pods_TangPoetry.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		268D1F6E20E76518000C6AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 268D1F5120E76517000C6AA9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 268D1F5820E76517000C6AA9;
+			remoteInfo = TangPoetry;
+		};
+		268D1F7920E76518000C6AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 268D1F5120E76517000C6AA9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 268D1F5820E76517000C6AA9;
+			remoteInfo = TangPoetry;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1CEF629DD51632025138D640 /* Pods-TangPoetry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TangPoetry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TangPoetry/Pods-TangPoetry.debug.xcconfig"; sourceTree = "<group>"; };
+		268D1F5920E76517000C6AA9 /* TangPoetry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TangPoetry.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		268D1F5C20E76517000C6AA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		268D1F5E20E76517000C6AA9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		268D1F6120E76517000C6AA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		268D1F6320E76518000C6AA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		268D1F6620E76518000C6AA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		268D1F6820E76518000C6AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		268D1F6D20E76518000C6AA9 /* TangPoetryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TangPoetryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		268D1F7120E76518000C6AA9 /* TangPoetryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangPoetryTests.swift; sourceTree = "<group>"; };
+		268D1F7320E76518000C6AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		268D1F7820E76518000C6AA9 /* TangPoetryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TangPoetryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		268D1F7C20E76518000C6AA9 /* TangPoetryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangPoetryUITests.swift; sourceTree = "<group>"; };
+		268D1F7E20E76518000C6AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA1466B1BB4AD6491E9C40C8 /* Pods-TangPoetry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TangPoetry.release.xcconfig"; path = "Pods/Target Support Files/Pods-TangPoetry/Pods-TangPoetry.release.xcconfig"; sourceTree = "<group>"; };
+		D1BC4972E4B57E36A372D99C /* Pods_TangPoetry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TangPoetry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		268D1F5620E76517000C6AA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				371676705799498C7014A77A /* Pods_TangPoetry.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		268D1F6A20E76518000C6AA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		268D1F7520E76518000C6AA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		268D1F5020E76517000C6AA9 = {
+			isa = PBXGroup;
+			children = (
+				268D1F5B20E76517000C6AA9 /* TangPoetry */,
+				268D1F7020E76518000C6AA9 /* TangPoetryTests */,
+				268D1F7B20E76518000C6AA9 /* TangPoetryUITests */,
+				268D1F5A20E76517000C6AA9 /* Products */,
+				ED72DE297D19FD778B500331 /* Pods */,
+				E211120A18D66B2CC094F051 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		268D1F5A20E76517000C6AA9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				268D1F5920E76517000C6AA9 /* TangPoetry.app */,
+				268D1F6D20E76518000C6AA9 /* TangPoetryTests.xctest */,
+				268D1F7820E76518000C6AA9 /* TangPoetryUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		268D1F5B20E76517000C6AA9 /* TangPoetry */ = {
+			isa = PBXGroup;
+			children = (
+				268D1F5C20E76517000C6AA9 /* AppDelegate.swift */,
+				268D1F5E20E76517000C6AA9 /* ViewController.swift */,
+				268D1F6020E76517000C6AA9 /* Main.storyboard */,
+				268D1F6320E76518000C6AA9 /* Assets.xcassets */,
+				268D1F6520E76518000C6AA9 /* LaunchScreen.storyboard */,
+				268D1F6820E76518000C6AA9 /* Info.plist */,
+			);
+			path = TangPoetry;
+			sourceTree = "<group>";
+		};
+		268D1F7020E76518000C6AA9 /* TangPoetryTests */ = {
+			isa = PBXGroup;
+			children = (
+				268D1F7120E76518000C6AA9 /* TangPoetryTests.swift */,
+				268D1F7320E76518000C6AA9 /* Info.plist */,
+			);
+			path = TangPoetryTests;
+			sourceTree = "<group>";
+		};
+		268D1F7B20E76518000C6AA9 /* TangPoetryUITests */ = {
+			isa = PBXGroup;
+			children = (
+				268D1F7C20E76518000C6AA9 /* TangPoetryUITests.swift */,
+				268D1F7E20E76518000C6AA9 /* Info.plist */,
+			);
+			path = TangPoetryUITests;
+			sourceTree = "<group>";
+		};
+		E211120A18D66B2CC094F051 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D1BC4972E4B57E36A372D99C /* Pods_TangPoetry.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED72DE297D19FD778B500331 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1CEF629DD51632025138D640 /* Pods-TangPoetry.debug.xcconfig */,
+				AA1466B1BB4AD6491E9C40C8 /* Pods-TangPoetry.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		268D1F5820E76517000C6AA9 /* TangPoetry */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 268D1F8120E76518000C6AA9 /* Build configuration list for PBXNativeTarget "TangPoetry" */;
+			buildPhases = (
+				02684F80841139966E5F5AD7 /* [CP] Check Pods Manifest.lock */,
+				268D1F5520E76517000C6AA9 /* Sources */,
+				268D1F5620E76517000C6AA9 /* Frameworks */,
+				268D1F5720E76517000C6AA9 /* Resources */,
+				26BBE47520E76B2E006B629E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TangPoetry;
+			productName = TangPoetry;
+			productReference = 268D1F5920E76517000C6AA9 /* TangPoetry.app */;
+			productType = "com.apple.product-type.application";
+		};
+		268D1F6C20E76518000C6AA9 /* TangPoetryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 268D1F8420E76518000C6AA9 /* Build configuration list for PBXNativeTarget "TangPoetryTests" */;
+			buildPhases = (
+				268D1F6920E76518000C6AA9 /* Sources */,
+				268D1F6A20E76518000C6AA9 /* Frameworks */,
+				268D1F6B20E76518000C6AA9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				268D1F6F20E76518000C6AA9 /* PBXTargetDependency */,
+			);
+			name = TangPoetryTests;
+			productName = TangPoetryTests;
+			productReference = 268D1F6D20E76518000C6AA9 /* TangPoetryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		268D1F7720E76518000C6AA9 /* TangPoetryUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 268D1F8720E76518000C6AA9 /* Build configuration list for PBXNativeTarget "TangPoetryUITests" */;
+			buildPhases = (
+				268D1F7420E76518000C6AA9 /* Sources */,
+				268D1F7520E76518000C6AA9 /* Frameworks */,
+				268D1F7620E76518000C6AA9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				268D1F7A20E76518000C6AA9 /* PBXTargetDependency */,
+			);
+			name = TangPoetryUITests;
+			productName = TangPoetryUITests;
+			productReference = 268D1F7820E76518000C6AA9 /* TangPoetryUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		268D1F5120E76517000C6AA9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = huahuahu;
+				TargetAttributes = {
+					268D1F5820E76517000C6AA9 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					268D1F6C20E76518000C6AA9 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 268D1F5820E76517000C6AA9;
+					};
+					268D1F7720E76518000C6AA9 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 268D1F5820E76517000C6AA9;
+					};
+				};
+			};
+			buildConfigurationList = 268D1F5420E76517000C6AA9 /* Build configuration list for PBXProject "TangPoetry" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 268D1F5020E76517000C6AA9;
+			productRefGroup = 268D1F5A20E76517000C6AA9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				268D1F5820E76517000C6AA9 /* TangPoetry */,
+				268D1F6C20E76518000C6AA9 /* TangPoetryTests */,
+				268D1F7720E76518000C6AA9 /* TangPoetryUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		268D1F5720E76517000C6AA9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				268D1F6720E76518000C6AA9 /* LaunchScreen.storyboard in Resources */,
+				268D1F6420E76518000C6AA9 /* Assets.xcassets in Resources */,
+				268D1F6220E76517000C6AA9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		268D1F6B20E76518000C6AA9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		268D1F7620E76518000C6AA9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		02684F80841139966E5F5AD7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TangPoetry-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		26BBE47520E76B2E006B629E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		268D1F5520E76517000C6AA9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				268D1F5F20E76517000C6AA9 /* ViewController.swift in Sources */,
+				268D1F5D20E76517000C6AA9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		268D1F6920E76518000C6AA9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				268D1F7220E76518000C6AA9 /* TangPoetryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		268D1F7420E76518000C6AA9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				268D1F7D20E76518000C6AA9 /* TangPoetryUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		268D1F6F20E76518000C6AA9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 268D1F5820E76517000C6AA9 /* TangPoetry */;
+			targetProxy = 268D1F6E20E76518000C6AA9 /* PBXContainerItemProxy */;
+		};
+		268D1F7A20E76518000C6AA9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 268D1F5820E76517000C6AA9 /* TangPoetry */;
+			targetProxy = 268D1F7920E76518000C6AA9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		268D1F6020E76517000C6AA9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				268D1F6120E76517000C6AA9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		268D1F6520E76518000C6AA9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				268D1F6620E76518000C6AA9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		268D1F7F20E76518000C6AA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		268D1F8020E76518000C6AA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		268D1F8220E76518000C6AA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CEF629DD51632025138D640 /* Pods-TangPoetry.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R6P284TSWY;
+				INFOPLIST_FILE = TangPoetry/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiger.shenzhen.TangPoetry;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		268D1F8320E76518000C6AA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA1466B1BB4AD6491E9C40C8 /* Pods-TangPoetry.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R6P284TSWY;
+				INFOPLIST_FILE = TangPoetry/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiger.shenzhen.TangPoetry;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		268D1F8520E76518000C6AA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TangPoetryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiger.shenzhen.TangPoetryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TangPoetry.app/TangPoetry";
+			};
+			name = Debug;
+		};
+		268D1F8620E76518000C6AA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TangPoetryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiger.shenzhen.TangPoetryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TangPoetry.app/TangPoetry";
+			};
+			name = Release;
+		};
+		268D1F8820E76518000C6AA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TangPoetryUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiger.shenzhen.TangPoetryUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TangPoetry;
+			};
+			name = Debug;
+		};
+		268D1F8920E76518000C6AA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TangPoetryUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiger.shenzhen.TangPoetryUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TangPoetry;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		268D1F5420E76517000C6AA9 /* Build configuration list for PBXProject "TangPoetry" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				268D1F7F20E76518000C6AA9 /* Debug */,
+				268D1F8020E76518000C6AA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		268D1F8120E76518000C6AA9 /* Build configuration list for PBXNativeTarget "TangPoetry" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				268D1F8220E76518000C6AA9 /* Debug */,
+				268D1F8320E76518000C6AA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		268D1F8420E76518000C6AA9 /* Build configuration list for PBXNativeTarget "TangPoetryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				268D1F8520E76518000C6AA9 /* Debug */,
+				268D1F8620E76518000C6AA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		268D1F8720E76518000C6AA9 /* Build configuration list for PBXNativeTarget "TangPoetryUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				268D1F8820E76518000C6AA9 /* Debug */,
+				268D1F8920E76518000C6AA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 268D1F5120E76517000C6AA9 /* Project object */;
+}
