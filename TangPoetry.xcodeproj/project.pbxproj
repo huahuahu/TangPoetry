@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		262198C920E8A0A000F249BF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 262198CB20E8A0A000F249BF /* Localizable.strings */; };
+		262198D020E8A20700F249BF /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262198CF20E8A20700F249BF /* util.swift */; };
 		268D1F5D20E76517000C6AA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D1F5C20E76517000C6AA9 /* AppDelegate.swift */; };
 		268D1F5F20E76517000C6AA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D1F5E20E76517000C6AA9 /* ViewController.swift */; };
 		268D1F6220E76517000C6AA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 268D1F6020E76517000C6AA9 /* Main.storyboard */; };
@@ -14,6 +16,10 @@
 		268D1F6720E76518000C6AA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 268D1F6520E76518000C6AA9 /* LaunchScreen.storyboard */; };
 		268D1F7220E76518000C6AA9 /* TangPoetryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D1F7120E76518000C6AA9 /* TangPoetryTests.swift */; };
 		268D1F7D20E76518000C6AA9 /* TangPoetryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D1F7C20E76518000C6AA9 /* TangPoetryUITests.swift */; };
+		26EAA71220E86C1D00E42E7E /* BaseNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAA71120E86C1D00E42E7E /* BaseNavigationVC.swift */; };
+		26EAA71620E86CF400E42E7E /* BaseTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAA71520E86CF400E42E7E /* BaseTabVC.swift */; };
+		26EAA71820E86D9D00E42E7E /* PoetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAA71720E86D9D00E42E7E /* PoetsVC.swift */; };
+		26EAA71A20E86DD200E42E7E /* PoemStyleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAA71920E86DD200E42E7E /* PoemStyleVC.swift */; };
 		371676705799498C7014A77A /* Pods_TangPoetry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BC4972E4B57E36A372D99C /* Pods_TangPoetry.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +42,9 @@
 
 /* Begin PBXFileReference section */
 		1CEF629DD51632025138D640 /* Pods-TangPoetry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TangPoetry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TangPoetry/Pods-TangPoetry.debug.xcconfig"; sourceTree = "<group>"; };
+		262198CA20E8A0A000F249BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		262198CC20E8A0A200F249BF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		262198CF20E8A20700F249BF /* util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
 		268D1F5920E76517000C6AA9 /* TangPoetry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TangPoetry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		268D1F5C20E76517000C6AA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		268D1F5E20E76517000C6AA9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +58,12 @@
 		268D1F7820E76518000C6AA9 /* TangPoetryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TangPoetryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		268D1F7C20E76518000C6AA9 /* TangPoetryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangPoetryUITests.swift; sourceTree = "<group>"; };
 		268D1F7E20E76518000C6AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26EAA70C20E86AB300E42E7E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		26EAA70D20E86AB300E42E7E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		26EAA71120E86C1D00E42E7E /* BaseNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationVC.swift; sourceTree = "<group>"; };
+		26EAA71520E86CF400E42E7E /* BaseTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabVC.swift; sourceTree = "<group>"; };
+		26EAA71720E86D9D00E42E7E /* PoetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetsVC.swift; sourceTree = "<group>"; };
+		26EAA71920E86DD200E42E7E /* PoemStyleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemStyleVC.swift; sourceTree = "<group>"; };
 		AA1466B1BB4AD6491E9C40C8 /* Pods-TangPoetry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TangPoetry.release.xcconfig"; path = "Pods/Target Support Files/Pods-TangPoetry/Pods-TangPoetry.release.xcconfig"; sourceTree = "<group>"; };
 		D1BC4972E4B57E36A372D99C /* Pods_TangPoetry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TangPoetry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -79,9 +94,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		262198CE20E8A1F500F249BF /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				262198CF20E8A20700F249BF /* util.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		268D1F5020E76517000C6AA9 = {
 			isa = PBXGroup;
 			children = (
+				262198CB20E8A0A000F249BF /* Localizable.strings */,
 				268D1F5B20E76517000C6AA9 /* TangPoetry */,
 				268D1F7020E76518000C6AA9 /* TangPoetryTests */,
 				268D1F7B20E76518000C6AA9 /* TangPoetryUITests */,
@@ -105,7 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				268D1F5C20E76517000C6AA9 /* AppDelegate.swift */,
-				268D1F5E20E76517000C6AA9 /* ViewController.swift */,
+				262198CE20E8A1F500F249BF /* Util */,
+				26EAA70E20E86BC100E42E7E /* VC */,
 				268D1F6020E76517000C6AA9 /* Main.storyboard */,
 				268D1F6320E76518000C6AA9 /* Assets.xcassets */,
 				268D1F6520E76518000C6AA9 /* LaunchScreen.storyboard */,
@@ -130,6 +155,18 @@
 				268D1F7E20E76518000C6AA9 /* Info.plist */,
 			);
 			path = TangPoetryUITests;
+			sourceTree = "<group>";
+		};
+		26EAA70E20E86BC100E42E7E /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				268D1F5E20E76517000C6AA9 /* ViewController.swift */,
+				26EAA71120E86C1D00E42E7E /* BaseNavigationVC.swift */,
+				26EAA71520E86CF400E42E7E /* BaseTabVC.swift */,
+				26EAA71720E86D9D00E42E7E /* PoetsVC.swift */,
+				26EAA71920E86DD200E42E7E /* PoemStyleVC.swift */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		E211120A18D66B2CC094F051 /* Frameworks */ = {
@@ -238,6 +275,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 268D1F5020E76517000C6AA9;
 			productRefGroup = 268D1F5A20E76517000C6AA9 /* Products */;
@@ -256,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				262198C920E8A0A000F249BF /* Localizable.strings in Resources */,
 				268D1F6720E76518000C6AA9 /* LaunchScreen.storyboard in Resources */,
 				268D1F6420E76518000C6AA9 /* Assets.xcassets in Resources */,
 				268D1F6220E76517000C6AA9 /* Main.storyboard in Resources */,
@@ -321,8 +360,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				262198D020E8A20700F249BF /* util.swift in Sources */,
 				268D1F5F20E76517000C6AA9 /* ViewController.swift in Sources */,
+				26EAA71820E86D9D00E42E7E /* PoetsVC.swift in Sources */,
+				26EAA71620E86CF400E42E7E /* BaseTabVC.swift in Sources */,
+				26EAA71220E86C1D00E42E7E /* BaseNavigationVC.swift in Sources */,
 				268D1F5D20E76517000C6AA9 /* AppDelegate.swift in Sources */,
+				26EAA71A20E86DD200E42E7E /* PoemStyleVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,10 +402,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		262198CB20E8A0A000F249BF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				262198CA20E8A0A000F249BF /* en */,
+				262198CC20E8A0A200F249BF /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		268D1F6020E76517000C6AA9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				268D1F6120E76517000C6AA9 /* Base */,
+				26EAA70C20E86AB300E42E7E /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -370,6 +424,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				268D1F6620E76518000C6AA9 /* Base */,
+				26EAA70D20E86AB300E42E7E /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -381,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -442,6 +498,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -498,6 +555,7 @@
 			baseConfigurationReference = 1CEF629DD51632025138D640 /* Pods-TangPoetry.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_GCD_PERFORMANCE = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R6P284TSWY;
 				INFOPLIST_FILE = TangPoetry/Info.plist;
@@ -517,6 +575,7 @@
 			baseConfigurationReference = AA1466B1BB4AD6491E9C40C8 /* Pods-TangPoetry.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_GCD_PERFORMANCE = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R6P284TSWY;
 				INFOPLIST_FILE = TangPoetry/Info.plist;
