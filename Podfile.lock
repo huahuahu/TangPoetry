@@ -5,7 +5,7 @@ DEPENDENCIES:
   - SwiftLint
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - SwiftLint
 
 SPEC CHECKSUMS:
@@ -13,4 +13,8 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 3705f21e0568b8e92d5f69a0a534723130321b6e
 
+<<<<<<< HEAD
 COCOAPODS: 1.9.1
+=======
+COCOAPODS: 1.5.3
+>>>>>>> delete inputfilelists
