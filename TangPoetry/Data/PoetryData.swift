@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-//swiftlint:disable force_try
-
 struct PoetryEntry: Decodable {
     let detailid: Int
     let author: String
@@ -28,7 +26,9 @@ class DataProvider: NSObject {
     override init() {
         let dataAsset = NSDataAsset.init(name: "allTitles")
         guard let data = dataAsset?.data else { fatalError() }
+        //swiftlint:disable force_try
         let dataDict = try! JSONSerialization.jsonObject(with: data, options: [])
+        // swiftlint:enable force_try
         guard let result = (dataDict as? [String: Any])?["result"] as? [[String: Any]] else {
             fatalError()
         }
