@@ -28,18 +28,62 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+<<<<<<< HEAD
       </Testables>
+=======
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "268D1F6C20E76518000C6AA9"
+               BuildableName = "TangPoetryTests.xctest"
+               BlueprintName = "TangPoetryTests"
+               ReferencedContainer = "container:TangPoetry.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "268D1F7720E76518000C6AA9"
+               BuildableName = "TangPoetryUITests.xctest"
+               BlueprintName = "TangPoetryUITests"
+               ReferencedContainer = "container:TangPoetry.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "268D1F5820E76517000C6AA9"
+            BuildableName = "TangPoetry.app"
+            BlueprintName = "TangPoetry"
+            ReferencedContainer = "container:TangPoetry.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
+>>>>>>> dataprovider
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+<<<<<<< HEAD
+=======
+      language = "zh-Hans"
+>>>>>>> dataprovider
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
+<<<<<<< HEAD
       allowLocationSimulation = "YES">
+=======
+      allowLocationSimulation = "YES"
+      showNonLocalizedStrings = "YES">
+>>>>>>> dataprovider
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
@@ -50,6 +94,11 @@
             ReferencedContainer = "container:TangPoetry.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+<<<<<<< HEAD
+=======
+      <AdditionalOptions>
+      </AdditionalOptions>
+>>>>>>> dataprovider
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

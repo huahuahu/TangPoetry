@@ -31,6 +31,11 @@ class PoetsVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         // Do any additional setup after loading the view.
+        let data = DataProvider.init()
+
+
+
+
     }
 
     /*
