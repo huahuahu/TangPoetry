@@ -57,13 +57,22 @@ class PoetryEntryCell: UITableViewCell {
     }
     
     func setConstraint() {
-        let titleConstraints = [titleLable.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-                                titleLable.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-                                titleLable.topAnchor.constraint(equalToSystemSpacingBelow: contentView.layoutMarginsGuide.topAnchor, multiplier: 1)]
+//        let titleConstraints = [titleLable.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+//                                titleLable.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+//                                titleLable.firstBaselineAnchor.constraint(equalToSystemSpacingBelow: contentView.layoutMarginsGuide.topAnchor, multiplier: 1)]
+//        let subTitleConstraints = [subTitleLabel.leadingAnchor.constraint(equalTo: titleLable.leadingAnchor),
+//                                   subTitleLabel.trailingAnchor.constraint(equalTo: titleLable.trailingAnchor),
+//                                   subTitleLabel.firstBaselineAnchor.constraint(equalToSystemSpacingBelow: titleLable.lastBaselineAnchor, multiplier: 1.5),
+//                                   contentView.layoutMarginsGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: subTitleLabel.lastBaselineAnchor, multiplier: 1)]
+
+        let titleConstraints = [titleLable.leadingAnchor.constraint(equalTo: contentView.readableContentGuide.leadingAnchor),
+                                titleLable.trailingAnchor.constraint(equalTo: contentView.readableContentGuide.trailingAnchor),
+                                titleLable.firstBaselineAnchor.constraint(equalToSystemSpacingBelow: contentView.readableContentGuide.topAnchor, multiplier: 1)]
         let subTitleConstraints = [subTitleLabel.leadingAnchor.constraint(equalTo: titleLable.leadingAnchor),
                                    subTitleLabel.trailingAnchor.constraint(equalTo: titleLable.trailingAnchor),
-                                   subTitleLabel.topAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: titleLable.bottomAnchor, multiplier: 1.5),
-                                   subTitleLabel.bottomAnchor.constraint(equalToSystemSpacingBelow: contentView.layoutMarginsGuide.bottomAnchor, multiplier: -1)]
+                                   subTitleLabel.firstBaselineAnchor.constraint(equalToSystemSpacingBelow: titleLable.lastBaselineAnchor, multiplier: 1.5),
+                                   contentView.readableContentGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: subTitleLabel.lastBaselineAnchor, multiplier: 1)]
+
         NSLayoutConstraint.activate(titleConstraints + subTitleConstraints)
     }
     

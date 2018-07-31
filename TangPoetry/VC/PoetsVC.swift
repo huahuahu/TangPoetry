@@ -31,6 +31,7 @@ class PoetsVC: UITableViewController {
         tableView.register(PoetryEntryCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 70
+        tableView.cellLayoutMarginsFollowReadableWidth = true
     }
 }
 
