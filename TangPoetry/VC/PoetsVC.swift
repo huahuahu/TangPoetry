@@ -9,8 +9,11 @@
 import UIKit
 
 /// 按照诗人分类
-class PoetsVC: UIViewController {
-
+class PoetsVC: UITableViewController {
+    
+    private let cellIdentifier = "PoetsVC.cellIdentifier"
+    private let poetries = DataProvider.shared.allPoetryEntries
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("not implement method \(#function)")
     }
@@ -18,29 +21,30 @@ class PoetsVC: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         let image: UIImage = UIImage.init(named: "poet")!.withRenderingMode(.alwaysOriginal)
-
         self.tabBarItem = UITabBarItem.init(title: localString("poet"), image: image, tag: 2)
-
-//        self.tabBarItem.setBadgeTextAttributes([.foregroundColor: UIColor.blue], for: .normal)
-//        self.tabBarItem.badgeValue = "dd"
-
-//        self.tabBarItem = UITabBarItem.init(tabBarSystemItem: .recents, tag: 4)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         // Do any additional setup after loading the view.
+        tableView.register(PoetryEntryCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 70
     }
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension PoetsVC {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //swiftlint:disable force_cast
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! PoetryEntryCell
+        //swiftlint:enable force_cast
+        let poetry = poetries[indexPath.row]
+        cell.updateTitle(poetry.name, subTitle: poetry.author)
+        return cell
     }
-    */
-
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return poetries.count
+    }
 }
