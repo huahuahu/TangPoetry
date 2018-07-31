@@ -21,7 +21,7 @@ class DataProvider: NSObject {
         return DataProvider.init()
     }
 
-    private let allPoetryEntries: [PoetryEntry]
+    public private(set) var allPoetryEntries: [PoetryEntry]
 
     override init() {
         let dataAsset = NSDataAsset.init(name: "allTitles")

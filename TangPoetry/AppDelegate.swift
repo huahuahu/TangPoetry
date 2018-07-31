@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let baseTabVC = BaseTabVC.init(nibName: nil, bundle: nil)
         let baseVC = BaseNavigationVC.init(rootViewController: baseTabVC)
         window?.rootViewController = baseVC
-        baseTabVC.viewControllers = [PoetsVC.init(), PoemStyleVC.init()]
+        baseTabVC.viewControllers = [PoetsVC.init(nibName: nil, bundle: nil), PoemStyleVC.init(nibName: nil, bundle: nil)]
         UITabBar.appearance().tintColor = UIColor.init(named: "globalTint")
         return true
     }

@@ -21,6 +21,7 @@
 		26EAA71620E86CF400E42E7E /* BaseTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAA71520E86CF400E42E7E /* BaseTabVC.swift */; };
 		26EAA71820E86D9D00E42E7E /* PoetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAA71720E86D9D00E42E7E /* PoetsVC.swift */; };
 		26EAA71A20E86DD200E42E7E /* PoemStyleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAA71920E86DD200E42E7E /* PoemStyleVC.swift */; };
+		26F113AC210FE8D1004CDAB6 /* PoetryEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F113AB210FE8D1004CDAB6 /* PoetryEntryCell.swift */; };
 		371676705799498C7014A77A /* Pods_TangPoetry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BC4972E4B57E36A372D99C /* Pods_TangPoetry.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		26EAA71520E86CF400E42E7E /* BaseTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabVC.swift; sourceTree = "<group>"; };
 		26EAA71720E86D9D00E42E7E /* PoetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetsVC.swift; sourceTree = "<group>"; };
 		26EAA71920E86DD200E42E7E /* PoemStyleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemStyleVC.swift; sourceTree = "<group>"; };
+		26F113AB210FE8D1004CDAB6 /* PoetryEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetryEntryCell.swift; sourceTree = "<group>"; };
 		AA1466B1BB4AD6491E9C40C8 /* Pods-TangPoetry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TangPoetry.release.xcconfig"; path = "Pods/Target Support Files/Pods-TangPoetry/Pods-TangPoetry.release.xcconfig"; sourceTree = "<group>"; };
 		D1BC4972E4B57E36A372D99C /* Pods_TangPoetry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TangPoetry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -137,6 +139,7 @@
 		268D1F5B20E76517000C6AA9 /* TangPoetry */ = {
 			isa = PBXGroup;
 			children = (
+				26F113AA210FE8A9004CDAB6 /* CustomView */,
 				268D1F5C20E76517000C6AA9 /* AppDelegate.swift */,
 				262198CE20E8A1F500F249BF /* Util */,
 				26EAA70E20E86BC100E42E7E /* VC */,
@@ -178,6 +181,14 @@
 				26EAA71920E86DD200E42E7E /* PoemStyleVC.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		26F113AA210FE8A9004CDAB6 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				26F113AB210FE8D1004CDAB6 /* PoetryEntryCell.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		E211120A18D66B2CC094F051 /* Frameworks */ = {
@@ -376,6 +387,7 @@
 				26EAA71220E86C1D00E42E7E /* BaseNavigationVC.swift in Sources */,
 				268D1F5D20E76517000C6AA9 /* AppDelegate.swift in Sources */,
 				26EAA71A20E86DD200E42E7E /* PoemStyleVC.swift in Sources */,
+				26F113AC210FE8D1004CDAB6 /* PoetryEntryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
