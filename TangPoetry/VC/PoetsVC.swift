@@ -22,10 +22,14 @@ class PoetsVC: UITableViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         let image: UIImage = UIImage.init(named: "poet")!.withRenderingMode(.alwaysOriginal)
         self.tabBarItem = UITabBarItem.init(title: localString("poet"), image: image, tag: 2)
+        self.refreshControl = UIRefreshControl.init()
+        self.refreshControl?.addTarget(self, action: #selector(type(of: self).beginRefersh), for: .valueChanged)
+        self.refreshControl?.attributedTitle = NSAttributedString.init(string: "下拉刷新")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = UIColor.white
         // Do any additional setup after loading the view.
         tableView.register(PoetryEntryCell.self, forCellReuseIdentifier: cellIdentifier)
@@ -33,6 +37,15 @@ class PoetsVC: UITableViewController {
         tableView.estimatedRowHeight = 70
         tableView.cellLayoutMarginsFollowReadableWidth = true
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.parent?.navigationItem.title = "按照诗人浏览"
+        self.parent?.navigationItem.largeTitleDisplayMode = .always
+        self.navigationItem.largeTitleDisplayMode = .always
+
+    }
+    
 }
 
 extension PoetsVC {
@@ -47,5 +60,15 @@ extension PoetsVC {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return poetries.count
+    }
+}
+
+// refresh control
+extension PoetsVC {
+    @objc func beginRefersh() {
+        print("begin refersh")
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+            self.refreshControl?.endRefreshing()
+        }
     }
 }
