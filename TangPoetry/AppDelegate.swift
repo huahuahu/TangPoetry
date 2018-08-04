@@ -15,13 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // swiftlint:disable line_length
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        window = UIWindow.init(frame: UIScreen.main.bounds)
+        // Override point for customization after application launch
 
         let baseTabVC = BaseTabVC.init(nibName: nil, bundle: nil)
-        let baseVC = BaseNavigationVC.init(rootViewController: baseTabVC)
-        window?.rootViewController = baseVC
-        baseTabVC.viewControllers = [PoetsVC.init(nibName: nil, bundle: nil), PoemStyleVC.init(nibName: nil, bundle: nil)]
+        window?.rootViewController = baseTabVC
+        let navigationVC1 = BaseNavigationVC.init(rootViewController: PoetsVC.init(nibName: nil, bundle: nil))
+        let navigationVC2 = BaseNavigationVC.init(rootViewController: PoemStyleVC.init(nibName: nil, bundle: nil))
+        baseTabVC.viewControllers = [navigationVC1, navigationVC2]
+        navigationVC1.navigationBar.prefersLargeTitles = true
+        navigationVC2.navigationBar.prefersLargeTitles = true
         UITabBar.appearance().tintColor = UIColor.init(named: "globalTint")
         return true
     }
