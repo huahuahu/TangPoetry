@@ -25,6 +25,8 @@ class PoetsVC: UITableViewController {
         self.refreshControl = UIRefreshControl.init()
         self.refreshControl?.addTarget(self, action: #selector(type(of: self).beginRefersh), for: .valueChanged)
         self.refreshControl?.attributedTitle = NSAttributedString.init(string: "下拉刷新")
+        self.navigationItem.title = "按照诗人浏览"
+        self.navigationItem.largeTitleDisplayMode = .always
     }
 
     override func viewDidLoad() {
@@ -40,9 +42,6 @@ class PoetsVC: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.parent?.navigationItem.title = "按照诗人浏览"
-        self.parent?.navigationItem.largeTitleDisplayMode = .always
-        self.navigationItem.largeTitleDisplayMode = .always
 
     }
     
