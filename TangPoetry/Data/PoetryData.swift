@@ -47,6 +47,17 @@ class DataProvider: NSObject {
     var poetryCount: Int {
         return allPoetryEntries.count
     }
+    
+    func searchFor(_ str: String?) -> [PoetryEntry] {
+        if nil == str || str!.isEmpty  {
+            return []
+        }
+        
+        return allPoetryEntries.filter({ (poetry) -> Bool in
+            poetry.author.contains(str!)
+        })
+        
+    }
 
 }
 

@@ -13,6 +13,8 @@ class PoetsVC: UITableViewController {
     
     private let cellIdentifier = "PoetsVC.cellIdentifier"
     private let poetries = DataProvider.shared.allPoetryEntries
+    private var searchVC: UISearchController!
+    private var searchResultVC: SearchResultVC!
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("not implement method \(#function)")
@@ -38,6 +40,8 @@ class PoetsVC: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 70
         tableView.cellLayoutMarginsFollowReadableWidth = true
+        
+        configSearchVC()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,4 +74,38 @@ extension PoetsVC {
             self.refreshControl?.endRefreshing()
         }
     }
+}
+
+// MARK: - Serach View Controller
+extension PoetsVC: UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchWord = searchController.searchBar.text?.trimmingCharacters(in: CharacterSet.whitespaces)
+        let searchResult = DataProvider.shared.searchFor(searchWord)
+        
+        if let resultsController = searchController.searchResultsController as? SearchResultVC {
+            resultsController.poetries = searchResult
+            resultsController.tableView.reloadData()
+        }
+    
+    }
+    
+    func configSearchVC() {
+        searchResultVC = SearchResultVC()
+        searchVC = UISearchController.init(searchResultsController: searchResultVC)
+        searchVC.searchResultsUpdater = self
+        searchVC.searchBar.sizeToFit()
+
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.searchController = searchVC
+        navigationItem.hidesSearchBarWhenScrolling = false
+        
+        searchVC.delegate = self
+        searchVC.dimsBackgroundDuringPresentation = true
+        searchVC.searchBar.delegate = self
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
 }

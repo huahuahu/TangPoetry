@@ -17,6 +17,7 @@
 		268D1F6720E76518000C6AA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 268D1F6520E76518000C6AA9 /* LaunchScreen.storyboard */; };
 		268D1F7220E76518000C6AA9 /* TangPoetryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D1F7120E76518000C6AA9 /* TangPoetryTests.swift */; };
 		268D1F7D20E76518000C6AA9 /* TangPoetryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D1F7C20E76518000C6AA9 /* TangPoetryUITests.swift */; };
+		26926AAE2117D4880030D7BA /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26926AAD2117D4880030D7BA /* SearchResultVC.swift */; };
 		26EAA71220E86C1D00E42E7E /* BaseNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAA71120E86C1D00E42E7E /* BaseNavigationVC.swift */; };
 		26EAA71620E86CF400E42E7E /* BaseTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAA71520E86CF400E42E7E /* BaseTabVC.swift */; };
 		26EAA71820E86D9D00E42E7E /* PoetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAA71720E86D9D00E42E7E /* PoetsVC.swift */; };
@@ -61,6 +62,7 @@
 		268D1F7820E76518000C6AA9 /* TangPoetryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TangPoetryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		268D1F7C20E76518000C6AA9 /* TangPoetryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangPoetryUITests.swift; sourceTree = "<group>"; };
 		268D1F7E20E76518000C6AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26926AAD2117D4880030D7BA /* SearchResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
 		26EAA70C20E86AB300E42E7E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		26EAA70D20E86AB300E42E7E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		26EAA71120E86C1D00E42E7E /* BaseNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationVC.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				26EAA71520E86CF400E42E7E /* BaseTabVC.swift */,
 				26EAA71720E86D9D00E42E7E /* PoetsVC.swift */,
 				26EAA71920E86DD200E42E7E /* PoemStyleVC.swift */,
+				26926AAD2117D4880030D7BA /* SearchResultVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				268D1F5D20E76517000C6AA9 /* AppDelegate.swift in Sources */,
 				26EAA71A20E86DD200E42E7E /* PoemStyleVC.swift in Sources */,
 				26F113AC210FE8D1004CDAB6 /* PoetryEntryCell.swift in Sources */,
+				26926AAE2117D4880030D7BA /* SearchResultVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
