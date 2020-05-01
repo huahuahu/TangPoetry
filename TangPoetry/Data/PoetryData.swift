@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 struct PoetryEntry: Decodable {
-    let id: Int
+    let uniqueId: Int
     let author: String
     let title: String
     let content: String
     let genre: Genre
 
-    private enum CodingKeys : String, CodingKey {
-        case id, author, title, content = "contents", genre = "type"
+    private enum CodingKeys: String, CodingKey {
+        case uniqueId = "id", author, title, content = "contents", genre = "type"
     }
 }
 
@@ -31,7 +31,6 @@ enum Genre: String, Decodable, CaseIterable {
    case wuyanLvshi = "五言律诗"
    case qiyanLvshi = "七言律诗"
 }
-
 
 class DataProvider: NSObject {
     
@@ -55,7 +54,7 @@ class DataProvider: NSObject {
     }
     
     func searchFor(_ str: String?) -> [PoetryEntry] {
-        if nil == str || str!.isEmpty  {
+        if nil == str || str!.isEmpty {
             return []
         }
         

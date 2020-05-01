@@ -141,10 +141,11 @@
 		268D1F5B20E76517000C6AA9 /* TangPoetry */ = {
 			isa = PBXGroup;
 			children = (
-				26F113AA210FE8A9004CDAB6 /* CustomView */,
 				268D1F5C20E76517000C6AA9 /* AppDelegate.swift */,
+				60BA61A3245C4E7300233698 /* Common */,
+				60BA619F245C4DB900233698 /* PoetryShow */,
+				26F113AA210FE8A9004CDAB6 /* CustomView */,
 				262198CE20E8A1F500F249BF /* Util */,
-				26EAA70E20E86BC100E42E7E /* VC */,
 				2663E523210C34830036300E /* Data */,
 				268D1F6020E76517000C6AA9 /* Main.storyboard */,
 				268D1F6320E76518000C6AA9 /* Assets.xcassets */,
@@ -179,11 +180,10 @@
 				268D1F5E20E76517000C6AA9 /* ViewController.swift */,
 				26EAA71120E86C1D00E42E7E /* BaseNavigationVC.swift */,
 				26EAA71520E86CF400E42E7E /* BaseTabVC.swift */,
-				26EAA71720E86D9D00E42E7E /* PoetsVC.swift */,
-				26EAA71920E86DD200E42E7E /* PoemStyleVC.swift */,
 				26926AAD2117D4880030D7BA /* SearchResultVC.swift */,
 			);
-			path = VC;
+			name = VC;
+			path = ../VC;
 			sourceTree = "<group>";
 		};
 		26F113AA210FE8A9004CDAB6 /* CustomView */ = {
@@ -192,6 +192,39 @@
 				26F113AB210FE8D1004CDAB6 /* PoetryEntryCell.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		60BA619F245C4DB900233698 /* PoetryShow */ = {
+			isa = PBXGroup;
+			children = (
+				60BA61A1245C4DE300233698 /* Poets */,
+				60BA61A0245C4DD900233698 /* Genre */,
+			);
+			path = PoetryShow;
+			sourceTree = "<group>";
+		};
+		60BA61A0245C4DD900233698 /* Genre */ = {
+			isa = PBXGroup;
+			children = (
+				26EAA71920E86DD200E42E7E /* PoemStyleVC.swift */,
+			);
+			path = Genre;
+			sourceTree = "<group>";
+		};
+		60BA61A1245C4DE300233698 /* Poets */ = {
+			isa = PBXGroup;
+			children = (
+				26EAA71720E86D9D00E42E7E /* PoetsVC.swift */,
+			);
+			path = Poets;
+			sourceTree = "<group>";
+		};
+		60BA61A3245C4E7300233698 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				26EAA70E20E86BC100E42E7E /* VC */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		E211120A18D66B2CC094F051 /* Frameworks */ = {
@@ -508,7 +541,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -563,7 +596,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -589,7 +622,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tiger.shenzhen.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -611,7 +644,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tiger.shenzhen.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -621,6 +654,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TangPoetryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -630,7 +664,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tiger.shenzhen.TangPoetryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TangPoetry.app/TangPoetry";
 			};
@@ -641,6 +675,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TangPoetryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -650,7 +685,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tiger.shenzhen.TangPoetryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TangPoetry.app/TangPoetry";
 			};
@@ -669,7 +704,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tiger.shenzhen.TangPoetryUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = TangPoetry;
 			};
@@ -688,7 +723,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tiger.shenzhen.TangPoetryUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = TangPoetry;
 			};
