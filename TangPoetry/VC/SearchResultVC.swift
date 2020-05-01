@@ -42,7 +42,7 @@ class SearchResultVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! PoetryEntryCell
         //swiftlint:enable force_cast
         let poetry = poetries[indexPath.row]
-        cell.updateTitle(poetry.name, subTitle: poetry.author)
+        cell.updateTitle(poetry.title, subTitle: poetry.author)
         return cell
 
     }

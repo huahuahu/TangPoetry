@@ -10,10 +10,28 @@ import Foundation
 import UIKit
 
 struct PoetryEntry: Decodable {
-    let detailid: Int
+    let id: Int
     let author: String
-    let name: String
+    let title: String
+    let content: String
+    let genre: Genre
+
+    private enum CodingKeys : String, CodingKey {
+        case id, author, title, content = "contents", genre = "type"
+    }
 }
+
+enum Genre: String, Decodable, CaseIterable {
+   case wuyanGushi = "五言古诗"
+   case qiyanGushi = "七言古诗"
+   case wuyanYuefu = "五言乐府"
+   case qiyanYuefu = "七言乐府"
+   case wuyanJueju = "五言绝句"
+   case qiyanJueju = "七言绝句"
+   case wuyanLvshi = "五言律诗"
+   case qiyanLvshi = "七言律诗"
+}
+
 
 class DataProvider: NSObject {
     
@@ -27,19 +45,7 @@ class DataProvider: NSObject {
         let dataAsset = NSDataAsset.init(name: "allTitles")
         guard let data = dataAsset?.data else { fatalError() }
         //swiftlint:disable force_try
-        let dataDict = try! JSONSerialization.jsonObject(with: data, options: [])
-        // swiftlint:enable force_try
-        guard let result = (dataDict as? [String: Any])?["result"] as? [[String: Any]] else {
-            fatalError()
-        }
-        allPoetryEntries = result.compactMap { (dict) -> PoetryEntry? in
-            guard let detailid = dict["detailid"] as? String,
-                let author = dict["author"] as? String,
-                let name = dict["name"] as? String else {
-                    return nil
-            }
-            return PoetryEntry.init(detailid: Int(detailid)!, author: author, name: name)
-        }
+        allPoetryEntries = try! JSONDecoder().decode([PoetryEntry].self, from: data)
 
         super.init()
     }
