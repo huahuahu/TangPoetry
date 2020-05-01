@@ -25,7 +25,7 @@ class TangPoetryTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let dataProvider = DataProvider.init()
-        assert(dataProvider.poetryCount == 320)
+        assert(dataProvider.poetryCount == 319)
     }
 
     func testPerformanceExample() {

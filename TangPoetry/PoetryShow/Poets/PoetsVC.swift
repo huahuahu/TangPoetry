@@ -100,7 +100,6 @@ extension PoetsVC: UISearchResultsUpdating, UISearchControllerDelegate, UISearch
         navigationItem.hidesSearchBarWhenScrolling = false
         
         searchVC.delegate = self
-        searchVC.dimsBackgroundDuringPresentation = true
         searchVC.searchBar.delegate = self
     }
     
