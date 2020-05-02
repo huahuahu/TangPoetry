@@ -28,7 +28,8 @@
 		60BA61A9245C523200233698 /* GenreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61A8245C523200233698 /* GenreView.swift */; };
 		60BA61AC245C55C600233698 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61AB245C55C600233698 /* DataSource.swift */; };
 		60BA61AE245C577800233698 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61AD245C577800233698 /* CollectionCell.swift */; };
-		60BA61B0245C668C00233698 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61AF245C668C00233698 /* Layout.swift */; };
+		60BA61B0245C668C00233698 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61AF245C668C00233698 /* FlowLayout.swift */; };
+		60BA61B2245D153D00233698 /* CompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61B1245D153D00233698 /* CompositionalLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +80,8 @@
 		60BA61A8245C523200233698 /* GenreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreView.swift; sourceTree = "<group>"; };
 		60BA61AB245C55C600233698 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		60BA61AD245C577800233698 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
-		60BA61AF245C668C00233698 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		60BA61AF245C668C00233698 /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
+		60BA61B1245D153D00233698 /* CompositionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionalLayout.swift; sourceTree = "<group>"; };
 		AA1466B1BB4AD6491E9C40C8 /* Pods-TangPoetry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TangPoetry.release.xcconfig"; path = "Pods/Target Support Files/Pods-TangPoetry/Pods-TangPoetry.release.xcconfig"; sourceTree = "<group>"; };
 		D1BC4972E4B57E36A372D99C /* Pods_TangPoetry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TangPoetry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -253,7 +255,8 @@
 			isa = PBXGroup;
 			children = (
 				60BA61AB245C55C600233698 /* DataSource.swift */,
-				60BA61AF245C668C00233698 /* Layout.swift */,
+				60BA61AF245C668C00233698 /* FlowLayout.swift */,
+				60BA61B1245D153D00233698 /* CompositionalLayout.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -447,7 +450,8 @@
 			files = (
 				2663E525210C34A70036300E /* PoetryData.swift in Sources */,
 				60BA61A7245C51C100233698 /* BaseVC.swift in Sources */,
-				60BA61B0245C668C00233698 /* Layout.swift in Sources */,
+				60BA61B0245C668C00233698 /* FlowLayout.swift in Sources */,
+				60BA61B2245D153D00233698 /* CompositionalLayout.swift in Sources */,
 				262198D020E8A20700F249BF /* util.swift in Sources */,
 				60BA61AC245C55C600233698 /* DataSource.swift in Sources */,
 				268D1F5F20E76517000C6AA9 /* ViewController.swift in Sources */,

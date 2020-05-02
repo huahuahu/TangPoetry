@@ -10,7 +10,7 @@ import UIKit
 
 class GenreView: UIView {
     let collectionView: UICollectionView
-    let collectionViewLayout: UICollectionViewFlowLayout = CustomFlowLayout.testDemo()
+    let collectionViewLayout: UICollectionViewLayout = CompositionalFlowLayout.demoCompositionalFlowLayout()
     var dataSource: UICollectionViewDataSource!
 
     init() {
@@ -29,7 +29,11 @@ class GenreView: UIView {
 
     func setUp(with poems: [PoetryEntry]) {
         collectionView.register(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.reuseIdentifier)
-        dataSource = CustomDataSource.init(models: Array(poems.prefix(100)), modelToCellBlock: { (poem, indexPath) -> UICollectionViewCell in
+        let models = [
+            Array(poems.prefix(upTo: 5)),
+            Array(poems.suffix(100))
+        ]
+        dataSource = CustomDataSource.init(models: models, modelToCellBlock: { (poem, indexPath) -> UICollectionViewCell in
             let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.reuseIdentifier, for: indexPath) as? CollectionCell
             cell?.setup(with: poem)
             return cell!
