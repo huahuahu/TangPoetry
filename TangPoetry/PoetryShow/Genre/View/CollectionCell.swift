@@ -41,6 +41,7 @@ class CollectionCell: UICollectionViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(authorLabel)
         contentView.addSubview(contentLabel)
+        contentView.backgroundColor = .systemRed
         setupConstraints()
     }
 
@@ -83,22 +84,24 @@ class CollectionCell: UICollectionViewCell {
 
     //    https://stackoverflow.com/a/51231881/2739854
     // Autolayout collectionview cell
-//    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-//        print("\(#function)")
-//        // option 1
-////        let layoutAttributes = super.preferredLayoutAttributesFitting(layoutAttributes)
-////        print(layoutAttributes)
-////        layoutIfNeeded()
-////        layoutAttributes.frame.size = systemLayoutSizeFitting(UIView.layoutFittingCompressedSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
-//        // option 2
-//        let targetSize = CGSize(width: layoutAttributes.frame.width, height: 0)
-//        print(targetSize)
-//        layoutAttributes.frame.size = contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
-//        //option 3
-////        print(layoutAttributes.frame)
-////        contentLabel.preferredMaxLayoutWidth = layoutAttributes.frame.width
-////        layoutAttributes.frame.size.height = contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
-//
-//        return layoutAttributes
-//    }
+    /* This is a
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        print("\(#function)")
+        // option 1
+//        let layoutAttributes = super.preferredLayoutAttributesFitting(layoutAttributes)
+//        print(layoutAttributes)
+//        layoutIfNeeded()
+//        layoutAttributes.frame.size = systemLayoutSizeFitting(UIView.layoutFittingCompressedSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+        // option 2
+        let targetSize = CGSize(width: layoutAttributes.frame.width, height: 0)
+        print(targetSize)
+        layoutAttributes.frame.size = contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+        //option 3
+//        print(layoutAttributes.frame)
+//        contentLabel.preferredMaxLayoutWidth = layoutAttributes.frame.width
+//        layoutAttributes.frame.size.height = contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+
+        return layoutAttributes
+    }
+ **/
 }
