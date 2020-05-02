@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let baseTabVC = BaseTabVC.init(nibName: nil, bundle: nil)
         window?.rootViewController = baseTabVC
         let navigationVC1 = BaseNavigationVC.init(rootViewController: PoetsVC.init(nibName: nil, bundle: nil))
-        let navigationVC2 = BaseNavigationVC.init(rootViewController: PoemStyleVC.init(nibName: nil, bundle: nil))
+        let navigationVC2 = BaseNavigationVC.init(rootViewController: PoemGenreVC.init(nibName: nil, bundle: nil))
         baseTabVC.viewControllers = [navigationVC1, navigationVC2]
         navigationVC1.navigationBar.prefersLargeTitles = true
         navigationVC2.navigationBar.prefersLargeTitles = true
