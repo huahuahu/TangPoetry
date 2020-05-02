@@ -10,18 +10,21 @@ import Foundation
 import UIKit
 
 class CustomDataSource<T: Any>: NSObject, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return models.count
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return models[section].count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return block(models[indexPath.row], indexPath)
+        return block(models[indexPath.section][indexPath.row], indexPath)
     }
 
-    let models: [T]
+    let models: [[T]]
     let block: (T, IndexPath) -> UICollectionViewCell
 
-    init(models: [T], modelToCellBlock: @escaping ((T, IndexPath) -> UICollectionViewCell)) {
+    init(models: [[T]], modelToCellBlock: @escaping ((T, IndexPath) -> UICollectionViewCell)) {
         self.models = models
         self.block = modelToCellBlock
     }
