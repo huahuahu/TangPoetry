@@ -26,7 +26,44 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      disableMainThreadChecker = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "268D1F5820E76517000C6AA9"
+            BuildableName = "TangPoetry.app"
+            BlueprintName = "TangPoetry"
+            ReferencedContainer = "container:TangPoetry.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+         <AdditionalOption
+            key = "MallocGuardEdges"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "MallocStackLogging"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "NSZombieEnabled"
+            value = "YES"
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "DYLD_INSERT_LIBRARIES"
+            value = "/usr/lib/libgmalloc.dylib"
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "MallocScribble"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
+      </AdditionalOptions>
       <Testables>
 <<<<<<< HEAD
       </Testables>
@@ -52,6 +89,7 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
+<<<<<<< HEAD
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -64,6 +102,8 @@
       <AdditionalOptions>
       </AdditionalOptions>
 >>>>>>> dataprovider
+=======
+>>>>>>> autolayout collectionviewcell
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -95,10 +135,13 @@
          </BuildableReference>
       </BuildableProductRunnable>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       <AdditionalOptions>
       </AdditionalOptions>
 >>>>>>> dataprovider
+=======
+>>>>>>> autolayout collectionviewcell
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
