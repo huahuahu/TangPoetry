@@ -132,11 +132,11 @@ class PoetryWriteVC: BaseVC {
         let dropInteraction1 = UIDropInteraction.init(delegate: imageViewDropDelegate1)
 
         //        let dropInteraction = UIDropInteraction.init(delegate: self)
-//        imageView1.addInteraction(dropInteraction1)
+        imageView1.addInteraction(dropInteraction1)
 
         imageViewDragDelegate1 = ImageViewDragDelegate(imageView: imageView1)
         let dragInteraction1 = UIDragInteraction.init(delegate: imageViewDragDelegate1)
-//        imageView1.addInteraction(dragInteraction1)
+        imageView1.addInteraction(dragInteraction1)
     }
 }
 

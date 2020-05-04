@@ -39,7 +39,7 @@ class ImageViewDropDelegate: NSObject, UIDropInteractionDelegate {
         dragDropLog("\(#function)")
 
             // Consume drag items (in this example, of type UIImage).
-        session.loadObjects(ofClass: UIImage.self) { imageItems in
+         session.loadObjects(ofClass: UIImage.self) { imageItems in
             guard let images = imageItems as? [UIImage] else {
                 return
             }
@@ -53,7 +53,11 @@ class ImageViewDropDelegate: NSObject, UIDropInteractionDelegate {
 
     func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
         dragDropLog("\(#function)")
-        return .init(operation: .copy)
+        if session.allowsMoveOperation {
+            return .init(operation: .move)
+        } else {
+            return .init(operation: .copy)
+        }
     }
 
     func dropInteraction(_ interaction: UIDropInteraction, sessionDidExit session: UIDropSession) {
