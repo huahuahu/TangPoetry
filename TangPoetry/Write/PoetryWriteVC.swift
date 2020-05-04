@@ -9,8 +9,8 @@
 import UIKit
 
 class PoetryWriteVC: BaseVC {
-    let imageView: UIImageView = {
-        let imageView = UIImageView.init()
+    let imageView: PasteImageView = {
+        let imageView = PasteImageView.init()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .red
@@ -18,8 +18,8 @@ class PoetryWriteVC: BaseVC {
         return imageView
     }()
 
-    let imageView1: UIImageView = {
-        let imageView = UIImageView.init()
+    let imageView1: PasteImageView = {
+        let imageView = PasteImageView.init()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .red
@@ -83,6 +83,8 @@ class PoetryWriteVC: BaseVC {
 
     func setupConstraints() {
         let innerStackView = UIStackView.init(arrangedSubviews: [imageView, imageView1])
+        innerStackView.layoutMargins = .init(top: 0, left: 20, bottom: 0, right: 20)
+        innerStackView.isLayoutMarginsRelativeArrangement = true
         innerStackView.axis = .horizontal
         innerStackView.distribution = .equalSpacing
         innerStackView.alignment = .center
@@ -130,11 +132,11 @@ class PoetryWriteVC: BaseVC {
         let dropInteraction1 = UIDropInteraction.init(delegate: imageViewDropDelegate1)
 
         //        let dropInteraction = UIDropInteraction.init(delegate: self)
-        imageView1.addInteraction(dropInteraction1)
+//        imageView1.addInteraction(dropInteraction1)
 
         imageViewDragDelegate1 = ImageViewDragDelegate(imageView: imageView1)
         let dragInteraction1 = UIDragInteraction.init(delegate: imageViewDragDelegate1)
-        imageView1.addInteraction(dragInteraction1)
+//        imageView1.addInteraction(dragInteraction1)
     }
 }
 
