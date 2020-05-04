@@ -18,6 +18,15 @@ class PoetryWriteVC: BaseVC {
         return imageView
     }()
 
+    let imageView1: UIImageView = {
+        let imageView = UIImageView.init()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .red
+        imageView.isUserInteractionEnabled = true
+        return imageView
+    }()
+
     let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -39,8 +48,13 @@ class PoetryWriteVC: BaseVC {
         label.textAlignment = .center
         return label
     }()
-
+    // swiftlint:disable weak_delegate
     private var imageViewDropDelegate: UIDropInteractionDelegate!
+    private var imageViewDragDelegate: UIDragInteractionDelegate!
+    private var imageViewDropDelegate1: UIDropInteractionDelegate!
+    private var imageViewDragDelegate1: UIDragInteractionDelegate!
+
+    // swiftlint:enable weak_delegate
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -68,11 +82,17 @@ class PoetryWriteVC: BaseVC {
     }
 
     func setupConstraints() {
-        let stackView = UIStackView.init(arrangedSubviews: [imageView, label, label1])
+        let innerStackView = UIStackView.init(arrangedSubviews: [imageView, imageView1])
+        innerStackView.axis = .horizontal
+        innerStackView.distribution = .equalSpacing
+        innerStackView.alignment = .center
+        innerStackView.translatesAutoresizingMaskIntoConstraints = false
+
+        let stackView = UIStackView.init(arrangedSubviews: [innerStackView, label, label1])
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         stackView.alignment = .center
-        stackView.setCustomSpacing(20, after: imageView)
+        stackView.setCustomSpacing(20, after: innerStackView)
         stackView.setCustomSpacing(20, after: label)
         stackView.spacing = 50
         stackView.layoutMargins = .init(top: 20, left: 0, bottom: 20, right: 0)
@@ -81,8 +101,12 @@ class PoetryWriteVC: BaseVC {
         view.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
-            imageView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.75),
-            imageView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.5),
+            imageView.widthAnchor.constraint(equalTo: innerStackView.widthAnchor, multiplier: 0.45),
+            imageView.heightAnchor.constraint(equalTo: innerStackView.heightAnchor, multiplier: 0.9),
+            imageView1.widthAnchor.constraint(equalTo: innerStackView.widthAnchor, multiplier: 0.45),
+            imageView1.heightAnchor.constraint(equalTo: innerStackView.heightAnchor, multiplier: 0.9),
+            innerStackView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.45),
+            innerStackView.widthAnchor.constraint(equalTo: stackView.layoutMarginsGuide.widthAnchor),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -95,106 +119,30 @@ class PoetryWriteVC: BaseVC {
         imageViewDropDelegate = ImageViewDropDelegate(imageView: imageView)
         let dropInteraction = UIDropInteraction.init(delegate: imageViewDropDelegate)
 
-//        let dropInteraction = UIDropInteraction.init(delegate: self)
+        //        let dropInteraction = UIDropInteraction.init(delegate: self)
         imageView.addInteraction(dropInteraction)
+
+        imageViewDragDelegate = ImageViewDragDelegate(imageView: imageView)
+        let dragInteraction = UIDragInteraction.init(delegate: imageViewDragDelegate)
+        imageView.addInteraction(dragInteraction)
+
+        imageViewDropDelegate1 = ImageViewDropDelegate(imageView: imageView1)
+        let dropInteraction1 = UIDropInteraction.init(delegate: imageViewDropDelegate1)
+
+        //        let dropInteraction = UIDropInteraction.init(delegate: self)
+        imageView1.addInteraction(dropInteraction1)
+
+        imageViewDragDelegate1 = ImageViewDragDelegate(imageView: imageView1)
+        let dragInteraction1 = UIDragInteraction.init(delegate: imageViewDragDelegate1)
+        imageView1.addInteraction(dragInteraction1)
     }
 }
 
 // MARK: - Drag & Drop
 //extension PoetryWriteVC: UIDropInteractionDelegate {
-class ImageViewDropDelegate: NSObject, UIDropInteractionDelegate {
-    let imageView: UIImageView
-
-    init(imageView: UIImageView) {
-        dragDropLog("\(#function)")
-        self.imageView = imageView
-        super.init()
-    }
-
-    func updateImages(_ images: [UIImage]) {
-        guard !images.isEmpty else {
-            return
-        }
-        if images.count == 1 {
-            self.imageView.image = images.first
-        } else {
-            self.imageView.animationImages = images
-            self.imageView.animationDuration = 1
-            self.imageView.startAnimating()
-        }
-    }
-
-    func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
-        dragDropLog("\(#function)")
-        return session.canLoadObjects(ofClass: UIImage.self)
-    }
-
-    func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
-        dragDropLog("\(#function)")
-
-            // Consume drag items (in this example, of type UIImage).
-        session.loadObjects(ofClass: UIImage.self) { imageItems in
-            guard let images = imageItems as? [UIImage] else {
-                return
-            }
-            self.updateImages(images)
-        }
-    }
-
-    func dropInteraction(_ interaction: UIDropInteraction, sessionDidEnter session: UIDropSession) {
-        dragDropLog("\(#function)")
-    }
-
-    func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
-        dragDropLog("\(#function)")
-        return .init(operation: .copy)
-    }
-
-    func dropInteraction(_ interaction: UIDropInteraction, sessionDidExit session: UIDropSession) {
-        dragDropLog("\(#function)")
-    }
-
-    func dropInteraction(_ interaction: UIDropInteraction, sessionDidEnd session: UIDropSession) {
-        dragDropLog("\(#function)")
-    }
-
-    func dropInteraction(_ interaction: UIDropInteraction, item: UIDragItem, willAnimateDropWith animator: UIDragAnimating) {
-        animator.addAnimations {
-            dragDropLog("\(#function) animator.addAnimations")
-
-            self.imageView.alpha = 0.5
-//            self.imageView.contentMode = .scaleAspectFill
-        }
-        animator.addCompletion { (_) in
-            dragDropLog("\(#function) animator.addCompletion")
-
-            self.imageView.alpha = 1
-        }
-        dragDropLog("\(#function)")
-    }
-
-    func dropInteraction(_ interaction: UIDropInteraction, previewForDropping item: UIDragItem, withDefault defaultPreview: UITargetedDragPreview) -> UITargetedDragPreview? {
-        dragDropLog("\(#function)")
-        let label = UILabel()
-        label.text = "haah"
-        label.frame = .init(origin: .zero, size: .init(width: 100, height: 100))
-//        let preview = UITargetedPreview.init(view: label)
-        let dragPreview = UITargetedDragPreview.init(view: label, parameters: .init(), target: .init(container: self.imageView, center: .zero))
-        return dragPreview
-    }
-
-    func dropInteraction(_ interaction: UIDropInteraction, concludeDrop session: UIDropSession) {
-//        self.imageView.contentMode = .scaleAspectFit
-        dragDropLog("\(#function)")
-    }
-}
 
 extension PoetryWriteVC: UIDragInteractionDelegate {
     func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
         return []
     }
-}
-
-private func dragDropLog(_ str: String) {
-    print("drag&drop: \(str)")
 }

@@ -31,6 +31,9 @@
 		60BA61B0245C668C00233698 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61AF245C668C00233698 /* FlowLayout.swift */; };
 		60BA61B2245D153D00233698 /* CompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61B1245D153D00233698 /* CompositionalLayout.swift */; };
 		60EB36A0245F9BA30093E87A /* PoetryWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB369F245F9BA30093E87A /* PoetryWriteVC.swift */; };
+		60EB36A3245FC8520093E87A /* ImageDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36A2245FC8520093E87A /* ImageDropDelegate.swift */; };
+		60EB36A5245FC8880093E87A /* Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36A4245FC8880093E87A /* Logs.swift */; };
+		60EB36A7245FC8E10093E87A /* ImageDragDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36A6245FC8E10093E87A /* ImageDragDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +87,9 @@
 		60BA61AF245C668C00233698 /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		60BA61B1245D153D00233698 /* CompositionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionalLayout.swift; sourceTree = "<group>"; };
 		60EB369F245F9BA30093E87A /* PoetryWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetryWriteVC.swift; sourceTree = "<group>"; };
+		60EB36A2245FC8520093E87A /* ImageDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDropDelegate.swift; sourceTree = "<group>"; };
+		60EB36A4245FC8880093E87A /* Logs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logs.swift; sourceTree = "<group>"; };
+		60EB36A6245FC8E10093E87A /* ImageDragDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDragDelegate.swift; sourceTree = "<group>"; };
 		AA1466B1BB4AD6491E9C40C8 /* Pods-TangPoetry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TangPoetry.release.xcconfig"; path = "Pods/Target Support Files/Pods-TangPoetry/Pods-TangPoetry.release.xcconfig"; sourceTree = "<group>"; };
 		D1BC4972E4B57E36A372D99C /* Pods_TangPoetry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TangPoetry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -118,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				262198CF20E8A20700F249BF /* util.swift */,
+				60EB36A4245FC8880093E87A /* Logs.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -239,6 +246,7 @@
 		60BA61A3245C4E7300233698 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				60EB36A1245FC8380093E87A /* Drag&Drop */,
 				60BA61AA245C526F00233698 /* CollectionView */,
 				26EAA70E20E86BC100E42E7E /* VC */,
 			);
@@ -270,6 +278,15 @@
 				60EB369F245F9BA30093E87A /* PoetryWriteVC.swift */,
 			);
 			path = Write;
+			sourceTree = "<group>";
+		};
+		60EB36A1245FC8380093E87A /* Drag&Drop */ = {
+			isa = PBXGroup;
+			children = (
+				60EB36A2245FC8520093E87A /* ImageDropDelegate.swift */,
+				60EB36A6245FC8E10093E87A /* ImageDragDelegate.swift */,
+			);
+			path = "Drag&Drop";
 			sourceTree = "<group>";
 		};
 		E211120A18D66B2CC094F051 /* Frameworks */ = {
@@ -462,12 +479,15 @@
 			files = (
 				2663E525210C34A70036300E /* PoetryData.swift in Sources */,
 				60BA61A7245C51C100233698 /* BaseVC.swift in Sources */,
+				60EB36A5245FC8880093E87A /* Logs.swift in Sources */,
 				60BA61B0245C668C00233698 /* FlowLayout.swift in Sources */,
 				60BA61B2245D153D00233698 /* CompositionalLayout.swift in Sources */,
 				262198D020E8A20700F249BF /* util.swift in Sources */,
+				60EB36A3245FC8520093E87A /* ImageDropDelegate.swift in Sources */,
 				60BA61AC245C55C600233698 /* DataSource.swift in Sources */,
 				60EB36A0245F9BA30093E87A /* PoetryWriteVC.swift in Sources */,
 				268D1F5F20E76517000C6AA9 /* ViewController.swift in Sources */,
+				60EB36A7245FC8E10093E87A /* ImageDragDelegate.swift in Sources */,
 				26EAA71820E86D9D00E42E7E /* PoetsVC.swift in Sources */,
 				26EAA71620E86CF400E42E7E /* BaseTabVC.swift in Sources */,
 				60BA61A9245C523200233698 /* GenreView.swift in Sources */,
