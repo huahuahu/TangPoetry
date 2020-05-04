@@ -54,7 +54,10 @@ class ImageViewDropDelegate: NSObject, UIDropInteractionDelegate {
     func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
         dragDropLog("\(#function)")
         if session.allowsMoveOperation {
-            return .init(operation: .move)
+            let proposal = UIDropProposal.init(operation: .move)
+//            proposal.isPrecise = true
+            proposal.prefersFullSizePreview = true
+            return proposal
         } else {
             return .init(operation: .copy)
         }
@@ -86,10 +89,13 @@ class ImageViewDropDelegate: NSObject, UIDropInteractionDelegate {
     func dropInteraction(_ interaction: UIDropInteraction, previewForDropping item: UIDragItem, withDefault defaultPreview: UITargetedDragPreview) -> UITargetedDragPreview? {
         dragDropLog("\(#function)")
         let label = UILabel()
-        label.text = "haah"
+        label.text = "dropped"
         label.frame = .init(origin: .zero, size: .init(width: 100, height: 100))
+        let size = self.imageView.bounds.size
 //        let preview = UITargetedPreview.init(view: label)
-        let dragPreview = UITargetedDragPreview.init(view: label, parameters: .init(), target: .init(container: self.imageView, center: .zero))
+        let target = UIDragPreviewTarget.init(container: self.imageView, center: .init(x: size.width/2, y: size.height/2), transform: .init(rotationAngle: 3.14))
+//        return defaultPreview.retargetedPreview(with: target)
+        let dragPreview = UITargetedDragPreview.init(view: label, parameters: .init(), target: target)
         return dragPreview
     }
 

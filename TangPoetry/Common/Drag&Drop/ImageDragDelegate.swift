@@ -145,7 +145,8 @@ class ImageViewDragDelegate: NSObject, UIDragInteractionDelegate {
         let label = UILabel.init()
         label.text = "cancelling"
         label.sizeToFit()
-        let dragPreView = UITargetedDragPreview.init(view: label, parameters: .init(), target: .init(container: self.imageView, center: .init(x: 0.5, y: 0.5)))
+        let size = self.imageView.bounds
+        let dragPreView = UITargetedDragPreview.init(view: label, parameters: .init(), target: .init(container: self.imageView, center: .init(x: size.width/2, y: size.height/2), transform: .init(scaleX: 2, y: 1)))
         dragDropLog("\(#function)")
         return dragPreView
     }
@@ -167,11 +168,11 @@ class ImageViewDragDelegate: NSObject, UIDragInteractionDelegate {
     private func dragItem(for image: UIImage) -> UIDragItem {
         let item = UIDragItem.init(itemProvider: .init(object: image))
         item.localObject = image
-//        item.previewProvider = {
-//            let label = UILabel.init(frame: .init(origin: .zero, size: .init(width: 100, height: 100)))
-//            label.text = "dragging"
-//            return UIDragPreview.init(view: label)
-//        }
+        item.previewProvider = {
+            let label = UILabel.init(frame: .init(origin: .zero, size: .init(width: 100, height: 100)))
+            label.text = "dragging"
+            return UIDragPreview.init(view: label)
+        }
         return item
     }
 }
