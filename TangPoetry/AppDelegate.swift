@@ -21,10 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = baseTabVC
         let navigationVC1 = BaseNavigationVC.init(rootViewController: PoetsVC.init(nibName: nil, bundle: nil))
         let navigationVC2 = BaseNavigationVC.init(rootViewController: PoemGenreVC.init(nibName: nil, bundle: nil))
-        baseTabVC.viewControllers = [navigationVC1, navigationVC2]
+        let writeNavVC = BaseNavigationVC.init(rootViewController: PoetryWriteVC.init(nibName: nil, bundle: nil))
+        baseTabVC.viewControllers = [navigationVC1, navigationVC2, writeNavVC]
         navigationVC1.navigationBar.prefersLargeTitles = true
         navigationVC2.navigationBar.prefersLargeTitles = true
         UITabBar.appearance().tintColor = UIColor.init(named: "globalTint")
+        baseTabVC.selectedIndex = 2
         return true
     }
 
