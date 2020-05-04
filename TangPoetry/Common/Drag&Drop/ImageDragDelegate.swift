@@ -31,6 +31,17 @@ class ImageViewDragDelegate: NSObject, UIDragInteractionDelegate {
     func dragInteraction(_ interaction: UIDragInteraction, itemsForAddingTo session: UIDragSession, withTouchAt point: CGPoint) -> [UIDragItem] {
 
         dragDropLog("\(#function)")
+        guard session.canLoadObjects(ofClass: UIImage.self) else {
+            return []
+        }
+        let hasSameImage = session.items.contains {
+            $0.localObject as AnyObject? === self.imageView.image
+        }
+
+        if hasSameImage {
+            return []
+        }
+
         if let images = imageView.animationImages {
             return images.map { dragItem(for: $0) }
         } else if let image = imageView.image {
@@ -125,7 +136,9 @@ class ImageViewDragDelegate: NSObject, UIDragInteractionDelegate {
         previewImageView.bounds = .init(origin: .zero, size: .init(width: width, height: height))
         let dragPoint = session.location(in: self.imageView)
         let target = UIDragPreviewTarget(container: self.imageView, center: dragPoint, transform: .init(rotationAngle: 3.14))
-        return UITargetedDragPreview.init(view: previewImageView, parameters: .init(), target: target)
+        let param = UIPreviewParameters.init()
+        param.visiblePath = .init(roundedRect: .init(origin: .init(x: 100, y: 100), size: .init(width: 100, height: 100)), cornerRadius: 50)
+        return UITargetedDragPreview.init(view: previewImageView, parameters: param, target: target)
     }
 
     func dragInteraction(_ interaction: UIDragInteraction, previewForCancelling item: UIDragItem, withDefault defaultPreview: UITargetedDragPreview) -> UITargetedDragPreview? {
@@ -154,11 +167,11 @@ class ImageViewDragDelegate: NSObject, UIDragInteractionDelegate {
     private func dragItem(for image: UIImage) -> UIDragItem {
         let item = UIDragItem.init(itemProvider: .init(object: image))
         item.localObject = image
-        item.previewProvider = {
-            let label = UILabel.init(frame: .init(origin: .zero, size: .init(width: 100, height: 100)))
-            label.text = "dragging"
-            return UIDragPreview.init(view: label)
-        }
+//        item.previewProvider = {
+//            let label = UILabel.init(frame: .init(origin: .zero, size: .init(width: 100, height: 100)))
+//            label.text = "dragging"
+//            return UIDragPreview.init(view: label)
+//        }
         return item
     }
 }
