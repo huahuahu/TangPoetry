@@ -34,6 +34,7 @@
 		60EB36A3245FC8520093E87A /* ImageDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36A2245FC8520093E87A /* ImageDropDelegate.swift */; };
 		60EB36A5245FC8880093E87A /* Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36A4245FC8880093E87A /* Logs.swift */; };
 		60EB36A7245FC8E10093E87A /* ImageDragDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36A6245FC8E10093E87A /* ImageDragDelegate.swift */; };
+		60EB36A9245FDE210093E87A /* PasteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36A8245FDE210093E87A /* PasteImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		60EB36A2245FC8520093E87A /* ImageDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDropDelegate.swift; sourceTree = "<group>"; };
 		60EB36A4245FC8880093E87A /* Logs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logs.swift; sourceTree = "<group>"; };
 		60EB36A6245FC8E10093E87A /* ImageDragDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDragDelegate.swift; sourceTree = "<group>"; };
+		60EB36A8245FDE210093E87A /* PasteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteImageView.swift; sourceTree = "<group>"; };
 		AA1466B1BB4AD6491E9C40C8 /* Pods-TangPoetry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TangPoetry.release.xcconfig"; path = "Pods/Target Support Files/Pods-TangPoetry/Pods-TangPoetry.release.xcconfig"; sourceTree = "<group>"; };
 		D1BC4972E4B57E36A372D99C /* Pods_TangPoetry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TangPoetry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -285,6 +287,7 @@
 			children = (
 				60EB36A2245FC8520093E87A /* ImageDropDelegate.swift */,
 				60EB36A6245FC8E10093E87A /* ImageDragDelegate.swift */,
+				60EB36A8245FDE210093E87A /* PasteImageView.swift */,
 			);
 			path = "Drag&Drop";
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 				26EAA71A20E86DD200E42E7E /* PoemGenreVC.swift in Sources */,
 				60BA61AE245C577800233698 /* CollectionCell.swift in Sources */,
 				26F113AC210FE8D1004CDAB6 /* PoetryEntryCell.swift in Sources */,
+				60EB36A9245FDE210093E87A /* PasteImageView.swift in Sources */,
 				26926AAE2117D4880030D7BA /* SearchResultVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
