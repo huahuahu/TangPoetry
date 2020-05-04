@@ -9,29 +9,6 @@
 import Foundation
 import UIKit
 
-struct PoetryEntry: Decodable {
-    let uniqueId: Int
-    let author: String
-    let title: String
-    let content: String
-    let genre: Genre
-
-    private enum CodingKeys: String, CodingKey {
-        case uniqueId = "id", author, title, content = "contents", genre = "type"
-    }
-}
-
-enum Genre: String, Decodable, CaseIterable {
-   case wuyanGushi = "五言古诗"
-   case qiyanGushi = "七言古诗"
-   case wuyanYuefu = "五言乐府"
-   case qiyanYuefu = "七言乐府"
-   case wuyanJueju = "五言绝句"
-   case qiyanJueju = "七言绝句"
-   case wuyanLvshi = "五言律诗"
-   case qiyanLvshi = "七言律诗"
-}
-
 class DataProvider: NSObject {
     
     static var shared: DataProvider {
