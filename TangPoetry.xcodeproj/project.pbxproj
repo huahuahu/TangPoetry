@@ -35,6 +35,7 @@
 		60EB36A5245FC8880093E87A /* Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36A4245FC8880093E87A /* Logs.swift */; };
 		60EB36A7245FC8E10093E87A /* ImageDragDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36A6245FC8E10093E87A /* ImageDragDelegate.swift */; };
 		60EB36A9245FDE210093E87A /* PasteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36A8245FDE210093E87A /* PasteImageView.swift */; };
+		60EB36AB245FFE320093E87A /* PoetryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36AA245FFE320093E87A /* PoetryEntry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		60EB36A4245FC8880093E87A /* Logs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logs.swift; sourceTree = "<group>"; };
 		60EB36A6245FC8E10093E87A /* ImageDragDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDragDelegate.swift; sourceTree = "<group>"; };
 		60EB36A8245FDE210093E87A /* PasteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteImageView.swift; sourceTree = "<group>"; };
+		60EB36AA245FFE320093E87A /* PoetryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetryEntry.swift; sourceTree = "<group>"; };
 		AA1466B1BB4AD6491E9C40C8 /* Pods-TangPoetry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TangPoetry.release.xcconfig"; path = "Pods/Target Support Files/Pods-TangPoetry/Pods-TangPoetry.release.xcconfig"; sourceTree = "<group>"; };
 		D1BC4972E4B57E36A372D99C /* Pods_TangPoetry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TangPoetry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				2663E524210C34A70036300E /* PoetryData.swift */,
+				60EB36AA245FFE320093E87A /* PoetryEntry.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2663E525210C34A70036300E /* PoetryData.swift in Sources */,
+				60EB36AB245FFE320093E87A /* PoetryEntry.swift in Sources */,
 				60BA61A7245C51C100233698 /* BaseVC.swift in Sources */,
 				60EB36A5245FC8880093E87A /* Logs.swift in Sources */,
 				60BA61B0245C668C00233698 /* FlowLayout.swift in Sources */,
@@ -735,6 +739,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R6P284TSWY;
 				INFOPLIST_FILE = TangPoetryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -775,6 +780,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R6P284TSWY;
 				INFOPLIST_FILE = TangPoetryUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
