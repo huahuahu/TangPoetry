@@ -11,8 +11,21 @@ import UIKit
 class PasteImageView: UIImageView {
     init() {
         super.init(frame: .zero)
-        let config = UIPasteConfiguration.init(forAccepting: UIImage.self)
-        self.pasteConfiguration = config
+//        let config = UIPasteConfiguration.init(forAccepting: UIImage.self)
+//        self.pasteConfiguration = config
+//        let springLoadedInteraction = UISpringLoadedInteraction.init { (_, context) in
+//            dragDropLog("springLoadedInteraction \(context.state)")
+//
+//            switch context.state {
+//            case .activated:
+//                self.backgroundColor = .systemBlue
+//            case .inactive:
+//                self.backgroundColor = .red
+//            default:
+//                dragDropLog("\(context.state)")
+//            }
+//        }
+//        self.addInteraction(springLoadedInteraction)
     }
 
     required init?(coder: NSCoder) {

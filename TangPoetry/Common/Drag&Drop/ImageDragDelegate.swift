@@ -51,8 +51,14 @@ class ImageViewDragDelegate: NSObject, UIDragInteractionDelegate {
         animator.addAnimations {
             self.imageView.backgroundColor = .yellow
         }
-        animator.addCompletion { (_) in
-            self.imageView.backgroundColor = .red
+        animator.addCompletion { position in
+            if position == .end {
+                // The lift ended normally, and a drag is now happening
+                self.imageView.backgroundColor = .brown
+            } else if position == .start {
+                // The lift was cancelled and the animation returned to the start
+                self.imageView.backgroundColor = .red
+            }
         }
     }
 
@@ -91,6 +97,11 @@ class ImageViewDragDelegate: NSObject, UIDragInteractionDelegate {
 
     func dragInteraction(_ interaction: UIDragInteraction, session: UIDragSession, didEndWith operation: UIDropOperation) {
         dragDropLog("\(#function) \(operation.rawValue)")
+        if operation == .move {
+            self.imageView.animationImages = nil
+            self.imageView.stopAnimating()
+            self.imageView.image = nil
+        } 
         self.imageView.alpha = 1
     }
 
@@ -112,7 +123,9 @@ class ImageViewDragDelegate: NSObject, UIDragInteractionDelegate {
         let width = self.imageView.bounds.width
         let height = self.imageView.bounds.height * ratio
         previewImageView.bounds = .init(origin: .zero, size: .init(width: width, height: height))
-        return UITargetedDragPreview.init(view: previewImageView, parameters: .init(), target: .init(container: self.imageView, center: .init(x: 0.5, y: 0.5), transform: .identity))
+        let dragPoint = session.location(in: self.imageView)
+        let target = UIDragPreviewTarget(container: self.imageView, center: dragPoint, transform: .init(rotationAngle: 3.14))
+        return UITargetedDragPreview.init(view: previewImageView, parameters: .init(), target: target)
     }
 
     func dragInteraction(_ interaction: UIDragInteraction, previewForCancelling item: UIDragItem, withDefault defaultPreview: UITargetedDragPreview) -> UITargetedDragPreview? {
