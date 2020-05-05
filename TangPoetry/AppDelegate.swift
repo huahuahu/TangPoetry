@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationVC1.navigationBar.prefersLargeTitles = true
         navigationVC2.navigationBar.prefersLargeTitles = true
         UITabBar.appearance().tintColor = UIColor.init(named: "globalTint")
-        baseTabVC.selectedIndex = 2
+        baseTabVC.selectedIndex = 1
         return true
     }
 

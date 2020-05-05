@@ -11,7 +11,11 @@ import UIKit
 class GenreView: UIView {
     let collectionView: UICollectionView
     let collectionViewLayout: UICollectionViewLayout = CompositionalFlowLayout.demoCompositionalFlowLayout()
-    var dataSource: UICollectionViewDataSource!
+    var dataSource: CustomDataSource<Poem>!
+    // swiftlint:disable weak_delegate
+    private var dragDelegate: CollectionViewDragDelegate!
+    private var dropDelegate: CollectionViewDropDelegate!
+    // swiftlint:enable weak_delegate
 
     init() {
         collectionView = UICollectionView.init(frame: .zero, collectionViewLayout: collectionViewLayout)
@@ -27,7 +31,7 @@ class GenreView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setUp(with poems: [PoetryEntry]) {
+    func setUp(with poems: [Poem]) {
         collectionView.register(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.reuseIdentifier)
         let models = [
             Array(poems.prefix(upTo: 5)),
@@ -38,8 +42,16 @@ class GenreView: UIView {
             cell?.setup(with: poem)
             return cell!
         })
+        collectionView.delegate = self
         collectionView.dataSource = dataSource
 //        collectionView.reloadData()
+        dragDelegate = CollectionViewDragDelegate(collectionView: collectionView)
+        collectionView.dragDelegate = dragDelegate
+        dragDelegate.models = models
+
+        dropDelegate = CollectionViewDropDelegate(collectionView: collectionView)
+        collectionView.dropDelegate = dropDelegate
+        dropDelegate.dataSource = dataSource
     }
 
     func setupConstraints() {
@@ -52,5 +64,34 @@ class GenreView: UIView {
         ]
         NSLayoutConstraint.activate(constraints)
 
+    }
+}
+
+extension GenreView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return nil
+    }
+
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: "id" as NSCopying, previewProvider: nil) { _ -> UIMenu? in
+            let editMenu = UIMenu(title: "edit..", children: [
+                UIAction.init(title: "copy", handler: { (_) in
+                    print("clicked copy")
+                }),
+                UIAction.init(title: "dup", handler: { (_) in
+                    print("clicked dup")
+                })
+            ])
+
+            return UIMenu(title: "", children: [
+                UIAction(title: "Share") {_ in
+                    print("clicked share")
+                },
+                editMenu,
+                UIAction(title: "Delete") {_ in
+                    print("clicked delete")
+                }
+            ])
+        }
     }
 }

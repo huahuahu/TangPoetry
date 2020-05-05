@@ -20,7 +20,7 @@ enum Genre: String, Codable, CaseIterable {
    case qiyanLvshi = "七言律诗"
 }
 
-struct PoetryEntry: Codable {
+struct Poem: Codable {
     let uniqueId: Int
     let author: String
     let title: String
@@ -30,17 +30,27 @@ struct PoetryEntry: Codable {
     private enum CodingKeys: String, CodingKey {
         case uniqueId = "id", author, title, content = "contents", genre = "type"
     }
+
+    static func from(poemObj orig: PoemClass) -> Poem {
+        return .init(
+            uniqueId: orig.uniqueId,
+            author: orig.author,
+            title: orig.title,
+            content: orig.content,
+            genre: orig.genre
+        )
+    }
 }
 
-class PoetryClass: NSObject, Codable {
+class PoemClass: NSObject, Codable {
     private(set) var uniqueId: Int!
     private(set) var author: String!
     private(set) var title: String!
     private(set) var content: String!
     private(set) var genre: Genre!
 
-    static func testPoem() -> PoetryClass {
-        let poem = PoetryClass()
+    static func testPoem() -> PoemClass {
+        let poem = PoemClass()
         poem.uniqueId = 1000
         poem.author = "testAuthor"
         poem.title = "testTitle"
@@ -48,9 +58,19 @@ class PoetryClass: NSObject, Codable {
         poem.genre = .qiyanLvshi
         return poem
     }
+
+    static func from(poem orig: Poem) -> PoemClass {
+        let poem = PoemClass()
+        poem.uniqueId = orig.uniqueId
+        poem.author = orig.author
+        poem.title = orig.title
+        poem.content = orig.content
+        poem.genre = orig.genre
+        return poem
+    }
 }
 
-extension PoetryClass: NSItemProviderReading, NSItemProviderWriting {
+extension PoemClass: NSItemProviderReading, NSItemProviderWriting {
     static let poetryType = "com.tiger.PoetryEntry"
     static var readableTypeIdentifiersForItemProvider: [String] {
         return [poetryType, kUTTypeData as NSString as String]
@@ -59,10 +79,10 @@ extension PoetryClass: NSItemProviderReading, NSItemProviderWriting {
     static func object(withItemProviderData data: Data, typeIdentifier: String) throws -> Self {
         // swiftlint:disable force_cast
         switch typeIdentifier {
-        case PoetryClass.poetryType:
-            return try JSONDecoder().decode(PoetryClass.self, from: data) as! Self
+        case PoemClass.poetryType:
+            return try JSONDecoder().decode(PoemClass.self, from: data) as! Self
         case kUTTypeData as NSString as String:
-            return try JSONDecoder().decode(PoetryClass.self, from: data) as! Self
+            return try JSONDecoder().decode(PoemClass.self, from: data) as! Self
         default:
             fatalError("not supported typeIdentifier \(typeIdentifier)")
         }
@@ -75,7 +95,7 @@ extension PoetryClass: NSItemProviderReading, NSItemProviderWriting {
 
     func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress? {
         switch typeIdentifier {
-        case PoetryClass.poetryType, kUTTypeData as NSString as String:
+        case PoemClass.poetryType, kUTTypeData as NSString as String:
             let data = try? JSONEncoder().encode(self)
             if data == nil {
                 fatalError("encode error in \(#function)")
@@ -87,5 +107,4 @@ extension PoetryClass: NSItemProviderReading, NSItemProviderWriting {
         return nil
     }
 
-    
 }

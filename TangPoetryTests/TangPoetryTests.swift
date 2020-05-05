@@ -36,13 +36,13 @@ class TangPoetryTests: XCTestCase {
     }
 
     func testAsItemProvider() {
-        let poem = PoetryClass.testPoem()
+        let poem = PoemClass.testPoem()
         let itemProvider = NSItemProvider.init(object: poem)
 
         let expectation = XCTestExpectation(description: "load")
-        itemProvider.loadObject(ofClass: PoetryClass.self) { (result, error) in
+        itemProvider.loadObject(ofClass: PoemClass.self) { (result, error) in
             XCTAssertNil(error)
-            let poem = result as? PoetryClass
+            let poem = result as? PoemClass
             XCTAssertNotNil(poem)
             expectation.fulfill()
         }

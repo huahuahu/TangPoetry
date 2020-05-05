@@ -69,7 +69,7 @@ class CollectionCell: UICollectionViewCell {
         NSLayoutConstraint.activate(constraints)
     }
 
-    func setup(with poetry: PoetryEntry) {
+    func setup(with poetry: Poem) {
         titleLabel.text = poetry.title
         authorLabel.text = poetry.author
         contentLabel.text = poetry.content
