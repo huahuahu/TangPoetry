@@ -38,6 +38,8 @@
 		60EB36AB245FFE320093E87A /* Poem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36AA245FFE320093E87A /* Poem.swift */; };
 		60EB36AD24603D110093E87A /* CollectionViewDragDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36AC24603D110093E87A /* CollectionViewDragDelegate.swift */; };
 		60EB36AF24603D4D0093E87A /* CollectionViewDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36AE24603D4D0093E87A /* CollectionViewDropDelegate.swift */; };
+		60EB36B12461345C0093E87A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36B02461345C0093E87A /* SceneDelegate.swift */; };
+		60EB36B32461384D0093E87A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36B22461384D0093E87A /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,8 @@
 		60EB36AA245FFE320093E87A /* Poem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poem.swift; sourceTree = "<group>"; };
 		60EB36AC24603D110093E87A /* CollectionViewDragDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDragDelegate.swift; sourceTree = "<group>"; };
 		60EB36AE24603D4D0093E87A /* CollectionViewDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDropDelegate.swift; sourceTree = "<group>"; };
+		60EB36B02461345C0093E87A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		60EB36B22461384D0093E87A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AA1466B1BB4AD6491E9C40C8 /* Pods-TangPoetry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TangPoetry.release.xcconfig"; path = "Pods/Target Support Files/Pods-TangPoetry/Pods-TangPoetry.release.xcconfig"; sourceTree = "<group>"; };
 		D1BC4972E4B57E36A372D99C /* Pods_TangPoetry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TangPoetry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -133,6 +137,7 @@
 			children = (
 				262198CF20E8A20700F249BF /* util.swift */,
 				60EB36A4245FC8880093E87A /* Logs.swift */,
+				60EB36B22461384D0093E87A /* Constants.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				268D1F5C20E76517000C6AA9 /* AppDelegate.swift */,
+				60EB36B02461345C0093E87A /* SceneDelegate.swift */,
 				60BA61A3245C4E7300233698 /* Common */,
 				60EB369E245F9B6F0093E87A /* Write */,
 				60BA619F245C4DB900233698 /* PoetryShow */,
@@ -495,6 +501,7 @@
 				60EB36AF24603D4D0093E87A /* CollectionViewDropDelegate.swift in Sources */,
 				60BA61B0245C668C00233698 /* FlowLayout.swift in Sources */,
 				60BA61B2245D153D00233698 /* CompositionalLayout.swift in Sources */,
+				60EB36B32461384D0093E87A /* Constants.swift in Sources */,
 				262198D020E8A20700F249BF /* util.swift in Sources */,
 				60EB36A3245FC8520093E87A /* ImageDropDelegate.swift in Sources */,
 				60BA61AC245C55C600233698 /* DataSource.swift in Sources */,
@@ -508,6 +515,7 @@
 				60EB36AD24603D110093E87A /* CollectionViewDragDelegate.swift in Sources */,
 				268D1F5D20E76517000C6AA9 /* AppDelegate.swift in Sources */,
 				26EAA71A20E86DD200E42E7E /* PoemGenreVC.swift in Sources */,
+				60EB36B12461345C0093E87A /* SceneDelegate.swift in Sources */,
 				60BA61AE245C577800233698 /* CollectionCell.swift in Sources */,
 				26F113AC210FE8D1004CDAB6 /* PoetryEntryCell.swift in Sources */,
 				60EB36A9245FDE210093E87A /* PasteImageView.swift in Sources */,

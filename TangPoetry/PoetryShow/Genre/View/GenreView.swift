@@ -60,7 +60,8 @@ class GenreView: UIView {
             collectionView.topAnchor.constraint(equalTo: self.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -400)
+
         ]
         NSLayoutConstraint.activate(constraints)
 

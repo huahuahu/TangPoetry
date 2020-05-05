@@ -37,6 +37,11 @@ class CollectionViewDragDelegate: NSObject, UICollectionViewDragDelegate {
 
     private func dragItem(for poem: Poem) -> UIDragItem {
         let provider = NSItemProvider(object: PoemClass.from(poem: poem))
+        let userActivity = NSUserActivity.init(activityType: Constants.UserActivity.openTab.rawValue)
+        userActivity.title = "open from image"
+        userActivity.userInfo = ["tab": -1]
+        provider.registerObject(userActivity, visibility: .all)
+
         let item = UIDragItem.init(itemProvider: provider)
         item.localObject = poem
         return item

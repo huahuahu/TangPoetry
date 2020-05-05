@@ -38,6 +38,17 @@ class PoemGenreVC: BaseVC {
         genreView.setUp(with: DataProvider.shared.allPoetryEntries)
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        view.window?.windowScene?.userActivity = {
+            let userActivity = NSUserActivity.init(activityType: Constants.UserActivity.openTab.rawValue)
+            userActivity.title = "open"
+            userActivity.userInfo = ["tab": tabBarController?.selectedIndex ?? -1]
+            return userActivity
+        }()
+        print("set windowScene?.userActivity to not nil: \(view.window?.windowScene?.userActivity)")
+    }
+
     func setupConstraints() {
 //        view.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
