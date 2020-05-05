@@ -81,17 +81,6 @@ class PoetryWriteVC: BaseVC {
         setupDragAndDrop()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        view.window?.windowScene?.userActivity = {
-            let userActivity = NSUserActivity.init(activityType: Constants.UserActivity.openTab.rawValue)
-            userActivity.title = "open"
-            userActivity.userInfo = ["tab": tabBarController?.selectedIndex ?? -1]
-            return userActivity
-        }()
-        print("set windowScene?.userActivity to not nil: \(view.window?.windowScene?.userActivity)")
-    }
-
     func setupConstraints() {
         let innerStackView = UIStackView.init(arrangedSubviews: [imageView, imageView1])
         innerStackView.layoutMargins = .init(top: 0, left: 20, bottom: 0, right: 20)

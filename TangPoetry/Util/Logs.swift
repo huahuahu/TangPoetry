@@ -11,3 +11,8 @@ import Foundation
 func dragDropLog(_ str: String) {
     print("drag&drop: \(str)")
 }
+
+func sceneLog(_ str: String) {
+    print("log")
+    print("scene log: \(str)")
+}

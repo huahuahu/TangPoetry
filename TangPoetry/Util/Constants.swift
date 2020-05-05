@@ -11,6 +11,10 @@ import Foundation
 enum Constants {
     enum UserActivity: String {
         case openTab = "com.tiger.suzhou.poem.tab"
+        case detail = "com.tiger.suzhou.poem.detail"
     }
 
+    enum Keys {
+        static let userActivity = "activityKey"
+    }
 }

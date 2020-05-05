@@ -40,6 +40,14 @@ struct Poem: Codable {
             genre: orig.genre
         )
     }
+
+    func userActivity() -> NSUserActivity {
+        let userActivity = NSUserActivity.init(activityType: Constants.UserActivity.detail.rawValue)
+        userActivity.title = "open poem"
+        let data = try? JSONEncoder().encode(self)
+        userActivity.userInfo = [Constants.Keys.userActivity: data as Any]
+        return userActivity
+    }
 }
 
 class PoemClass: NSObject, Codable {

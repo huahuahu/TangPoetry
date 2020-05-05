@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        print("\(#function)")
+        sceneLog("\(#function)")
         let baseTabVC = BaseTabVC.init(nibName: nil, bundle: nil)
         window?.rootViewController = baseTabVC
         let navigationVC1 = BaseNavigationVC.init(rootViewController: PoetsVC.init(nibName: nil, bundle: nil))
@@ -23,15 +23,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navigationVC2.navigationBar.prefersLargeTitles = true
         UITabBar.appearance().tintColor = UIColor.init(named: "globalTint")
         if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
-            print(userActivity.activityType)
+            handleUseActivity(userActivity, for: scene)
         }
-
         baseTabVC.selectedIndex = 1
     }
 
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        sceneLog("\(#function)")
+    }
+
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
-        print("saving")
-        print(scene.userActivity?.activityType)
         return scene.userActivity
+    }
+
+
+
+    private func handleUseActivity(_ activity: NSUserActivity, for scene: UIScene) {
+        guard let windowScene = scene as? UIWindowScene else {
+            fatalError("scene is not window scene")
+        }
+        if activity.activityType == Constants.UserActivity.detail.rawValue {
+            if let data = activity.userInfo?[Constants.Keys.userActivity] as? Data,
+                let poem = try? JSONDecoder().decode(Poem.self, from: data) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    Route.goTo(poem: poem, scene: windowScene)
+                }
+            }
+        }
     }
 }
