@@ -14,6 +14,5 @@ struct Route {
         let tabvc = scene.windows.first?.rootViewController as? UITabBarController
         let navVC = tabvc?.selectedViewController as? UINavigationController
         navVC?.pushViewController(detailVC, animated: true)
-
     }
 }
