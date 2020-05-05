@@ -22,7 +22,7 @@
 	<true/>
 	<key>NSUserActivityTypes</key>
 	<array>
-		<string>com.tiger.suzhou.poem.tab</string>
+		<string>com.tiger.suzhou.poem.detail</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

@@ -60,8 +60,7 @@ class GenreView: UIView {
             collectionView.topAnchor.constraint(equalTo: self.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -400)
-
+            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
 
@@ -94,5 +93,29 @@ extension GenreView: UICollectionViewDelegate {
                 }
             ])
         }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let poem = dataSource.models[indexPath.section][indexPath.row]
+        let userActivity = poem.userActivity()
+        let existingScene = UIApplication.shared.connectedScenes.first { (scene) -> Bool in
+            guard let windowScene = scene as? UIWindowScene else {
+                return false
+            }
+            let tabVC = windowScene.windows.first?.rootViewController as? UITabBarController
+            let navVC = tabVC?.selectedViewController as? UINavigationController
+            let topVC = navVC?.topViewController as? DetailVC
+            return topVC != nil
+        }
+        let options = UIScene.ActivationRequestOptions.init()
+        options.requestingScene = collectionView.window?.windowScene
+        UIApplication.shared.requestSceneSessionActivation(
+            existingScene?.session,
+            userActivity: userActivity,
+            options: options
+        ) { error in
+            sceneLog("request scene \(error)")
+        }
+
     }
 }

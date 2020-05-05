@@ -24,6 +24,7 @@
 		26EAA71A20E86DD200E42E7E /* PoemGenreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAA71920E86DD200E42E7E /* PoemGenreVC.swift */; };
 		26F113AC210FE8D1004CDAB6 /* PoetryEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F113AB210FE8D1004CDAB6 /* PoetryEntryCell.swift */; };
 		371676705799498C7014A77A /* Pods_TangPoetry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BC4972E4B57E36A372D99C /* Pods_TangPoetry.framework */; };
+		6096D1002461550F001176FF /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6096D0FF2461550F001176FF /* Route.swift */; };
 		60BA61A7245C51C100233698 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61A6245C51C100233698 /* BaseVC.swift */; };
 		60BA61A9245C523200233698 /* GenreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61A8245C523200233698 /* GenreView.swift */; };
 		60BA61AC245C55C600233698 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61AB245C55C600233698 /* DataSource.swift */; };
@@ -40,6 +41,7 @@
 		60EB36AF24603D4D0093E87A /* CollectionViewDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36AE24603D4D0093E87A /* CollectionViewDropDelegate.swift */; };
 		60EB36B12461345C0093E87A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36B02461345C0093E87A /* SceneDelegate.swift */; };
 		60EB36B32461384D0093E87A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36B22461384D0093E87A /* Constants.swift */; };
+		60EB36B6246151DE0093E87A /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36B5246151DE0093E87A /* DetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,7 @@
 		26EAA71720E86D9D00E42E7E /* PoetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetsVC.swift; sourceTree = "<group>"; };
 		26EAA71920E86DD200E42E7E /* PoemGenreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemGenreVC.swift; sourceTree = "<group>"; };
 		26F113AB210FE8D1004CDAB6 /* PoetryEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetryEntryCell.swift; sourceTree = "<group>"; };
+		6096D0FF2461550F001176FF /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		60BA61A6245C51C100233698 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		60BA61A8245C523200233698 /* GenreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreView.swift; sourceTree = "<group>"; };
 		60BA61AB245C55C600233698 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
@@ -102,6 +105,7 @@
 		60EB36AE24603D4D0093E87A /* CollectionViewDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDropDelegate.swift; sourceTree = "<group>"; };
 		60EB36B02461345C0093E87A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		60EB36B22461384D0093E87A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		60EB36B5246151DE0093E87A /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		AA1466B1BB4AD6491E9C40C8 /* Pods-TangPoetry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TangPoetry.release.xcconfig"; path = "Pods/Target Support Files/Pods-TangPoetry/Pods-TangPoetry.release.xcconfig"; sourceTree = "<group>"; };
 		D1BC4972E4B57E36A372D99C /* Pods_TangPoetry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TangPoetry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -232,9 +236,18 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
+		6096D0FE24615503001176FF /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				6096D0FF2461550F001176FF /* Route.swift */,
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
 		60BA619F245C4DB900233698 /* PoetryShow */ = {
 			isa = PBXGroup;
 			children = (
+				60EB36B4246151CA0093E87A /* Detail */,
 				60BA61A1245C4DE300233698 /* Poets */,
 				60BA61A0245C4DD900233698 /* Genre */,
 			);
@@ -261,6 +274,7 @@
 		60BA61A3245C4E7300233698 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				6096D0FE24615503001176FF /* Route */,
 				60EB36A1245FC8380093E87A /* Drag&Drop */,
 				60BA61AA245C526F00233698 /* CollectionView */,
 				26EAA70E20E86BC100E42E7E /* VC */,
@@ -305,6 +319,14 @@
 				60EB36AE24603D4D0093E87A /* CollectionViewDropDelegate.swift */,
 			);
 			path = "Drag&Drop";
+			sourceTree = "<group>";
+		};
+		60EB36B4246151CA0093E87A /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				60EB36B5246151DE0093E87A /* DetailVC.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		E211120A18D66B2CC094F051 /* Frameworks */ = {
@@ -500,6 +522,7 @@
 				60BA61A7245C51C100233698 /* BaseVC.swift in Sources */,
 				60EB36A5245FC8880093E87A /* Logs.swift in Sources */,
 				60EB36AF24603D4D0093E87A /* CollectionViewDropDelegate.swift in Sources */,
+				6096D1002461550F001176FF /* Route.swift in Sources */,
 				60BA61B0245C668C00233698 /* FlowLayout.swift in Sources */,
 				60BA61B2245D153D00233698 /* CompositionalLayout.swift in Sources */,
 				60EB36B32461384D0093E87A /* Constants.swift in Sources */,
@@ -518,6 +541,7 @@
 				26EAA71A20E86DD200E42E7E /* PoemGenreVC.swift in Sources */,
 				60EB36B12461345C0093E87A /* SceneDelegate.swift in Sources */,
 				60BA61AE245C577800233698 /* CollectionCell.swift in Sources */,
+				60EB36B6246151DE0093E87A /* DetailVC.swift in Sources */,
 				26F113AC210FE8D1004CDAB6 /* PoetryEntryCell.swift in Sources */,
 				60EB36A9245FDE210093E87A /* PasteImageView.swift in Sources */,
 				26926AAE2117D4880030D7BA /* SearchResultVC.swift in Sources */,
