@@ -25,6 +25,7 @@
 		26F113AC210FE8D1004CDAB6 /* PoetryEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F113AB210FE8D1004CDAB6 /* PoetryEntryCell.swift */; };
 		371676705799498C7014A77A /* Pods_TangPoetry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BC4972E4B57E36A372D99C /* Pods_TangPoetry.framework */; };
 		6096D1002461550F001176FF /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6096D0FF2461550F001176FF /* Route.swift */; };
+		6096D1032461ACD5001176FF /* SpotlightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6096D1022461ACD5001176FF /* SpotlightController.swift */; };
 		60BA61A7245C51C100233698 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61A6245C51C100233698 /* BaseVC.swift */; };
 		60BA61A9245C523200233698 /* GenreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61A8245C523200233698 /* GenreView.swift */; };
 		60BA61AC245C55C600233698 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61AB245C55C600233698 /* DataSource.swift */; };
@@ -89,6 +90,7 @@
 		26EAA71920E86DD200E42E7E /* PoemGenreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemGenreVC.swift; sourceTree = "<group>"; };
 		26F113AB210FE8D1004CDAB6 /* PoetryEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetryEntryCell.swift; sourceTree = "<group>"; };
 		6096D0FF2461550F001176FF /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		6096D1022461ACD5001176FF /* SpotlightController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightController.swift; sourceTree = "<group>"; };
 		60BA61A6245C51C100233698 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		60BA61A8245C523200233698 /* GenreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreView.swift; sourceTree = "<group>"; };
 		60BA61AB245C55C600233698 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
@@ -244,6 +246,14 @@
 			path = Route;
 			sourceTree = "<group>";
 		};
+		6096D1012461ACB9001176FF /* SpotLlght */ = {
+			isa = PBXGroup;
+			children = (
+				6096D1022461ACD5001176FF /* SpotlightController.swift */,
+			);
+			path = SpotLlght;
+			sourceTree = "<group>";
+		};
 		60BA619F245C4DB900233698 /* PoetryShow */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +284,7 @@
 		60BA61A3245C4E7300233698 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				6096D1012461ACB9001176FF /* SpotLlght */,
 				6096D0FE24615503001176FF /* Route */,
 				60EB36A1245FC8380093E87A /* Drag&Drop */,
 				60BA61AA245C526F00233698 /* CollectionView */,
@@ -522,6 +533,7 @@
 				60BA61A7245C51C100233698 /* BaseVC.swift in Sources */,
 				60EB36A5245FC8880093E87A /* Logs.swift in Sources */,
 				60EB36AF24603D4D0093E87A /* CollectionViewDropDelegate.swift in Sources */,
+				6096D1032461ACD5001176FF /* SpotlightController.swift in Sources */,
 				6096D1002461550F001176FF /* Route.swift in Sources */,
 				60BA61B0245C668C00233698 /* FlowLayout.swift in Sources */,
 				60BA61B2245D153D00233698 /* CompositionalLayout.swift in Sources */,
