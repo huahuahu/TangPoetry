@@ -12,6 +12,7 @@ import UIKit
 class DetailVC: BaseVC {
 
     let poem: Poem
+//    private var userActivity: NSUserActivity!
 
     let textView: UITextView = {
         let textView = UITextView()
@@ -44,6 +45,11 @@ class DetailVC: BaseVC {
         view.addSubview(textView)
         setupConstraints()
         textView.text = poem.content
+
+        userActivity = poem.userActivity()
+        userActivity?.targetContentIdentifier = "openDetail1"
+        userActivity?.isEligibleForHandoff = true
+        userActivity?.becomeCurrent()
     }
 
     private func setupConstraints() {
