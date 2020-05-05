@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        setupShortcut()
         return true
     }
 
@@ -21,5 +22,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         sceneLog("\(#function)")
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    }
+
+    private func setupShortcut() {
+//        var shortcutItems: [UIApplicationShortcutItem] = {
+//            let items = [UIApplicationShortcutItem]()
+//            let item = UIApplicationShortcutItem.init(type: "test", localizedTitle: "openDetail")
+//            item.targetContentIdentifier = "openDetail"
+//            return items
+//        }()
+//        UIApplication.shared.shortcutItems = shortcutItems
+    }
+
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        sceneLog("\(#function)")
+        print("call shortItem")
     }
 }

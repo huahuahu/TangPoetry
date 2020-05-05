@@ -36,7 +36,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return scene.userActivity
     }
 
-
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(true)
+    }
 
     private func handleUseActivity(_ activity: NSUserActivity, for scene: UIScene) {
         guard let windowScene = scene as? UIWindowScene else {
@@ -47,6 +49,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let poem = try? JSONDecoder().decode(Poem.self, from: data) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     Route.goTo(poem: poem, scene: windowScene)
+                    scene.activationConditions = {
+                        let condition = UISceneActivationConditions()
+                        condition.prefersToActivateForTargetContentIdentifierPredicate = .init(format: "self == 'openDetail1'")
+                        return condition
+                    }()
+                    scene.session.userInfo = ["hh": 1]
                 }
             }
         }
