@@ -12,7 +12,7 @@ class SearchResultVC: UITableViewController {
     
     private let cellIdentifier = "SearchResultVC.cellId"
     
-    var poetries = [PoetryEntry]()
+    var poetries = [Poem]()
 
     override func viewDidLoad() {
         super.viewDidLoad()

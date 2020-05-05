@@ -21,7 +21,7 @@ class CustomDataSource<T: Any>: NSObject, UICollectionViewDataSource {
         return block(models[indexPath.section][indexPath.row], indexPath)
     }
 
-    let models: [[T]]
+    var models: [[T]]
     let block: (T, IndexPath) -> UICollectionViewCell
 
     init(models: [[T]], modelToCellBlock: @escaping ((T, IndexPath) -> UICollectionViewCell)) {

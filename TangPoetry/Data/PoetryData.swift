@@ -15,13 +15,13 @@ class DataProvider: NSObject {
         return DataProvider.init()
     }
 
-    public private(set) var allPoetryEntries: [PoetryEntry]
+    public private(set) var allPoetryEntries: [Poem]
 
     override init() {
         let dataAsset = NSDataAsset.init(name: "allTitles")
         guard let data = dataAsset?.data else { fatalError() }
         //swiftlint:disable force_try
-        allPoetryEntries = try! JSONDecoder().decode([PoetryEntry].self, from: data)
+        allPoetryEntries = try! JSONDecoder().decode([Poem].self, from: data)
 
         super.init()
     }
@@ -30,7 +30,7 @@ class DataProvider: NSObject {
         return allPoetryEntries.count
     }
     
-    func searchFor(_ str: String?) -> [PoetryEntry] {
+    func searchFor(_ str: String?) -> [Poem] {
         if nil == str || str!.isEmpty {
             return []
         }
