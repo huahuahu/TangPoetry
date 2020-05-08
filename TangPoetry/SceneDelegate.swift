@@ -28,16 +28,39 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         baseTabVC.selectedIndex = 1
     }
 
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(true)
+    }
+}
+
+extension SceneDelegate {
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         sceneLog("\(#function)")
     }
 
-    func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
-        return scene.userActivity
+    func scene(_ scene: UIScene, didUpdate userActivity: NSUserActivity) {
+        sceneLog("\(#function)")
     }
 
-    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        completionHandler(true)
+    override func updateUserActivityState(_ activity: NSUserActivity) {
+        sceneLog("\(#function)")
+    }
+
+    override func restoreUserActivityState(_ activity: NSUserActivity) {
+        sceneLog("\(#function)")
+    }
+
+    func scene(_ scene: UIScene, willContinueUserActivityWithType userActivityType: String) {
+        sceneLog("\(#function)")
+    }
+
+    func scene(_ scene: UIScene, didFailToContinueUserActivityWithType userActivityType: String, error: Error) {
+        sceneLog("\(#function)")
+    }
+
+    func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
+        sceneLog("\(#function)")
+        return scene.userActivity
     }
 
     private func handleUseActivity(_ activity: NSUserActivity, for scene: UIScene) {
@@ -59,4 +82,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
     }
+
 }
