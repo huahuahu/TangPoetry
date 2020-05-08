@@ -49,7 +49,12 @@ class DetailVC: BaseVC {
         userActivity = poem.userActivity()
         userActivity?.targetContentIdentifier = "openDetail1"
         userActivity?.isEligibleForHandoff = true
-        userActivity?.becomeCurrent()
+        userActivity?.title = poem.title
+        userActivity?.needsSave = true
+        userActivity?.isEligibleForSearch = true
+        userActivity?.keywords = ["test1"]
+        userActivity?.requiredUserInfoKeys = ["key1", "key2"]
+
     }
 
     private func setupConstraints() {
@@ -71,5 +76,20 @@ class DetailVC: BaseVC {
         UIApplication.shared.requestSceneSessionDestruction(session, options: option) { (error) in
             sceneLog("requestSceneSessionDestruction \(error)")
         }
+    }
+}
+
+extension DetailVC {
+    override func updateUserActivityState(_ activity: NSUserActivity) {
+        var userInfo = [String: Any]()
+//        userInfo["test"] = "test"
+        userInfo["phoneNumber"] = "+86 185 6565 8170"
+
+        activity.addUserInfoEntries(from: userInfo)
+        activity.contentAttributeSet?.supportsNavigation = true
+        activity.contentAttributeSet?.supportsPhoneCall = true
+        activity.contentAttributeSet?.phoneNumbers = ["+86 185 6565 8170"]
+//        activity.contentAttributeSet?.thumbnailData = #imageLiteral(resourceName: "pizza").pngData()
+
     }
 }

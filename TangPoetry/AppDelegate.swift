@@ -35,8 +35,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UIApplication.shared.shortcutItems = shortcutItems
     }
 
+    // This will not be called on iOS 13
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         sceneLog("\(#function)")
         print("call shortItem")
+    }
+
+    // This will not be called on iOS 13
+    func application(_ application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool {
+        return true
+    }
+
+    // This will not be called on iOS 13
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        return true
     }
 }
