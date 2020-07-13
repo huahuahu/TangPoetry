@@ -12,6 +12,9 @@ import UIKit
 class PoemGenreVC: BaseVC {
 
     let genreView = GenreView()
+    //swiftlint:disable weak_delegate
+    private var transDelegate: CutsomTransition.TransitioningDelegate?
+    //swiftlint:enable weak_delegate
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "按照体裁浏览"
@@ -23,6 +26,7 @@ class PoemGenreVC: BaseVC {
         let image: UIImage = UIImage.init(named: "style")!.withRenderingMode(.alwaysOriginal)
 
         self.tabBarItem = UITabBarItem.init(title: localString("poem_style"), image: image, tag: 2)
+        navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .add, target: self, action: #selector(selectType))
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -48,5 +52,17 @@ class PoemGenreVC: BaseVC {
         ]
         NSLayoutConstraint.activate(constraints)
 
+    }
+}
+
+extension PoemGenreVC {
+    @objc private func selectType() {
+        let selectVC = TypeSelectVC()
+        selectVC.modalPresentationStyle = .custom
+        transDelegate = CutsomTransition.TransitioningDelegate()
+        selectVC.transitioningDelegate = transDelegate
+        present(selectVC, animated: true) {
+            print("presendte")
+        }
     }
 }
