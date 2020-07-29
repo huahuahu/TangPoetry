@@ -27,4 +27,3 @@ func sceneLog(_ str: String) {
     print("log")
     print("scene log: \(str)")
 }
-

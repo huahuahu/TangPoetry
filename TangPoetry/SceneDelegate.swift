@@ -13,19 +13,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         sceneLog("\(#function)")
-        let baseTabVC = BaseTabVC.init(nibName: nil, bundle: nil)
-        window?.rootViewController = baseTabVC
-        let navigationVC1 = BaseNavigationVC.init(rootViewController: PoetsVC.init(nibName: nil, bundle: nil))
-        let navigationVC2 = BaseNavigationVC.init(rootViewController: PoemGenreVC.init(nibName: nil, bundle: nil))
-        let writeNavVC = BaseNavigationVC.init(rootViewController: PoetryWriteVC.init(nibName: nil, bundle: nil))
-        baseTabVC.viewControllers = [navigationVC1, navigationVC2, writeNavVC]
-        navigationVC1.navigationBar.prefersLargeTitles = true
-        navigationVC2.navigationBar.prefersLargeTitles = true
-        UITabBar.appearance().tintColor = UIColor.init(named: "globalTint")
+        if #available(iOS 14.0, *) {
+            let splitVC = HSplitViewController.init(style: .tripleColumn)
+            window?.rootViewController = splitVC
+            splitVC.setViewController(SideBarVC(), for: .primary)
+            splitVC.setViewController(PoemGenreVC(), for: .supplementary)
+            splitVC.setViewController(DetailVC(poem: DataProvider().allPoetryEntries.first! ), for: .secondary)
+
+            let baseTabVC = BaseTabVC.init(nibName: nil, bundle: nil)
+            let navigationVC1 = BaseNavigationVC.init(rootViewController: PoetsVC.init(nibName: nil, bundle: nil))
+            let navigationVC2 = BaseNavigationVC.init(rootViewController: PoemGenreVC.init(nibName: nil, bundle: nil))
+            let writeNavVC = BaseNavigationVC.init(rootViewController: PoetryWriteVC.init(nibName: nil, bundle: nil))
+            baseTabVC.viewControllers = [navigationVC1, navigationVC2, writeNavVC]
+            navigationVC1.navigationBar.prefersLargeTitles = true
+            navigationVC2.navigationBar.prefersLargeTitles = true
+            UITabBar.appearance().tintColor = UIColor.init(named: "globalTint")
+            splitVC.setViewController(baseTabVC, for: .compact)
+
+        } else {
+            // Fallback on earlier versions
+            fatalError()
+        }
+
         if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
             handleUseActivity(userActivity, for: scene)
         }
-        baseTabVC.selectedIndex = 1
+//        baseTabVC.selectedIndex = 1
     }
 
     func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
