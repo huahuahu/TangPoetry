@@ -12,6 +12,7 @@ enum HLog {
     enum Scenario: String {
         case dragDrop
         case scene
+        case collectionView
     }
 
     static func log(scene: Scenario, str: String) {

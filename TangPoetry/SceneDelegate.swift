@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             navigationVC2.navigationBar.prefersLargeTitles = true
             UITabBar.appearance().tintColor = UIColor.init(named: "globalTint")
             splitVC.setViewController(baseTabVC, for: .compact)
-
+            splitVC.preferredDisplayMode = .twoBesideSecondary
         } else {
             // Fallback on earlier versions
             fatalError()
