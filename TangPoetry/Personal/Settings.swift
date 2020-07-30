@@ -52,25 +52,45 @@ class Settings {
         }
     }
 
+    var splitVCPreferredDisplayMode: UISplitViewController.DisplayMode {
+        get {
+            return UISplitViewController.DisplayMode(rawValue: userDefaults.integer(forKey: Key.SplitVC.preferredDisplayMode)) ?? UISplitViewController.DisplayMode.automatic
+        }
+        set {
+            userDefaults.setValue(newValue, forKey: Key.SplitVC.preferredDisplayMode)
+        }
+    }
+
+
     enum Key {
         enum TintColor {
             static let tintColor = "h-tintColor-selected"
             static let supportAlpha = "h-tintColor-supportAlpha"
         }
+
+        enum SplitVC {
+            static let preferredDisplayMode = "h-SplitVC-preferredDisplayMode"
+        }
     }
 }
 
 enum SettingSection: Int, CaseIterable, CustomStringConvertible {
-//    case splitVC
     case tintColor
+    case splitVC
 
     var description: String {
         switch self {
         case .tintColor:
             return "color"
-//        case .splitVC:
-//            return "splitVC"
+        case .splitVC:
+            return "splitVC"
         }
+    }
+
+    enum OptionType {
+        case bool
+        case select
+        case empty
     }
 
     enum ColorOption: String, CaseIterable, CustomStringConvertible {
@@ -85,12 +105,42 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
                 return "supportAlpha"
             }
         }
+
+        var item: SettingsVC.Item {
+            switch self {
+            case .changeTintColor:
+                return .init(title: description, valueType: .select)
+            case .supportAlpha:
+                return .init(title: description, valueType: .bool)
+            }
+        }
      }
+
+    enum SplitVCOption: CaseIterable, CustomStringConvertible {
+        case preferredDisplayMode
+
+        var description: String {
+            switch self {
+            case .preferredDisplayMode:
+                return "preferredDisplayMode"
+            }
+        }
+
+        var item: SettingsVC.Item {
+            switch self {
+            case .preferredDisplayMode:
+                return .init(title: description, valueType: .select)
+            }
+        }
+
+    }
 
     var items: [SettingsVC.Item] {
         switch self {
         case .tintColor:
-            return ColorOption.allCases.map { SettingsVC.Item(title: $0.description)}
+            return ColorOption.allCases.map { $0.item }
+        case .splitVC:
+            return SplitVCOption.allCases.map { $0.item }
         }
     }
 

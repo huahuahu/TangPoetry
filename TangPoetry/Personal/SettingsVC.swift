@@ -27,6 +27,7 @@ class SettingsVC: UIViewController {
 extension SettingsVC {
     struct Item: Hashable {
         let title: String
+        let valueType: SettingSection.OptionType
         let identifier = UUID()
         func hash(into hasher: inout Hasher) {
             hasher.combine(identifier)
@@ -54,27 +55,14 @@ extension SettingsVC {
         let configuration = UICollectionViewCompositionalLayoutConfiguration()
 
         return UICollectionViewCompositionalLayout.init(sectionProvider: { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-            guard let section = SettingSection(rawValue: sectionIndex) else {
+            guard SettingSection(rawValue: sectionIndex) != nil else {
                 HFatalError.fatalError()
             }
-            switch section {
-            case .tintColor:
-                var listConfiguration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-                listConfiguration.headerMode = .supplementary
-                let section = NSCollectionLayoutSection.list(using: listConfiguration,
-                                                             layoutEnvironment: layoutEnvironment)
-                return section
-
-            //            case .splitVC:
-            //                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-            //                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            //
-            //                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
-            //                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-            //
-            //                let section = NSCollectionLayoutSection(group: group)
-            //                return section
-            }
+            var listConfiguration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+            listConfiguration.headerMode = .supplementary
+            let layoutSection = NSCollectionLayoutSection.list(using: listConfiguration,
+                                                         layoutEnvironment: layoutEnvironment)
+            return layoutSection
         }, configuration: configuration)
     }
 
@@ -83,17 +71,33 @@ extension SettingsVC {
             HFatalError.fatalError()
         }
 
-        let tintColorCellRegister = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { [weak self] (cell, _, item) in
+        let emptyCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { [weak self] (cell, _, item) in
             guard let self = self else { return }
             var contentConfiguration = UICollectionViewListCell().defaultContentConfiguration()
             contentConfiguration.text = item.title
-            if let currentColor = self.settings.tintColor {
-                contentConfiguration.textProperties.color = currentColor
+            if item.title == SettingSection.ColorOption.changeTintColor.description {
+                if let currentColor = self.settings.tintColor {
+                    contentConfiguration.textProperties.color = currentColor
+                }
             }
             cell.contentConfiguration = contentConfiguration
             cell.backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
         }
-        let switchCellRegister = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { [weak self] (cell, _, item) in
+
+        let selectionCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { [weak self] (cell, _, item) in
+            guard let self = self else { return }
+            var contentConfiguration = UIListContentConfiguration.valueCell()
+            contentConfiguration.text = item.title
+            if item.title == SettingSection.SplitVCOption.preferredDisplayMode.description {
+                contentConfiguration.secondaryText = "\(self.settings.splitVCPreferredDisplayMode)"
+            } else {
+                HFatalError.fatalError()
+            }
+            cell.contentConfiguration = contentConfiguration
+            cell.backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
+        }
+
+        let switchCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { [weak self] (cell, _, item) in
             guard let self = self else { return }
             var contentConfiguration = UICollectionViewListCell().defaultContentConfiguration()
             contentConfiguration.text = item.title
@@ -105,22 +109,14 @@ extension SettingsVC {
             cell.accessories = [.customView(configuration: .init(customView: alphaSwitch, placement: .trailing()))]
         }
 
-        dataSource = UICollectionViewDiffableDataSource<SettingSection, Item>(collectionView: collectionView, cellProvider: { (collection, indexPath, item) -> UICollectionViewCell? in
-            guard let section = SettingSection(rawValue: indexPath.section) else {
-                fatalError()
-            }
-            switch section {
-            case .tintColor:
-                guard let option = SettingSection.ColorOption(rawValue: item.title) else {
-                    HFatalError.fatalError()
-                }
-                switch option {
-                case .changeTintColor:
-                    return collection.dequeueConfiguredReusableCell(using: tintColorCellRegister, for: indexPath, item: item)
-                case .supportAlpha:
-                    return collection.dequeueConfiguredReusableCell(using: switchCellRegister, for: indexPath, item: item)
-
-                }
+        dataSource = UICollectionViewDiffableDataSource<SettingSection, Item>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
+            switch item.valueType {
+            case .bool:
+                return collectionView.dequeueConfiguredReusableCell(using: switchCellRegistration, for: indexPath, item: item)
+            case .empty:
+                return collectionView.dequeueConfiguredReusableCell(using: emptyCellRegistration, for: indexPath, item: item)
+            case .select:
+                return collectionView.dequeueConfiguredReusableCell(using: selectionCellRegistration, for: indexPath, item: item)
             }
         })
 
@@ -131,15 +127,14 @@ extension SettingsVC {
             view.label.text = section.description
         }
         dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
-            guard let section = SettingSection(rawValue: indexPath.section) else {
+            guard SettingSection(rawValue: indexPath.section) != nil else {
                 HFatalError.fatalError()
             }
-            if kind == UICollectionView.elementKindSectionHeader, section == .tintColor {
+            if kind == UICollectionView.elementKindSectionHeader {
                 return collectionView.dequeueConfiguredReusableSupplementary(using: header, for: indexPath)
             } else {
                 HFatalError.fatalError()
             }
-
         }
         collectionView.dataSource = dataSource
 
@@ -149,11 +144,8 @@ extension SettingsVC {
     func getCurrentSnapShot() -> NSDiffableDataSourceSnapshot<SettingSection, Item> {
         var snapShot = NSDiffableDataSourceSnapshot<SettingSection, Item>()
         for section in SettingSection.allCases {
-            switch section {
-            case .tintColor:
-                snapShot.appendSections([.tintColor])
-                snapShot.appendItems(section.items)
-            }
+            snapShot.appendSections([section])
+            snapShot.appendItems(section.items)
         }
         return snapShot
     }
@@ -162,18 +154,59 @@ extension SettingsVC {
 extension SettingsVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        guard let section = SettingSection(rawValue: indexPath.section) else {
+            HFatalError.fatalError()
+        }
+        switch section {
+        case .tintColor:
+            handleSelectTintColor(indexPath: indexPath)
+        case .splitVC:
+            handleClickSpliVCOption(indexPath: indexPath)
+        }
+    }
+
+    private func handleSelectTintColor(indexPath: IndexPath) {
         guard #available(iOS 14, *) else {
             HFatalError.fatalError()
         }
-        let picker = UIColorPickerViewController()
-        if let currentTintColor = settings.tintColor {
-            picker.selectedColor = currentTintColor
+        guard let item = dataSource.itemIdentifier(for: indexPath) else {
+            HFatalError.fatalError()
         }
-        picker.supportsAlpha = settings.colorPickerSupportAlpha
-        picker.modalPresentationStyle = .formSheet
-        picker.delegate = self
-        present(picker, animated: true) {
-            HLog.log(scene: .settings, str: "color vc presented")
+        switch item.title {
+        case SettingSection.ColorOption.changeTintColor.rawValue:
+            let picker = UIColorPickerViewController()
+            if let currentTintColor = settings.tintColor {
+                picker.selectedColor = currentTintColor
+            }
+            picker.supportsAlpha = settings.colorPickerSupportAlpha
+            picker.modalPresentationStyle = .formSheet
+            picker.delegate = self
+            present(picker, animated: true) {
+                HLog.log(scene: .settings, str: "color vc presented")
+            }
+        default:
+            HFatalError.fatalError("unknow item title clicked: \(item.title)")
+        }
+    }
+
+    private func handleClickSpliVCOption(indexPath: IndexPath) {
+
+    }
+
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard #available(iOS 14, *) else {
+            HFatalError.fatalError()
+        }
+        guard let section = SettingSection(rawValue: indexPath.section),
+            let item = dataSource.itemIdentifier(for: indexPath) else {
+            HFatalError.fatalError()
+        }
+        guard section == .splitVC else {
+            return nil
+        }
+
+        if item.title == SettingSection.SplitVCOption.preferredDisplayMode {
+
         }
     }
 }
