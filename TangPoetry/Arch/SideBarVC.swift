@@ -23,7 +23,10 @@ class SideBarVC: UIViewController {
 
 extension SideBarVC {
 
-    enum Section: Int, CaseIterable {
+    enum Section {
+        case main
+    }
+    enum Category: Int, CaseIterable {
         case sort
         case activity
         case write
@@ -51,10 +54,9 @@ extension SideBarVC {
             case .write:
                 return WriteType.allCases.map { Item(text: $0.description, hasChildren: false)}
             case .personal:
-                return [Item(text: "设置", hasChildren: false)]
+                return []
             }
         }
-
     }
 
     struct Item: Hashable {
@@ -101,11 +103,9 @@ extension SideBarVC {
 
         var listConfiguration = UICollectionLayoutListConfiguration(appearance: .sidebar)
         listConfiguration.headerMode = .supplementary
+//        listConfiguration.backgroundColor = .systemRed
         let layout = UICollectionViewCompositionalLayout.list(using: listConfiguration)
-//        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(40)), elementKind: ElementKind.sectionHeader, alignment: .top)
-//        let sectionFooter = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(40)), elementKind: ElementKind.sectionHeader, alignment: .bottom)
 
-//        layout.configuration.boundarySupplementaryItems = [sectionHeader, sectionFooter]
         return layout
     }
 
@@ -114,33 +114,56 @@ extension SideBarVC {
             fatalError()
         }
 
-        let cellRegisteration = UICollectionView.CellRegistration<UICollectionViewCell, Item> { (cell, indexPath, item) in
+        let headerCellRegisteration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { (cell, _, item) in
+            var content = cell.defaultContentConfiguration()
+            content.text = item.text
+            guard item.hasChildren else {
+                fatalError()
+            }
+            content.textProperties.font = .preferredFont(forTextStyle: .title2)
+            cell.accessories = [.outlineDisclosure(options: .init(style:.header))]
+            cell.contentConfiguration = content
+        }
+
+        let cellRegisteration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { (cell, _, item) in
             var content = UIListContentConfiguration.sidebarCell()
             content.text = item.text
+            guard !item.hasChildren else {
+                fatalError()
+            }
+            content.textProperties.font = .preferredFont(forTextStyle: .body)
             cell.contentConfiguration = content
         }
 
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { (collection, indexpath, item) -> UICollectionViewCell? in
-            return collection.dequeueConfiguredReusableCell(using: cellRegisteration, for: indexpath, item: item)
+            if item.hasChildren {
+                return collection.dequeueConfiguredReusableCell(using: headerCellRegisteration, for: indexpath, item: item)
+            } else {
+                return collection.dequeueConfiguredReusableCell(using: cellRegisteration, for: indexpath, item: item)
+            }
         })
 
-        let headerRegisteration = UICollectionView.SupplementaryRegistration<HSideBarTitleSupplementaryView>(elementKind: "Header") { (view, string, indexPath) in
-            let section = Section(rawValue: indexPath.section)
-            view.label.text = section?.textInCell
+        let headerRegisteration = UICollectionView.SupplementaryRegistration<HSideBarTitleSupplementaryView>(elementKind: "Header8") { (headerView, _, _) in
+//            let category = Category(rawValue: indexPath.section)
+            headerView.label.text = "预置"
         }
         dataSource.supplementaryViewProvider = { (collectionView, kind, index) in
-            HLog.log(scene: .collectionView, str: "supplementaryViewProvider kind: \(kind)")
-            return collectionView.dequeueConfiguredReusableSupplementary(using: headerRegisteration, for: index)
+            if kind == UICollectionView.elementKindSectionHeader {
+                return collectionView.dequeueConfiguredReusableSupplementary(using: headerRegisteration, for: index)
+            } else {
+                fatalError()
+            }
         }
 
         // init snapShot
-        for section in Section.allCases {
-            var snapshot = NSDiffableDataSourceSectionSnapshot<Item>()
-            snapshot.append(section.items)
-            dataSource.apply(snapshot, to: section, animatingDifferences: false) {
-                HLog.log(scene: .collectionView, str: "dataSource.apply to \(section) success")
-
-            }
+        var snapshot = NSDiffableDataSourceSectionSnapshot<Item>()
+        for category in Category.allCases {
+            let categoryItem = Item(text: category.textInCell, hasChildren: true)
+            snapshot.append([categoryItem])
+            snapshot.append(category.items, to: categoryItem)
+        }
+        dataSource.apply(snapshot, to: .main, animatingDifferences: false) {
+            HLog.log(scene: .collectionView, str: "dataSource.apply to main success")
         }
     }
 }
