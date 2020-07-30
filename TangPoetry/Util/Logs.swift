@@ -13,6 +13,7 @@ enum HLog {
         case dragDrop
         case scene
         case collectionView
+        case settings
     }
 
     static func log(scene: Scenario, str: String) {
@@ -27,4 +28,25 @@ func dragDropLog(_ str: String) {
 func sceneLog(_ str: String) {
     print("log")
     print("scene log: \(str)")
+}
+
+enum HAssert {
+    static func assertFailure(_ message: String? = nil) {
+        if let message = message {
+            assertionFailure(message)
+        } else {
+            assertionFailure()
+        }
+    }
+}
+
+enum HFatalError {
+    static func fatalError(_ message: String? = nil) -> Never {
+        if let message = message {
+            Swift.fatalError(message)
+        } else {
+            Swift.fatalError()
+
+        }
+    }
 }

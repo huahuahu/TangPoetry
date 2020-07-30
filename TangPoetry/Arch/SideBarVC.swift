@@ -94,6 +94,7 @@ extension SideBarVC {
         ])
 
         configureDataSource()
+        collectionView.delegate = self
     }
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
@@ -158,12 +159,30 @@ extension SideBarVC {
         // init snapShot
         var snapshot = NSDiffableDataSourceSectionSnapshot<Item>()
         for category in Category.allCases {
-            let categoryItem = Item(text: category.textInCell, hasChildren: true)
-            snapshot.append([categoryItem])
-            snapshot.append(category.items, to: categoryItem)
+            if category.items.isEmpty {
+                let categoryItem = Item(text: category.textInCell, hasChildren: false)
+                snapshot.append([categoryItem])
+            } else {
+                let categoryItem = Item(text: category.textInCell, hasChildren: true)
+                snapshot.append([categoryItem])
+                snapshot.append(category.items, to: categoryItem)
+            }
         }
         dataSource.apply(snapshot, to: .main, animatingDifferences: false) {
             HLog.log(scene: .collectionView, str: "dataSource.apply to main success")
+        }
+    }
+}
+
+extension SideBarVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard #available(iOS 14.0, *) else {
+            fatalError()
+        }
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let item = dataSource.itemIdentifier(for: indexPath)
+        if item?.text == Category.personal.textInCell {
+            splitViewController?.setViewController(SettingsVC(), for: .secondary)
         }
     }
 }
