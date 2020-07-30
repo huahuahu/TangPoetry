@@ -23,12 +23,12 @@ class HSideBarTitleSupplementaryView: UICollectionReusableView {
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.adjustsFontForContentSizeCategory = true
+        label.font = .preferredFont(forTextStyle: .title3)
         NSLayoutConstraint.activate([
             label.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             label.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             label.topAnchor.constraint(equalTo: self.readableContentGuide.topAnchor, constant: 5),
-            label.leadingAnchor.constraint(greaterThanOrEqualTo: self.readableContentGuide.leadingAnchor, constant: 5)
+            label.leadingAnchor.constraint(equalTo: self.readableContentGuide.leadingAnchor, constant: 5)
         ])
     }
-
 }

@@ -95,4 +95,3 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
     }
 
 }
-
