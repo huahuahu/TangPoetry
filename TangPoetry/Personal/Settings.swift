@@ -16,7 +16,7 @@ class Settings {
 
     var tintColor: UIColor? {
         get {
-            if let colorData = userDefaults.data(forKey: Key.tintColor) {
+            if let colorData = userDefaults.data(forKey: Key.TintColor.tintColor) {
                 do {
                     let color = try JSONDecoder().decode(HColor.self, from: colorData)
                     return color.color
@@ -33,9 +33,9 @@ class Settings {
             do {
                 if let color = newValue {
                     let data = try JSONEncoder().encode(HColor(color: color))
-                    userDefaults.set(data, forKey: Key.tintColor)
+                    userDefaults.set(data, forKey: Key.TintColor.tintColor)
                 } else {
-                    userDefaults.set(nil, forKey: Key.tintColor)
+                    userDefaults.set(nil, forKey: Key.TintColor.tintColor)
                 }
             } catch {
                 HAssert.assertFailure("set tint color: \(error)")
@@ -43,22 +43,56 @@ class Settings {
         }
     }
 
+    var colorPickerSupportAlpha: Bool {
+        get {
+            userDefaults.bool(forKey: Key.TintColor.supportAlpha)
+        }
+        set {
+            userDefaults.setValue(newValue, forKey: Key.TintColor.supportAlpha)
+        }
+    }
+
     enum Key {
-        static let tintColor = "h-tintColor"
+        enum TintColor {
+            static let tintColor = "h-tintColor-selected"
+            static let supportAlpha = "h-tintColor-supportAlpha"
+        }
     }
 }
 
-enum SettingOption: CaseIterable, CustomStringConvertible {
-    case splitVC
+enum SettingSection: Int, CaseIterable, CustomStringConvertible {
+//    case splitVC
     case tintColor
 
     var description: String {
         switch self {
         case .tintColor:
-            return "tintColor"
-        case .splitVC:
-            return "splitVC"
+            return "color"
+//        case .splitVC:
+//            return "splitVC"
+        }
+    }
+
+    enum ColorOption: String, CaseIterable, CustomStringConvertible {
+        case changeTintColor
+        case supportAlpha
+
+        var description: String {
+            switch self {
+            case .changeTintColor:
+                return "changeTintColor"
+            case .supportAlpha:
+                return "supportAlpha"
+            }
+        }
+     }
+
+    var items: [SettingsVC.Item] {
+        switch self {
+        case .tintColor:
+            return ColorOption.allCases.map { SettingsVC.Item(title: $0.description)}
         }
     }
 
 }
+

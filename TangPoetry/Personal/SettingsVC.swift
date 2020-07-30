@@ -11,8 +11,8 @@ import UIKit
 
 class SettingsVC: UIViewController {
     private var collectionView: UICollectionView!
-    private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
-
+    private var dataSource: UICollectionViewDiffableDataSource<SettingSection, Item>!
+    private var settings = Settings.shared
     override func viewDidLoad() {
         super.viewDidLoad()
         configCollectionView()
@@ -20,16 +20,11 @@ class SettingsVC: UIViewController {
     }
 
     private func configNav() {
-        //        navigationItem.title = "Settings"
+        navigationItem.title = "Settings"
     }
 }
 
 extension SettingsVC {
-    enum Section: Int, CaseIterable {
-        case color
-        //        case splitVC
-    }
-
     struct Item: Hashable {
         let title: String
         let identifier = UUID()
@@ -59,12 +54,13 @@ extension SettingsVC {
         let configuration = UICollectionViewCompositionalLayoutConfiguration()
 
         return UICollectionViewCompositionalLayout.init(sectionProvider: { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-            guard let section = Section(rawValue: sectionIndex) else {
+            guard let section = SettingSection(rawValue: sectionIndex) else {
                 HFatalError.fatalError()
             }
             switch section {
-            case .color:
-                let listConfiguration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+            case .tintColor:
+                var listConfiguration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+                listConfiguration.headerMode = .supplementary
                 let section = NSCollectionLayoutSection.list(using: listConfiguration,
                                                              layoutEnvironment: layoutEnvironment)
                 return section
@@ -87,34 +83,76 @@ extension SettingsVC {
             HFatalError.fatalError()
         }
 
-        let tintColorCellRegister = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { (cell, _, item) in
+        let tintColorCellRegister = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { [weak self] (cell, _, item) in
+            guard let self = self else { return }
             var contentConfiguration = UICollectionViewListCell().defaultContentConfiguration()
             contentConfiguration.text = item.title
-            contentConfiguration.textProperties.color = Settings.shared.tintColor ?? UIColor.black
+            if let currentColor = self.settings.tintColor {
+                contentConfiguration.textProperties.color = currentColor
+            }
             cell.contentConfiguration = contentConfiguration
             cell.backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
         }
-        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { (collection, indexPath, item) -> UICollectionViewCell? in
-            guard let section = Section(rawValue: indexPath.section) else {
+        let switchCellRegister = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { [weak self] (cell, _, item) in
+            guard let self = self else { return }
+            var contentConfiguration = UICollectionViewListCell().defaultContentConfiguration()
+            contentConfiguration.text = item.title
+            cell.contentConfiguration = contentConfiguration
+            cell.backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
+            let alphaSwitch = UISwitch()
+            alphaSwitch.addTarget(self, action: #selector(self.onColorPickerSwitchChange(sender:)), for: .valueChanged)
+            alphaSwitch.isOn = self.settings.colorPickerSupportAlpha
+            cell.accessories = [.customView(configuration: .init(customView: alphaSwitch, placement: .trailing()))]
+        }
+
+        dataSource = UICollectionViewDiffableDataSource<SettingSection, Item>(collectionView: collectionView, cellProvider: { (collection, indexPath, item) -> UICollectionViewCell? in
+            guard let section = SettingSection(rawValue: indexPath.section) else {
                 fatalError()
             }
             switch section {
-            case .color:
-                return collection.dequeueConfiguredReusableCell(using: tintColorCellRegister, for: indexPath, item: item)
+            case .tintColor:
+                guard let option = SettingSection.ColorOption(rawValue: item.title) else {
+                    HFatalError.fatalError()
+                }
+                switch option {
+                case .changeTintColor:
+                    return collection.dequeueConfiguredReusableCell(using: tintColorCellRegister, for: indexPath, item: item)
+                case .supportAlpha:
+                    return collection.dequeueConfiguredReusableCell(using: switchCellRegister, for: indexPath, item: item)
+
+                }
             }
         })
+
+        let header = UICollectionView.SupplementaryRegistration<HSideBarTitleSupplementaryView>(elementKind: "header") { (view, _, indexPath) in
+            guard let section = SettingSection(rawValue: indexPath.section) else {
+                HFatalError.fatalError()
+            }
+            view.label.text = section.description
+        }
+        dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
+            guard let section = SettingSection(rawValue: indexPath.section) else {
+                HFatalError.fatalError()
+            }
+            if kind == UICollectionView.elementKindSectionHeader, section == .tintColor {
+                return collectionView.dequeueConfiguredReusableSupplementary(using: header, for: indexPath)
+            } else {
+                HFatalError.fatalError()
+            }
+
+        }
         collectionView.dataSource = dataSource
 
         dataSource.apply(getCurrentSnapShot())
     }
 
-    func getCurrentSnapShot() -> NSDiffableDataSourceSnapshot<Section, Item> {
-        var snapShot = NSDiffableDataSourceSnapshot<Section, Item>()
-        for section in Section.allCases {
+    func getCurrentSnapShot() -> NSDiffableDataSourceSnapshot<SettingSection, Item> {
+        var snapShot = NSDiffableDataSourceSnapshot<SettingSection, Item>()
+        for section in SettingSection.allCases {
             switch section {
-            case .color:
-                snapShot.appendSections([.color])
-                snapShot.appendItems([Item(title: SettingOption.tintColor.description)])
+            case .tintColor:
+                snapShot.appendSections([.tintColor])
+                snapShot.appendItems(section.items)
             }
         }
         return snapShot
@@ -128,6 +166,10 @@ extension SettingsVC: UICollectionViewDelegate {
             HFatalError.fatalError()
         }
         let picker = UIColorPickerViewController()
+        if let currentTintColor = settings.tintColor {
+            picker.selectedColor = currentTintColor
+        }
+        picker.supportsAlpha = settings.colorPickerSupportAlpha
         picker.modalPresentationStyle = .formSheet
         picker.delegate = self
         present(picker, animated: true) {
@@ -140,11 +182,19 @@ extension SettingsVC: UICollectionViewDelegate {
 extension SettingsVC: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
         HLog.log(scene: .settings, str: "\(#function)")
-        Settings.shared.tintColor = viewController.selectedColor
     }
 
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         HLog.log(scene: .settings, str: "\(#function)")
+        settings.tintColor = viewController.selectedColor
+        dataSource.apply(getCurrentSnapShot())
+        view.window?.tintColor = viewController.selectedColor
+    }
+}
+
+extension SettingsVC {
+    @objc private func onColorPickerSwitchChange(sender: UISwitch) {
+        settings.colorPickerSupportAlpha = sender.isOn
         dataSource.apply(getCurrentSnapShot())
     }
 }
