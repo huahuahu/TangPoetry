@@ -10,6 +10,7 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+    private var settings = Settings.shared
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         sceneLog("\(#function)")
@@ -28,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             navigationVC1.navigationBar.prefersLargeTitles = true
             navigationVC2.navigationBar.prefersLargeTitles = true
             splitVC.setViewController(baseTabVC, for: .compact)
-            splitVC.preferredDisplayMode = .twoBesideSecondary
+            splitVC.preferredDisplayMode = settings.splitVCPreferredDisplayMode
         } else {
             // Fallback on earlier versions
             fatalError()

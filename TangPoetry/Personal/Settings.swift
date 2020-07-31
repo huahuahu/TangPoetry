@@ -57,7 +57,7 @@ class Settings {
             return UISplitViewController.DisplayMode(rawValue: userDefaults.integer(forKey: Key.SplitVC.preferredDisplayMode)) ?? UISplitViewController.DisplayMode.automatic
         }
         set {
-            userDefaults.setValue(newValue, forKey: Key.SplitVC.preferredDisplayMode)
+            userDefaults.setValue(newValue.rawValue, forKey: Key.SplitVC.preferredDisplayMode)
         }
     }
 
@@ -109,7 +109,7 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
         var item: SettingsVC.Item {
             switch self {
             case .changeTintColor:
-                return .init(title: description, valueType: .select)
+                return .init(title: description, valueType: .empty)
             case .supportAlpha:
                 return .init(title: description, valueType: .bool)
             }

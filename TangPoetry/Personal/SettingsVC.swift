@@ -89,7 +89,7 @@ extension SettingsVC {
             var contentConfiguration = UIListContentConfiguration.valueCell()
             contentConfiguration.text = item.title
             if item.title == SettingSection.SplitVCOption.preferredDisplayMode.description {
-                contentConfiguration.secondaryText = "\(self.settings.splitVCPreferredDisplayMode)"
+                contentConfiguration.secondaryText = self.settings.splitVCPreferredDisplayMode.displayName
             } else {
                 HFatalError.fatalError()
             }
@@ -205,8 +205,32 @@ extension SettingsVC: UICollectionViewDelegate {
             return nil
         }
 
-        if item.title == SettingSection.SplitVCOption.preferredDisplayMode {
+        if item.title == SettingSection.SplitVCOption.preferredDisplayMode.description {
+            let actionProvider: UIContextMenuActionProvider = { [weak self] _ in
+                guard let self = self else { return nil }
+                let modes: [UISplitViewController.DisplayMode] = [
+                    .automatic,
+                    .secondaryOnly,
+                    .oneBesideSecondary,
+                    .oneOverSecondary,
+                    .twoBesideSecondary,
+                    .twoOverSecondary,
+                    .twoDisplaceSecondary
+                ]
+                let actions = modes.map { mode in
+                    UIAction(title: mode.displayName) { [weak self] (action) in
+                        guard let self = self else { return }
+                        self.settings.splitVCPreferredDisplayMode = mode
+                        self.dataSource.apply(self.getCurrentSnapShot())
+                    }
+                }
+                return UIMenu(title: "Change preferredDisplayMode", children: actions)
+            }
 
+            return UIContextMenuConfiguration(identifier: "unique-ID" as NSCopying, previewProvider: nil, actionProvider: actionProvider)
+
+        } else {
+            return nil
         }
     }
 }
