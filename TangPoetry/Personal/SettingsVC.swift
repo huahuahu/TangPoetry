@@ -27,8 +27,15 @@ class SettingsVC: UIViewController {
 extension SettingsVC {
     struct Item: Hashable {
         let title: String
+        let secondaryText: String?
         let valueType: SettingSection.OptionType
         let identifier = UUID()
+
+        init(title: String, valueType: SettingSection.OptionType, secondaryText: String? = nil) {
+            self.title = title
+            self.valueType = valueType
+            self.secondaryText = secondaryText
+        }
         func hash(into hasher: inout Hasher) {
             hasher.combine(identifier)
         }
@@ -72,6 +79,8 @@ extension SettingsVC {
         }
 
         let emptyCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { [weak self] (cell, _, item) in
+            HLog.log(scene: .collectionView, str: "emptyCellRegistration")
+
             guard let self = self else { return }
             var contentConfiguration = UICollectionViewListCell().defaultContentConfiguration()
             contentConfiguration.text = item.title
@@ -85,11 +94,11 @@ extension SettingsVC {
         }
 
         let selectionCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { [weak self] (cell, _, item) in
-            guard let self = self else { return }
+            HLog.log(scene: .collectionView, str: "selectionCellRegistration")
             var contentConfiguration = UIListContentConfiguration.valueCell()
             contentConfiguration.text = item.title
-            if item.title == SettingSection.SplitVCOption.preferredDisplayMode.description {
-                contentConfiguration.secondaryText = self.settings.splitVCPreferredDisplayMode.displayName
+            if let secondaryText = item.secondaryText {
+                contentConfiguration.secondaryText = secondaryText
             } else {
                 HFatalError.fatalError()
             }
@@ -99,6 +108,8 @@ extension SettingsVC {
 
         let switchCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { [weak self] (cell, _, item) in
             guard let self = self else { return }
+            HLog.log(scene: .collectionView, str: "switchCellRegistration")
+
             var contentConfiguration = UICollectionViewListCell().defaultContentConfiguration()
             contentConfiguration.text = item.title
             cell.contentConfiguration = contentConfiguration
@@ -120,11 +131,16 @@ extension SettingsVC {
             }
         })
 
-        let header = UICollectionView.SupplementaryRegistration<HSideBarTitleSupplementaryView>(elementKind: "header") { (view, _, indexPath) in
+        let header = UICollectionView.SupplementaryRegistration<UICollectionViewListCell>(elementKind: "header") { (cell, _, indexPath) in
             guard let section = SettingSection(rawValue: indexPath.section) else {
                 HFatalError.fatalError()
             }
-            view.label.text = section.description
+            HLog.log(scene: .collectionView, str: "headercell")
+
+            var contentConfiguration = UIListContentConfiguration.groupedHeader()
+            contentConfiguration.text = section.description
+            cell.contentConfiguration = contentConfiguration
+            cell.backgroundConfiguration = UIBackgroundConfiguration.listGroupedHeaderFooter()
         }
         dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
             guard SettingSection(rawValue: indexPath.section) != nil else {
@@ -162,6 +178,8 @@ extension SettingsVC: UICollectionViewDelegate {
             handleSelectTintColor(indexPath: indexPath)
         case .splitVC:
             handleClickSpliVCOption(indexPath: indexPath)
+        case .vc:
+            handleClickVCOption(indexPath: indexPath)
         }
     }
 
@@ -190,6 +208,10 @@ extension SettingsVC: UICollectionViewDelegate {
     }
 
     private func handleClickSpliVCOption(indexPath: IndexPath) {
+
+    }
+
+    private func handleClickVCOption(indexPath: IndexPath) {
 
     }
 
@@ -225,6 +247,21 @@ extension SettingsVC: UICollectionViewDelegate {
                     }
                 }
                 return UIMenu(title: "Change preferredDisplayMode", children: actions)
+            }
+
+            return UIContextMenuConfiguration(identifier: "unique-ID" as NSCopying, previewProvider: nil, actionProvider: actionProvider)
+
+        } else if item.title == SettingSection.VCOption.modalPresentationStyle.description {
+            let actionProvider: UIContextMenuActionProvider = { [weak self] _ in
+                guard let self = self else { return nil }
+                let actions = UIModalPresentationStyle.allStyles.map { style in
+                    UIAction(title: style.displayName) { [weak self] (action) in
+                        guard let self = self else { return }
+                        self.settings.vcDefaultModalPresentationStyle = style
+                        self.dataSource.apply(self.getCurrentSnapShot())
+                    }
+                }
+                return UIMenu(title: "Change DefaultModalPresentationStyle", children: actions)
             }
 
             return UIContextMenuConfiguration(identifier: "unique-ID" as NSCopying, previewProvider: nil, actionProvider: actionProvider)

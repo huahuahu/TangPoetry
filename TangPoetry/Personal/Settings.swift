@@ -61,6 +61,15 @@ class Settings {
         }
     }
 
+    var vcDefaultModalPresentationStyle: UIModalPresentationStyle {
+        get {
+            return UIModalPresentationStyle(rawValue: userDefaults.integer(forKey: Key.VC.defaultModalPresentationStyle)) ?? UIModalPresentationStyle.automatic
+        }
+        set {
+            userDefaults.setValue(newValue.rawValue, forKey: Key.VC.defaultModalPresentationStyle)
+        }
+    }
+
 
     enum Key {
         enum TintColor {
@@ -71,19 +80,25 @@ class Settings {
         enum SplitVC {
             static let preferredDisplayMode = "h-SplitVC-preferredDisplayMode"
         }
+        enum VC {
+            static let defaultModalPresentationStyle = "h-vc-defaultModalPresentationStyle"
+        }
     }
 }
 
 enum SettingSection: Int, CaseIterable, CustomStringConvertible {
     case tintColor
     case splitVC
+    case vc
 
     var description: String {
         switch self {
         case .tintColor:
-            return "color"
+            return "Color"
         case .splitVC:
-            return "splitVC"
+            return "SplitVC"
+        case .vc:
+            return "UIViewController"
         }
     }
 
@@ -129,11 +144,29 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
         var item: SettingsVC.Item {
             switch self {
             case .preferredDisplayMode:
-                return .init(title: description, valueType: .select)
+                return .init(title: description, valueType: .select, secondaryText: Settings.shared.splitVCPreferredDisplayMode.displayName)
+            }
+        }
+    }
+
+    enum VCOption: CaseIterable, CustomStringConvertible {
+        case modalPresentationStyle
+
+        var description: String {
+            switch self {
+            case .modalPresentationStyle:
+                return "modalPresentationStyle"
             }
         }
 
+        var item: SettingsVC.Item {
+            switch self {
+            case .modalPresentationStyle:
+                return .init(title: description, valueType: .select, secondaryText: Settings.shared.vcDefaultModalPresentationStyle.displayName)
+            }
+        }
     }
+
 
     var items: [SettingsVC.Item] {
         switch self {
@@ -141,7 +174,8 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
             return ColorOption.allCases.map { $0.item }
         case .splitVC:
             return SplitVCOption.allCases.map { $0.item }
+        case .vc:
+            return VCOption.allCases.map { $0.item }
         }
     }
-
 }
