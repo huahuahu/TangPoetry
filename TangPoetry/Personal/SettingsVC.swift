@@ -106,7 +106,7 @@ extension SettingsVC {
             cell.backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
         }
 
-        let switchCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { [weak self] (cell, _, item) in
+        let switchCellRegistration = UICollectionView.CellRegistration<HSwitchListCell, Item> { [weak self] (cell, _, item) in
             guard let self = self else { return }
             HLog.log(scene: .collectionView, str: "switchCellRegistration")
 
@@ -114,10 +114,16 @@ extension SettingsVC {
             contentConfiguration.text = item.title
             cell.contentConfiguration = contentConfiguration
             cell.backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
-            let alphaSwitch = UISwitch()
-            alphaSwitch.addTarget(self, action: #selector(self.onColorPickerSwitchChange(sender:)), for: .valueChanged)
-            alphaSwitch.isOn = self.settings.colorPickerSupportAlpha
-            cell.accessories = [.customView(configuration: .init(customView: alphaSwitch, placement: .trailing()))]
+            cell.accessories = [.customView(configuration: .init(customView: cell.switchControl, placement: .trailing()))]
+            if item.title == SettingSection.ColorOption.supportAlpha.description {
+                cell.switchControl.addTarget(self, action: #selector(self.onColorPickerSwitchChange(sender:)), for: .valueChanged)
+                cell.switchControl.isOn = self.settings.colorPickerSupportAlpha
+            } else if item.title == SettingSection.SplitVCOption.showSecondaryOnlyButton.description {
+                cell.switchControl.addTarget(self, action: #selector(self.onSplitVCShowSecondaryButtonSwitchChange(sender:)), for: .valueChanged)
+                cell.switchControl.isOn = self.settings.splitVCShowSecondaryOnlyButton
+            } else {
+                HFatalError.fatalError()
+            }
         }
 
         dataSource = UICollectionViewDiffableDataSource<SettingSection, Item>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
@@ -266,6 +272,22 @@ extension SettingsVC: UICollectionViewDelegate {
 
             return UIContextMenuConfiguration(identifier: "unique-ID" as NSCopying, previewProvider: nil, actionProvider: actionProvider)
 
+        } else if item.title == SettingSection.SplitVCOption.splitBehavior.description {
+            let actionProvider: UIContextMenuActionProvider = { [weak self] _ in
+                guard let self = self  else {
+                    return nil
+                }
+
+                let actions = UISplitViewController.SplitBehavior.all.map { behavior in
+                    UIAction(title: behavior.displayName) { [weak self] _ in
+                        guard let self = self else { return }
+                        self.settings.splitVCSplitBehavior = behavior
+                        self.dataSource.apply(self.getCurrentSnapShot())
+                    }
+                }
+                return UIMenu(title: "Change Split Behavior", children: actions)
+            }
+            return UIContextMenuConfiguration(identifier: "SettingSection.SplitVCOption.splitBehavior" as NSCopying, previewProvider: nil, actionProvider: actionProvider)
         } else {
             return nil
         }
@@ -289,6 +311,11 @@ extension SettingsVC: UIColorPickerViewControllerDelegate {
 extension SettingsVC {
     @objc private func onColorPickerSwitchChange(sender: UISwitch) {
         settings.colorPickerSupportAlpha = sender.isOn
+        dataSource.apply(getCurrentSnapShot())
+    }
+
+    @objc private func onSplitVCShowSecondaryButtonSwitchChange(sender: UISwitch) {
+        settings.splitVCShowSecondaryOnlyButton = sender.isOn
         dataSource.apply(getCurrentSnapShot())
     }
 }

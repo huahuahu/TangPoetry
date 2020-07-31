@@ -61,6 +61,25 @@ class Settings {
         }
     }
 
+    @available(iOS 14.0, *)
+    var splitVCSplitBehavior: UISplitViewController.SplitBehavior {
+        get {
+            return UISplitViewController.SplitBehavior(rawValue: userDefaults.integer(forKey: Key.SplitVC.splitBehavior)) ?? UISplitViewController.SplitBehavior.automatic
+        }
+        set {
+            userDefaults.setValue(newValue.rawValue, forKey: Key.SplitVC.splitBehavior)
+        }
+    }
+
+    var splitVCShowSecondaryOnlyButton: Bool {
+        get {
+            return userDefaults.bool(forKey: Key.SplitVC.showSecondaryOnlyButton)
+        }
+        set {
+            userDefaults.setValue(newValue, forKey: Key.SplitVC.showSecondaryOnlyButton)
+        }
+    }
+
     var vcDefaultModalPresentationStyle: UIModalPresentationStyle {
         get {
             return UIModalPresentationStyle(rawValue: userDefaults.integer(forKey: Key.VC.defaultModalPresentationStyle)) ?? UIModalPresentationStyle.automatic
@@ -70,7 +89,6 @@ class Settings {
         }
     }
 
-
     enum Key {
         enum TintColor {
             static let tintColor = "h-tintColor-selected"
@@ -79,6 +97,8 @@ class Settings {
 
         enum SplitVC {
             static let preferredDisplayMode = "h-SplitVC-preferredDisplayMode"
+            static let splitBehavior = "h-SplitVC-splitBehavior"
+            static let showSecondaryOnlyButton = "h-SplitVC-showSecondaryOnlyButton"
         }
         enum VC {
             static let defaultModalPresentationStyle = "h-vc-defaultModalPresentationStyle"
@@ -140,11 +160,17 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
 
     enum SplitVCOption: CaseIterable, CustomStringConvertible {
         case preferredDisplayMode
+        case splitBehavior
+        case showSecondaryOnlyButton
 
         var description: String {
             switch self {
             case .preferredDisplayMode:
                 return "preferredDisplayMode"
+            case .splitBehavior:
+                return "splitBehavior"
+            case .showSecondaryOnlyButton:
+                return "showSecondaryOnlyButton"
             }
         }
 
@@ -152,6 +178,20 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
             switch self {
             case .preferredDisplayMode:
                 return .init(title: description, valueType: .select, secondaryText: Settings.shared.splitVCPreferredDisplayMode.displayName)
+            case .splitBehavior:
+                if #available(iOS 14.0, *) {
+                    return .init(title: description, valueType: .select, secondaryText: Settings.shared.splitVCSplitBehavior.displayName)
+                } else {
+                    // Fallback on earlier versions
+                    HFatalError.fatalError()
+                }
+            case .showSecondaryOnlyButton:
+                if #available(iOS 14.0, *) {
+                    return .init(title: description, valueType: .bool)
+                } else {
+                    // Fallback on earlier versions
+                    HFatalError.fatalError()
+                }
             }
         }
     }
@@ -185,3 +225,7 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
         }
     }
 }
+
+//protocol UIContextualMenuDataSource {
+//    var contextualMenus: UIContextMenuConfiguration? { get }
+//}

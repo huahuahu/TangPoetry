@@ -30,6 +30,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             navigationVC2.navigationBar.prefersLargeTitles = true
             splitVC.setViewController(baseTabVC, for: .compact)
             splitVC.preferredDisplayMode = settings.splitVCPreferredDisplayMode
+            splitVC.preferredSplitBehavior = settings.splitVCSplitBehavior
+            splitVC.showsSecondaryOnlyButton = settings.splitVCShowSecondaryOnlyButton
         } else {
             // Fallback on earlier versions
             fatalError()
