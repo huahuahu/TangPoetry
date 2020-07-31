@@ -35,6 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             splitVC.presentsWithGesture = settings.splitVCPresentsWithGesture
             splitVC.presentsWithGesture = true
             splitVC.preferredSupplementaryColumnWidthFraction = settings.splitVCPreferredSupplementaryColumnWidthFraction
+//            splitVC.preferredSupplementaryColumnWidthFraction = UISplitViewController.automaticSupplementaryFillDimension
         } else {
             // Fallback on earlier versions
             fatalError()

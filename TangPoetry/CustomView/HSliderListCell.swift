@@ -37,7 +37,7 @@ class HSliderListCell: UICollectionViewListCell {
         slider.translatesAutoresizingMaskIntoConstraints = false
         listContentView.translatesAutoresizingMaskIntoConstraints = false
 //        listContentView.setContentCompressionResistancePriority(.init(rawValue: <#T##Float#>), for: .horizontal)
-        listContentView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        listContentView.setContentHuggingPriority(.defaultLow - 1, for: .horizontal)
         NSLayoutConstraint.activate([
             slider.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             slider.leadingAnchor.constraint(equalTo: listContentView.trailingAnchor),

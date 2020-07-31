@@ -130,6 +130,7 @@ extension SettingsVC {
             cell.contentConfiguration = contentConfiguration
             cell.backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
             cell.accessories = [.customView(configuration: .init(customView: cell.switchControl, placement: .trailing()))]
+            cell.switchControl.onTintColor = self.settings.tintColor
             if item.title == SettingSection.ColorOption.supportAlpha.description {
                 cell.switchControl.addTarget(self, action: #selector(self.onColorPickerSwitchChange(sender:)), for: .valueChanged)
                 cell.switchControl.isOn = self.settings.colorPickerSupportAlpha
