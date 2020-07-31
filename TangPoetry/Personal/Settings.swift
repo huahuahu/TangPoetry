@@ -91,6 +91,13 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
     case splitVC
     case vc
 
+    var supportContextualMenu: Bool {
+        switch self {
+        case .tintColor: return false
+        case .splitVC, .vc: return true
+        }
+    }
+
     var description: String {
         switch self {
         case .tintColor:
@@ -166,7 +173,6 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
             }
         }
     }
-
 
     var items: [SettingsVC.Item] {
         switch self {

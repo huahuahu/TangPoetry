@@ -131,16 +131,17 @@ extension SettingsVC {
             }
         })
 
-        let header = UICollectionView.SupplementaryRegistration<UICollectionViewListCell>(elementKind: "header") { (cell, _, indexPath) in
+        let header = UICollectionView.SupplementaryRegistration<HSideBarTitleSupplementaryView>(elementKind: "header") { (cell, _, indexPath) in
             guard let section = SettingSection(rawValue: indexPath.section) else {
                 HFatalError.fatalError()
             }
             HLog.log(scene: .collectionView, str: "headercell")
 
-            var contentConfiguration = UIListContentConfiguration.groupedHeader()
-            contentConfiguration.text = section.description
-            cell.contentConfiguration = contentConfiguration
-            cell.backgroundConfiguration = UIBackgroundConfiguration.listGroupedHeaderFooter()
+//            var contentConfiguration = UIListContentConfiguration.groupedHeader()
+//            contentConfiguration.text = section.description
+//            cell.contentConfiguration = contentConfiguration
+//            cell.backgroundConfiguration = UIBackgroundConfiguration.listGroupedHeaderFooter()
+            cell.label.text = section.description
         }
         dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
             guard SettingSection(rawValue: indexPath.section) != nil else {
@@ -197,7 +198,7 @@ extension SettingsVC: UICollectionViewDelegate {
                 picker.selectedColor = currentTintColor
             }
             picker.supportsAlpha = settings.colorPickerSupportAlpha
-            picker.modalPresentationStyle = .formSheet
+            picker.modalPresentationStyle = settings.vcDefaultModalPresentationStyle
             picker.delegate = self
             present(picker, animated: true) {
                 HLog.log(scene: .settings, str: "color vc presented")
@@ -223,7 +224,7 @@ extension SettingsVC: UICollectionViewDelegate {
             let item = dataSource.itemIdentifier(for: indexPath) else {
             HFatalError.fatalError()
         }
-        guard section == .splitVC else {
+        guard section.supportContextualMenu else {
             return nil
         }
 
@@ -250,7 +251,6 @@ extension SettingsVC: UICollectionViewDelegate {
             }
 
             return UIContextMenuConfiguration(identifier: "unique-ID" as NSCopying, previewProvider: nil, actionProvider: actionProvider)
-
         } else if item.title == SettingSection.VCOption.modalPresentationStyle.description {
             let actionProvider: UIContextMenuActionProvider = { [weak self] _ in
                 guard let self = self else { return nil }
