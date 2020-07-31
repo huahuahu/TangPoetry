@@ -23,5 +23,6 @@ class HSwitchListCell: UICollectionViewListCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         switchControl.isOn = false
+        switchControl.removeTarget(nil, action: nil, for: .allEvents)
     }
 }

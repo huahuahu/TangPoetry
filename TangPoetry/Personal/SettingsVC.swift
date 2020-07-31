@@ -73,6 +73,21 @@ extension SettingsVC {
         }, configuration: configuration)
     }
 
+    @available(iOS 14.0, *)
+    private func createSlideCellRegistration() -> UICollectionView.CellRegistration<HSliderListCell, Item> {
+        return .init { [weak self] (cell, indexPath, item) in
+            guard let self = self else { return }
+            HLog.log(scene: .collectionView, str: "createSlideCellRegistration")
+            if item.title == SettingSection.SplitVCOption.preferredSupplementaryColumnWidthFraction.description {
+                cell.slideValue = Double(self.settings.splitVCPreferredSupplementaryColumnWidthFraction)
+                cell.onSlideValeChange = {
+                    self.settings.splitVCPreferredSupplementaryColumnWidthFraction = CGFloat($0)
+                }
+            }
+            cell.item = item
+            cell.backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
+        }
+    }
     private func configDataSource() {
         guard #available(iOS 14, *) else {
             HFatalError.fatalError()
@@ -121,12 +136,16 @@ extension SettingsVC {
             } else if item.title == SettingSection.SplitVCOption.showSecondaryOnlyButton.description {
                 cell.switchControl.addTarget(self, action: #selector(self.onSplitVCShowSecondaryButtonSwitchChange(sender:)), for: .valueChanged)
                 cell.switchControl.isOn = self.settings.splitVCShowSecondaryOnlyButton
+            } else if item.title == SettingSection.SplitVCOption.presentsWithGesture.description {
+                cell.switchControl.addTarget(self, action: #selector(self.onSplitVCPresentsWithGesture(sender:)), for: .valueChanged)
+                cell.switchControl.isOn = self.settings.splitVCPresentsWithGesture
             } else {
                 HFatalError.fatalError()
             }
         }
 
-        dataSource = UICollectionViewDiffableDataSource<SettingSection, Item>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<SettingSection, Item>(collectionView: collectionView, cellProvider: { [weak self] (collectionView, indexPath, item) -> UICollectionViewCell? in
+            guard let self = self else { return nil }
             switch item.valueType {
             case .bool:
                 return collectionView.dequeueConfiguredReusableCell(using: switchCellRegistration, for: indexPath, item: item)
@@ -134,6 +153,9 @@ extension SettingsVC {
                 return collectionView.dequeueConfiguredReusableCell(using: emptyCellRegistration, for: indexPath, item: item)
             case .select:
                 return collectionView.dequeueConfiguredReusableCell(using: selectionCellRegistration, for: indexPath, item: item)
+            case .slider:
+                return collectionView.dequeueConfiguredReusableCell(using: self.createSlideCellRegistration(), for: indexPath, item: item)
+
             }
         })
 
@@ -197,6 +219,9 @@ extension SettingsVC: UICollectionViewDelegate {
         guard let item = dataSource.itemIdentifier(for: indexPath) else {
             HFatalError.fatalError()
         }
+        guard SettingSection.ColorOption.allCases.map({ $0.description }).contains(item.title) else {
+            HFatalError.fatalError()
+        }
         switch item.title {
         case SettingSection.ColorOption.changeTintColor.rawValue:
             let picker = UIColorPickerViewController()
@@ -210,7 +235,7 @@ extension SettingsVC: UICollectionViewDelegate {
                 HLog.log(scene: .settings, str: "color vc presented")
             }
         default:
-            HFatalError.fatalError("unknow item title clicked: \(item.title)")
+            ()
         }
     }
 
@@ -318,4 +343,9 @@ extension SettingsVC {
         settings.splitVCShowSecondaryOnlyButton = sender.isOn
         dataSource.apply(getCurrentSnapShot())
     }
+    @objc private func onSplitVCPresentsWithGesture(sender: UISwitch) {
+        settings.splitVCPresentsWithGesture = sender.isOn
+        dataSource.apply(getCurrentSnapShot())
+    }
+
 }

@@ -80,6 +80,24 @@ class Settings {
         }
     }
 
+    var splitVCPresentsWithGesture: Bool {
+        get {
+            return userDefaults.bool(forKey: Key.SplitVC.presentsWithGesture)
+        }
+        set {
+            userDefaults.setValue(newValue, forKey: Key.SplitVC.presentsWithGesture)
+        }
+    }
+
+    var splitVCPreferredSupplementaryColumnWidthFraction: CGFloat {
+        get {
+            return CGFloat(userDefaults.double(forKey: Key.SplitVC.preferredSupplementaryColumnWidthFraction))
+        }
+        set {
+            userDefaults.setValue(Double(newValue), forKey: Key.SplitVC.preferredSupplementaryColumnWidthFraction)
+        }
+    }
+
     var vcDefaultModalPresentationStyle: UIModalPresentationStyle {
         get {
             return UIModalPresentationStyle(rawValue: userDefaults.integer(forKey: Key.VC.defaultModalPresentationStyle)) ?? UIModalPresentationStyle.automatic
@@ -99,6 +117,8 @@ class Settings {
             static let preferredDisplayMode = "h-SplitVC-preferredDisplayMode"
             static let splitBehavior = "h-SplitVC-splitBehavior"
             static let showSecondaryOnlyButton = "h-SplitVC-showSecondaryOnlyButton"
+            static let presentsWithGesture = "h-SplitVC-presentsWithGesture"
+            static let preferredSupplementaryColumnWidthFraction = "h-SplitVC-preferredSupplementaryColumnWidthFraction"
         }
         enum VC {
             static let defaultModalPresentationStyle = "h-vc-defaultModalPresentationStyle"
@@ -133,6 +153,7 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
         case bool
         case select
         case empty
+        case slider
     }
 
     enum ColorOption: String, CaseIterable, CustomStringConvertible {
@@ -162,6 +183,8 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
         case preferredDisplayMode
         case splitBehavior
         case showSecondaryOnlyButton
+        case presentsWithGesture
+        case preferredSupplementaryColumnWidthFraction
 
         var description: String {
             switch self {
@@ -171,6 +194,10 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
                 return "splitBehavior"
             case .showSecondaryOnlyButton:
                 return "showSecondaryOnlyButton"
+            case .presentsWithGesture:
+                return "presentsWithGesture"
+            case .preferredSupplementaryColumnWidthFraction:
+                return "preferredSupplementaryColumnWidthFraction"
             }
         }
 
@@ -192,6 +219,10 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
                     // Fallback on earlier versions
                     HFatalError.fatalError()
                 }
+            case .presentsWithGesture:
+                return .init(title: description, valueType: .bool)
+            case .preferredSupplementaryColumnWidthFraction:
+                return .init(title: description, valueType: .slider)
             }
         }
     }
