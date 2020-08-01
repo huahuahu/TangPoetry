@@ -147,6 +147,7 @@ extension SettingsVC {
 
         dataSource = UICollectionViewDiffableDataSource<SettingSection, Item>(collectionView: collectionView, cellProvider: { [weak self] (collectionView, indexPath, item) -> UICollectionViewCell? in
             guard let self = self else { return nil }
+            HLog.log(scene: .collectionView, str: "cell for \(item)")
             switch item.valueType {
             case .bool:
                 return collectionView.dequeueConfiguredReusableCell(using: switchCellRegistration, for: indexPath, item: item)
@@ -337,8 +338,20 @@ extension SettingsVC: UIColorPickerViewControllerDelegate {
 
 extension SettingsVC {
     @objc private func onColorPickerSwitchChange(sender: UISwitch) {
+        guard #available(iOS 14, *) else {
+            HFatalError.fatalError()
+        }
         settings.colorPickerSupportAlpha = sender.isOn
-        dataSource.apply(getCurrentSnapShot())
+        var snapShotShot = NSDiffableDataSourceSectionSnapshot<Item>()
+        snapShotShot.append(SettingSection.tintColor.items)
+//        dataSource.apply(snapShotShot, animatingDifferences: true) {
+//            HLog.log(scene: .collectionView, str: "onColorPickerSwitchChange")
+//        }
+        dataSource.apply(snapShotShot, to: SettingSection.tintColor, animatingDifferences: true) {
+            HLog.log(scene: .collectionView, str: "apply section snapshot")
+
+        }
+//        dataSource.apply(getCurrentSnapShot())
     }
 
     @objc private func onSplitVCShowSecondaryButtonSwitchChange(sender: UISwitch) {
