@@ -8,8 +8,10 @@
 
 import UIKit
 
+@available(iOS 14.0, *)
 class HSideBarTitleSupplementaryView: UICollectionReusableView {
-    let label = UILabel()
+    let contentView = UIListContentView(configuration: .groupedHeader())
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         config()
@@ -19,16 +21,20 @@ class HSideBarTitleSupplementaryView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func updateTitle(_ title: String) {
+        var content = UIListContentConfiguration.groupedHeader()
+        content.text = title
+        contentView.configuration = content
+    }
+
     private func config() {
-        addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.adjustsFontForContentSizeCategory = true
-        label.font = .preferredFont(forTextStyle: .title3)
+        addSubview(contentView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            label.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            label.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            label.topAnchor.constraint(equalTo: self.readableContentGuide.topAnchor, constant: 5),
-            label.leadingAnchor.constraint(equalTo: self.readableContentGuide.leadingAnchor, constant: 5)
+            contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            contentView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            contentView.topAnchor.constraint(equalTo: self.readableContentGuide.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: self.readableContentGuide.leadingAnchor)
         ])
     }
 }

@@ -170,7 +170,7 @@ extension SettingsVC {
 //            contentConfiguration.text = section.description
 //            cell.contentConfiguration = contentConfiguration
 //            cell.backgroundConfiguration = UIBackgroundConfiguration.listGroupedHeaderFooter()
-            cell.label.text = section.description
+            cell.updateTitle(section.description)
         }
         dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
             guard SettingSection(rawValue: indexPath.section) != nil else {
@@ -199,6 +199,8 @@ extension SettingsVC {
 
 extension SettingsVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        HLog.log(scene: .collectionView, str: "\(#function)")
+
         collectionView.deselectItem(at: indexPath, animated: true)
         guard let section = SettingSection(rawValue: indexPath.section) else {
             HFatalError.fatalError()
@@ -245,7 +247,6 @@ extension SettingsVC: UICollectionViewDelegate {
     }
 
     private func handleClickVCOption(indexPath: IndexPath) {
-
     }
 
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {

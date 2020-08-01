@@ -146,7 +146,7 @@ extension SideBarVC {
 
         let headerRegisteration = UICollectionView.SupplementaryRegistration<HSideBarTitleSupplementaryView>(elementKind: "Header8") { (headerView, _, _) in
 //            let category = Category(rawValue: indexPath.section)
-            headerView.label.text = "预置"
+            headerView.updateTitle("预置")
         }
         dataSource.supplementaryViewProvider = { (collectionView, kind, index) in
             if kind == UICollectionView.elementKindSectionHeader {
@@ -179,7 +179,7 @@ extension SideBarVC: UICollectionViewDelegate {
         guard #available(iOS 14.0, *) else {
             fatalError()
         }
-        collectionView.deselectItem(at: indexPath, animated: true)
+//        collectionView.deselectItem(at: indexPath, animated: true)
         let item = dataSource.itemIdentifier(for: indexPath)
         if item?.text == Category.personal.textInCell {
             splitViewController?.setViewController(SettingsVC(), for: .secondary)
