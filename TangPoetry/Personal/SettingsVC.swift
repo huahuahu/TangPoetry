@@ -13,6 +13,14 @@ class SettingsVC: UIViewController {
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<SettingSection, Item>!
     private var settings = Settings.shared
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        configTabBarItem()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         configCollectionView()
@@ -21,6 +29,10 @@ class SettingsVC: UIViewController {
 
     private func configNav() {
         navigationItem.title = "Settings"
+    }
+
+    private func configTabBarItem() {
+        tabBarItem = UITabBarItem(title: "Setting", image: UIImage(systemName: "gear"), tag: 0)
     }
 }
 
@@ -161,7 +173,7 @@ extension SettingsVC {
             }
         })
 
-        let header = UICollectionView.SupplementaryRegistration<HSideBarTitleSupplementaryView>(elementKind: "header") { (cell, _, indexPath) in
+        let header = UICollectionView.SupplementaryRegistration<HSectionHeaderView>(elementKind: "header") { (cell, _, indexPath) in
             guard let section = SettingSection(rawValue: indexPath.section) else {
                 HFatalError.fatalError()
             }

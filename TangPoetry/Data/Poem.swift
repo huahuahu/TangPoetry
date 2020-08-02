@@ -18,9 +18,13 @@ enum Genre: String, Codable, CaseIterable {
    case qiyanJueju = "七言绝句"
    case wuyanLvshi = "五言律诗"
    case qiyanLvshi = "七言律诗"
+
+    var displayName: String {
+        return self.rawValue
+    }
 }
 
-struct Poem: Codable {
+struct Poem: Codable, Hashable {
     let uniqueId: Int
     let author: String
     let title: String

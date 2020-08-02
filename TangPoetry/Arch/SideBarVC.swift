@@ -144,7 +144,7 @@ extension SideBarVC {
             }
         })
 
-        let headerRegisteration = UICollectionView.SupplementaryRegistration<HSideBarTitleSupplementaryView>(elementKind: "Header8") { (headerView, _, _) in
+        let headerRegisteration = UICollectionView.SupplementaryRegistration<HSectionHeaderView>(elementKind: "Header8") { (headerView, _, _) in
 //            let category = Category(rawValue: indexPath.section)
             headerView.updateTitle("预置")
         }

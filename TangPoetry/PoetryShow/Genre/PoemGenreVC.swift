@@ -15,7 +15,6 @@ class PoemGenreVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "按照体裁浏览"
-
     }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

@@ -1,5 +1,5 @@
 //
-//  HSideBarTitleSupplementaryView.swift
+//  HSectionHeaderView.swift
 //  TangPoetry
 //
 //  Created by huahuahu on 2020/7/30.
@@ -9,7 +9,7 @@
 import UIKit
 
 @available(iOS 14.0, *)
-class HSideBarTitleSupplementaryView: UICollectionReusableView {
+class HSectionHeaderView: UICollectionReusableView {
     let contentView = UIListContentView(configuration: .groupedHeader())
 
     override init(frame: CGRect) {

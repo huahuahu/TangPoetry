@@ -14,32 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         sceneLog("\(#function)")
-        if #available(iOS 14.0, *) {
-            let splitVC = HSplitViewController.init(style: .tripleColumn)
-            window?.rootViewController = splitVC
-            splitVC.setViewController(SideBarVC(), for: .primary)
-            splitVC.setViewController(PoemGenreVC(), for: .supplementary)
-            splitVC.setViewController(DetailVC(poem: DataProvider().allPoetryEntries.first! ), for: .secondary)
-
-            let baseTabVC = BaseTabVC.init(nibName: nil, bundle: nil)
-            let navigationVC1 = BaseNavigationVC.init(rootViewController: PoetsVC.init(nibName: nil, bundle: nil))
-            let navigationVC2 = BaseNavigationVC.init(rootViewController: PoemGenreVC.init(nibName: nil, bundle: nil))
-            let writeNavVC = BaseNavigationVC.init(rootViewController: PoetryWriteVC.init(nibName: nil, bundle: nil))
-            baseTabVC.viewControllers = [navigationVC1, navigationVC2, writeNavVC]
-            navigationVC1.navigationBar.prefersLargeTitles = true
-            navigationVC2.navigationBar.prefersLargeTitles = true
-            splitVC.setViewController(baseTabVC, for: .compact)
-            splitVC.preferredDisplayMode = settings.splitVCPreferredDisplayMode
-            splitVC.preferredSplitBehavior = settings.splitVCSplitBehavior
-            splitVC.showsSecondaryOnlyButton = settings.splitVCShowSecondaryOnlyButton
-            splitVC.presentsWithGesture = settings.splitVCPresentsWithGesture
-            splitVC.presentsWithGesture = true
-            splitVC.preferredSupplementaryColumnWidthFraction = settings.splitVCPreferredSupplementaryColumnWidthFraction
-//            splitVC.preferredSupplementaryColumnWidthFraction = UISplitViewController.automaticSupplementaryFillDimension
-        } else {
-            // Fallback on earlier versions
-            fatalError()
-        }
+        configRootVC()
 
         window?.tintColor = Settings.shared.tintColor
         if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
@@ -103,4 +78,42 @@ extension SceneDelegate {
         }
     }
 
+}
+
+extension SceneDelegate {
+    private func configRootVC() {
+        guard #available(iOS 14, *) else {
+            fatalError()
+        }
+        let splitVC = HSplitViewController.init(style: .tripleColumn)
+        window?.rootViewController = splitVC
+        configureCompact(splitVC)
+        splitVC.setViewController(SideBarVC(), for: .primary)
+        splitVC.setViewController(PoemGenreVC(), for: .supplementary)
+        splitVC.setViewController(DetailVC(poem: DataProvider.shared.allPoetryEntries.first! ), for: .secondary)
+        splitVC.preferredDisplayMode = settings.splitVCPreferredDisplayMode
+        splitVC.preferredSplitBehavior = settings.splitVCSplitBehavior
+        splitVC.showsSecondaryOnlyButton = settings.splitVCShowSecondaryOnlyButton
+        splitVC.presentsWithGesture = settings.splitVCPresentsWithGesture
+        splitVC.presentsWithGesture = true
+        splitVC.preferredSupplementaryColumnWidthFraction = settings.splitVCPreferredSupplementaryColumnWidthFraction
+    }
+
+    private func configureCompact(_ splitVC: UISplitViewController) {
+        guard #available(iOS 14, *) else {
+            fatalError()
+        }
+        let baseTabVC = BaseTabVC.init(nibName: nil, bundle: nil)
+        let navigationVC1 = BaseNavigationVC.init(rootViewController: HSortVC())
+        let navigationVC2 = BaseNavigationVC.init(rootViewController: PoemGenreVC.init(nibName: nil, bundle: nil))
+        let writeNavVC = BaseNavigationVC.init(rootViewController: PoetryWriteVC.init(nibName: nil, bundle: nil))
+        let settingNavVC = BaseNavigationVC(rootViewController: SettingsVC())
+        settingNavVC.navigationBar.prefersLargeTitles = true
+
+        baseTabVC.viewControllers = [navigationVC1, navigationVC2, writeNavVC, settingNavVC]
+        navigationVC1.navigationBar.prefersLargeTitles = true
+        navigationVC2.navigationBar.prefersLargeTitles = true
+        splitVC.setViewController(baseTabVC, for: .compact)
+
+    }
 }

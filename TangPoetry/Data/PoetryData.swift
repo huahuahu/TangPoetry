@@ -17,7 +17,7 @@ class DataProvider: NSObject {
 
     public private(set) var allPoetryEntries: [Poem]
 
-    override init() {
+    private override init() {
         let dataAsset = NSDataAsset.init(name: "allTitles")
         guard let data = dataAsset?.data else { fatalError() }
         //swiftlint:disable force_try
@@ -38,7 +38,12 @@ class DataProvider: NSObject {
         return allPoetryEntries.filter({ (poetry) -> Bool in
             poetry.author.contains(str!)
         })
-        
+    }
+
+    public func poemsOfGenre(_ genre: Genre) -> [Poem] {
+        return allPoetryEntries.filter( { $0.genre == genre}).sorted { (poem1, poem2) -> Bool in
+            return poem1.title.compare(poem2.title, options: [.forcedOrdering], range: nil, locale: Locale(identifier: "zh_Hans_CN")) == .orderedAscending
+        }
     }
 
 }
