@@ -100,12 +100,13 @@ extension HSortVC {
         return layout
     }
 
-    private func getCellConfiguration() -> UICollectionView.CellRegistration<UICollectionViewListCell, Item> {
+    private func getCellConfiguration() -> UICollectionView.CellRegistration<HPoemSummaryPoetCell, Item> {
         return .init { cell, indexPath, item in
-            var configuration = cell.defaultContentConfiguration()
-            configuration.text = item.poem.title
-            configuration.secondaryText = item.poem.author
-            cell.contentConfiguration = configuration
+//            var configuration = cell.defaultContentConfiguration()
+//            configuration.text = item.poem.title
+//            configuration.secondaryText = item.poem.author
+//            cell.contentConfiguration = configuration
+            cell.updatePoem(item.poem)
         }
     }
 

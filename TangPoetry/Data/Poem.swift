@@ -52,6 +52,18 @@ struct Poem: Codable, Hashable {
         userActivity.userInfo = [Constants.Keys.userActivity: data as Any]
         return userActivity
     }
+
+    var contentSummary: String {
+        var newLineCount = 0
+        let summary = content.prefix { char in
+            if char.isNewline {
+                newLineCount += 1
+            }
+            return newLineCount < 2
+        }
+        return String(summary + "\n......")
+    }
+
 }
 
 class PoemClass: NSObject, Codable {

@@ -21,6 +21,7 @@
 		2697D56524D1B29B00F821AB /* ActivityCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697D56424D1B29B00F821AB /* ActivityCategory.swift */; };
 		2697D56724D1B90500F821AB /* SideBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697D56624D1B90500F821AB /* SideBarVC.swift */; };
 		26CA616524D987F80029CE53 /* UIMenu+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA616424D987F80029CE53 /* UIMenu+Extension.swift */; };
+		26CA616724D989880029CE53 /* PoemSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA616624D989880029CE53 /* PoemSummaryCell.swift */; };
 		26D0B88124D255C00017983C /* PoetSortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D0B88024D255C00017983C /* PoetSortType.swift */; };
 		26D0B88324D2577F0017983C /* WriteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D0B88224D2577F0017983C /* WriteType.swift */; };
 		26D0B88524D261BD0017983C /* HSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D0B88424D261BD0017983C /* HSectionHeaderView.swift */; };
@@ -100,6 +101,7 @@
 		2697D56424D1B29B00F821AB /* ActivityCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCategory.swift; sourceTree = "<group>"; };
 		2697D56624D1B90500F821AB /* SideBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarVC.swift; sourceTree = "<group>"; };
 		26CA616424D987F80029CE53 /* UIMenu+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIMenu+Extension.swift"; sourceTree = "<group>"; };
+		26CA616624D989880029CE53 /* PoemSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemSummaryCell.swift; sourceTree = "<group>"; };
 		26D0B88024D255C00017983C /* PoetSortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetSortType.swift; sourceTree = "<group>"; };
 		26D0B88224D2577F0017983C /* WriteType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteType.swift; sourceTree = "<group>"; };
 		26D0B88424D261BD0017983C /* HSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				26F8A80B24D5481700D2E7C0 /* HSortVC.swift */,
+				26CA616624D989880029CE53 /* PoemSummaryCell.swift */,
 			);
 			path = SortView;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				26D0B88524D261BD0017983C /* HSectionHeaderView.swift in Sources */,
 				60BA61AE245C577800233698 /* CollectionCell.swift in Sources */,
 				60EB36B6246151DE0093E87A /* DetailVC.swift in Sources */,
+				26CA616724D989880029CE53 /* PoemSummaryCell.swift in Sources */,
 				6008F8A824D2FC3200D15664 /* HSwitchListCell.swift in Sources */,
 				26F113AC210FE8D1004CDAB6 /* PoetryEntryCell.swift in Sources */,
 				2697D56724D1B90500F821AB /* SideBarVC.swift in Sources */,
