@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		262198C920E8A0A000F249BF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 262198CB20E8A0A000F249BF /* Localizable.strings */; };
 		262198D020E8A20700F249BF /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262198CF20E8A20700F249BF /* util.swift */; };
+		262D05E324D99D8C00C265BB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262D05E224D99D8C00C265BB /* String+Extension.swift */; };
 		2663E525210C34A70036300E /* PoetryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2663E524210C34A70036300E /* PoetryData.swift */; };
 		268D1F5D20E76517000C6AA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D1F5C20E76517000C6AA9 /* AppDelegate.swift */; };
 		268D1F5F20E76517000C6AA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D1F5E20E76517000C6AA9 /* ViewController.swift */; };
@@ -83,6 +84,7 @@
 		262198CA20E8A0A000F249BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		262198CC20E8A0A200F249BF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		262198CF20E8A20700F249BF /* util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
+		262D05E224D99D8C00C265BB /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		2663E524210C34A70036300E /* PoetryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetryData.swift; sourceTree = "<group>"; };
 		268D1F5920E76517000C6AA9 /* TangPoetry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TangPoetry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		268D1F5C20E76517000C6AA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				262198CF20E8A20700F249BF /* util.swift */,
+				262D05E224D99D8C00C265BB /* String+Extension.swift */,
 				60EB36A4245FC8880093E87A /* Logs.swift */,
 				60EB36B22461384D0093E87A /* Constants.swift */,
 				6008F8A524D2B42A00D15664 /* Hcolor.swift */,
@@ -620,6 +623,7 @@
 				60BA61B0245C668C00233698 /* FlowLayout.swift in Sources */,
 				60BA61B2245D153D00233698 /* CompositionalLayout.swift in Sources */,
 				60EB36B32461384D0093E87A /* Constants.swift in Sources */,
+				262D05E324D99D8C00C265BB /* String+Extension.swift in Sources */,
 				2697D56524D1B29B00F821AB /* ActivityCategory.swift in Sources */,
 				262198D020E8A20700F249BF /* util.swift in Sources */,
 				60EB36A3245FC8520093E87A /* ImageDropDelegate.swift in Sources */,

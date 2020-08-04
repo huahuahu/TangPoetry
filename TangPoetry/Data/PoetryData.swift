@@ -11,18 +11,36 @@ import UIKit
 
 class DataProvider: NSObject {
     
-    static var shared: DataProvider {
-        return DataProvider.init()
-    }
+    static var shared = DataProvider.init()
 
     public private(set) var allPoetryEntries: [Poem]
-
+    public private(set) var authors: [String]
+    public private(set) var authorPoemsMap: [String: [Poem]]
     private override init() {
         let dataAsset = NSDataAsset.init(name: "allTitles")
         guard let data = dataAsset?.data else { fatalError() }
         //swiftlint:disable force_try
         allPoetryEntries = try! JSONDecoder().decode([Poem].self, from: data)
+        authors = Set(allPoetryEntries.map { $0.author}).sorted {
+            $0.compareUsingChs($1) == .orderedAscending
+        }
 
+        var rawPoetMap = [String: [Poem]]()
+        for poem in allPoetryEntries {
+            let poet = poem.author
+            if rawPoetMap[poet] == nil {
+                rawPoetMap[poet] = [poem]
+            } else {
+                var rawPoems = rawPoetMap[poet]
+                rawPoems?.append(poem)
+                rawPoetMap[poet] = rawPoems
+            }
+        }
+        authorPoemsMap = rawPoetMap.mapValues {
+            $0.sorted {
+                $0.title.compareUsingChs($1.title) == .orderedAscending
+            }
+        }
         super.init()
     }
 
@@ -41,11 +59,10 @@ class DataProvider: NSObject {
     }
 
     public func poemsOfGenre(_ genre: Genre) -> [Poem] {
-        return allPoetryEntries.filter( { $0.genre == genre}).sorted { (poem1, poem2) -> Bool in
-            return poem1.title.compare(poem2.title, options: [.forcedOrdering], range: nil, locale: Locale(identifier: "zh_Hans_CN")) == .orderedAscending
+        return allPoetryEntries.filter( { $0.genre == genre}).sorted {
+            $0.title.compareUsingChs($1.title) == .orderedAscending
         }
     }
-
 }
 
 //extension DataProvider: URLSessionDelegate {

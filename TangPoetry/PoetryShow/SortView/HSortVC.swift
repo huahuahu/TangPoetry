@@ -71,7 +71,7 @@ final class HSortVC: UIViewController {
     }
 
     private func onSortTypeChange() {
-        self.collectionView.reloadData()
+        dataSource.apply(getSnapShot(), animatingDifferences: true)
         configNav()
     }
 }
@@ -122,7 +122,7 @@ extension HSortVC {
             case .genre:
                 headerView.updateTitle(item.poem.genre.displayName)
             case .poet:
-                headerView.updateTitle("#\(item.poem.genre.displayName)#")
+                headerView.updateTitle(item.poem.author)
             }
         }
     }
@@ -147,9 +147,22 @@ extension HSortVC {
 
     private func getSnapShot() -> NSDiffableDataSourceSnapshot<Section, Item> {
         var snapShot = NSDiffableDataSourceSnapshot<Section, Item>()
-        for genre in Genre.allCases {
-            snapShot.appendSections([.init(title: genre.displayName)])
-            snapShot.appendItems(DataProvider.shared.poemsOfGenre(genre).map { Item(poem: $0)})
+        switch sortType {
+        case .genre:
+            for genre in Genre.allCases {
+                snapShot.appendSections([.init(title: genre.displayName)])
+                snapShot.appendItems(DataProvider.shared.poemsOfGenre(genre).map { Item(poem: $0)})
+            }
+        case .poet:
+            for poet in DataProvider.shared.authors {
+                if let poems = DataProvider.shared.authorPoemsMap[poet],
+                   !poems.isEmpty {
+                    snapShot.appendSections([Section(title: poet)])
+                    snapShot.appendItems(poems.map { Item(poem: $0)})
+                } else {
+                    HAssert.assertFailure("poet \(poet) has no poem")
+                }
+            }
         }
         return snapShot
     }
