@@ -40,21 +40,29 @@ final class HSortVC: UIViewController {
 
     private func configNav() {
         navigationItem.title = "按照\(sortType.textForDisplay)浏览"
-        let menu = UIMenu(title: "menue", children: [
-                            UIAction(title: "诗人", handler: { [weak self] (action) in
-                                self?.sortType = .poet
-                                self?.onSortTypeChange()
-                            }),
-                            UIAction(title: "体裁", handler: { [weak self] (action) in
-                                self?.sortType = .genre
-                                self?.onSortTypeChange()
-                            })
-        ])
-        let primaryAction = UIAction(handler: { (action) in
-            print("primary action")
+
+        let poetryAction =  UIAction(title: "诗人", handler: { [weak self] (_) in
+            self?.sortType = .poet
+            self?.onSortTypeChange()
         })
-//        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: nil, image: nil, primaryAction: nil, menu: menu)
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(systemItem: .organize, primaryAction: primaryAction, menu: menu)
+        let genreAction = UIAction(title: "体裁", handler: { [weak self] (_) in
+            self?.sortType = .genre
+            self?.onSortTypeChange()
+        })
+        switch sortType {
+        case .genre:
+            genreAction.state = .on
+        case .poet:
+            poetryAction.state = .on
+        }
+
+        let menu = UIMenu(title: "切换排序方式", children: [
+            poetryAction, genreAction
+        ])
+        let primaryAction = UIAction(handler: { _ in
+            HLog.log(scene: .navBar, str: "primaryAction clicked")
+        })
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(systemItem: .organize, primaryAction: nil, menu: menu)
 
     }
 

@@ -14,6 +14,7 @@ enum HLog {
         case scene
         case collectionView
         case settings
+        case navBar
     }
 
     static func log(scene: Scenario, str: String) {
