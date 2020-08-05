@@ -5,6 +5,16 @@
 //  Created by huahuahu on 2020/8/4.
 //  Copyright © 2020 huahuahu. All rights reserved.
 //
+// Custom cell data flow
+// 1. cell.updatePoem
+// 2. cell.setNeedsUpdateConfiguration
+// 3. get cell.configurationState
+// 4. cell.updateConfiguration
+// 5. update updateConfiguration for given state
+// 5. set cell.contentConfiguration
+// 6. call contentConfiguration.makeContentView
+// 7. create contentView using contentConfiguration
+// 8. apply contentConfiguration to content view
 
 import UIKit
 
@@ -32,7 +42,7 @@ class HPoemSummaryCell: UICollectionViewCell {
     }
 }
 
-// Mark: Cell that show title, poet and first content
+// MARK: Cell that show title, poet and first content
 
 @available(iOS 14.0, *)
 class HPoemSummaryPoetContentView: UIView, UIContentView {
