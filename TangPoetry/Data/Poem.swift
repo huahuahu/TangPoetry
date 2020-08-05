@@ -10,17 +10,22 @@ import Foundation
 import CoreServices
 
 enum Genre: String, Codable, CaseIterable {
-   case wuyanGushi = "五言古诗"
-   case qiyanGushi = "七言古诗"
-   case wuyanYuefu = "五言乐府"
-   case qiyanYuefu = "七言乐府"
-   case wuyanJueju = "五言绝句"
-   case qiyanJueju = "七言绝句"
-   case wuyanLvshi = "五言律诗"
-   case qiyanLvshi = "七言律诗"
+    case wuyanGushi = "五言古诗"
+    case qiyanGushi = "七言古诗"
+    case wuyanYuefu = "五言乐府"
+    case qiyanYuefu = "七言乐府"
+    case wuyanJueju = "五言绝句"
+    case qiyanJueju = "七言绝句"
+    case wuyanLvshi = "五言律诗"
+    case qiyanLvshi = "七言律诗"
 
     var displayName: String {
         return self.rawValue
+    }
+
+    var url: URL? {
+        let baseUrl = URL(staticString: "https://baike.baidu.com/item")
+        return baseUrl.appendingPathComponent(self.displayName, isDirectory: false)
     }
 }
 

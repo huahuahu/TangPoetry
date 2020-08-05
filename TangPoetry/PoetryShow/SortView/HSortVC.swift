@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SafariServices
 
 @available(iOS 14.0, *)
 final class HSortVC: UIViewController {
@@ -100,13 +101,27 @@ extension HSortVC {
         return layout
     }
 
-    private func getCellConfiguration() -> UICollectionView.CellRegistration<HPoemSummaryPoetCell, Item> {
+    private func getPoetSummaryCellConfiguration() -> UICollectionView.CellRegistration<HPoemSummaryPoetCell, Item> {
         return .init { cell, indexPath, item in
 //            var configuration = cell.defaultContentConfiguration()
 //            configuration.text = item.poem.title
 //            configuration.secondaryText = item.poem.author
 //            cell.contentConfiguration = configuration
             cell.updatePoem(item.poem)
+        }
+    }
+
+    private func getGenreSummaryCellConfiguration() -> UICollectionView.CellRegistration<HPoemSummaryGenreCell, Item> {
+        return .init { (cell, indexPath, item) in
+            cell.updatePoem(item.poem)
+            cell.clickGenreBlock = { [weak self] poem in
+                guard let self = self else { return }
+                guard let url = poem?.genre.url else {
+                    HFatalError.fatalError("no genre url for \(poem?.genre.displayName)")
+                }
+                let sfVC = SFSafariViewController(url: url)
+                self.present(sfVC, animated: true, completion: nil)
+            }
         }
     }
 
@@ -130,7 +145,12 @@ extension HSortVC {
     private func configDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { [weak self](collectionView, indexPath, item) -> UICollectionViewCell? in
             guard let self = self else { return nil }
-            return collectionView.dequeueConfiguredReusableCell(using: self.getCellConfiguration(), for: indexPath, item: item)
+            switch self.sortType {
+            case .poet:
+                return collectionView.dequeueConfiguredReusableCell(using: self.getGenreSummaryCellConfiguration(), for: indexPath, item: item)
+            case .genre:
+                return collectionView.dequeueConfiguredReusableCell(using: self.getPoetSummaryCellConfiguration(), for: indexPath, item: item)
+            }
         })
 
         dataSource.supplementaryViewProvider = { [weak self] (collectionView, kind, indexPath) in

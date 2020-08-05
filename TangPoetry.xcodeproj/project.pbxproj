@@ -19,6 +19,7 @@
 		268D1F7220E76518000C6AA9 /* TangPoetryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D1F7120E76518000C6AA9 /* TangPoetryTests.swift */; };
 		268D1F7D20E76518000C6AA9 /* TangPoetryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D1F7C20E76518000C6AA9 /* TangPoetryUITests.swift */; };
 		26926AAE2117D4880030D7BA /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26926AAD2117D4880030D7BA /* SearchResultVC.swift */; };
+		2693A16024DAF43D003813D0 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2693A15F24DAF43D003813D0 /* URL+Extension.swift */; };
 		2697D56524D1B29B00F821AB /* ActivityCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697D56424D1B29B00F821AB /* ActivityCategory.swift */; };
 		2697D56724D1B90500F821AB /* SideBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697D56624D1B90500F821AB /* SideBarVC.swift */; };
 		26CA616524D987F80029CE53 /* UIMenu+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA616424D987F80029CE53 /* UIMenu+Extension.swift */; };
@@ -100,6 +101,7 @@
 		268D1F7C20E76518000C6AA9 /* TangPoetryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangPoetryUITests.swift; sourceTree = "<group>"; };
 		268D1F7E20E76518000C6AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26926AAD2117D4880030D7BA /* SearchResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
+		2693A15F24DAF43D003813D0 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		2697D56424D1B29B00F821AB /* ActivityCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCategory.swift; sourceTree = "<group>"; };
 		2697D56624D1B90500F821AB /* SideBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarVC.swift; sourceTree = "<group>"; };
 		26CA616424D987F80029CE53 /* UIMenu+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIMenu+Extension.swift"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				60EB36A4245FC8880093E87A /* Logs.swift */,
 				60EB36B22461384D0093E87A /* Constants.swift */,
 				6008F8A524D2B42A00D15664 /* Hcolor.swift */,
+				2693A15F24DAF43D003813D0 /* URL+Extension.swift */,
 				6008F8AA24D3B25E00D15664 /* SplitVCSettings+Extension.swift */,
 				6008F8AC24D3C69800D15664 /* UIViewControllerSettings+Extension.swift */,
 				26CA616424D987F80029CE53 /* UIMenu+Extension.swift */,
@@ -618,6 +621,7 @@
 				60BA61A7245C51C100233698 /* BaseVC.swift in Sources */,
 				60EB36A5245FC8880093E87A /* Logs.swift in Sources */,
 				60EB36AF24603D4D0093E87A /* CollectionViewDropDelegate.swift in Sources */,
+				2693A16024DAF43D003813D0 /* URL+Extension.swift in Sources */,
 				6096D1032461ACD5001176FF /* SpotlightController.swift in Sources */,
 				6096D1002461550F001176FF /* Route.swift in Sources */,
 				60BA61B0245C668C00233698 /* FlowLayout.swift in Sources */,

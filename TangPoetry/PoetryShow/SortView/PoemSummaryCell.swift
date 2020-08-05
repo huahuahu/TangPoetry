@@ -154,3 +154,121 @@ class HPoemSummaryPoetCell: HPoemSummaryCell {
         contentConfiguration = HPoemSummaryPoetContentConfiguration().updated(for: state)
     }
 }
+
+// MARK: Cell that show title, genre and first content
+
+@available(iOS 14.0, *)
+class HPoemSummaryGenreContentView: UIView, UIContentView {
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .headline)
+        label.accessibilityIdentifier = "titleLabel"
+        return label
+    }()
+    private let genreButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = .preferredFont(forTextStyle: .subheadline)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.accessibilityIdentifier = "genreButton"
+        return button
+    }()
+    private let contentLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .body)
+        label.numberOfLines = 0
+        label.accessibilityIdentifier = "contentLabel"
+        return label
+    }()
+
+    var genreButtonClickBlock: ((UIButton) -> Void)?
+
+    private var appliedConfiguration: HPoemSummaryGenreContentConfiguration!
+
+    init(configuration: HPoemSummaryGenreContentConfiguration) {
+        super.init(frame: .zero)
+        setupInternalViews()
+        apply(configuration: configuration)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    var configuration: UIContentConfiguration {
+        get { appliedConfiguration }
+        set {
+            guard let newConfig = newValue as? HPoemSummaryGenreContentConfiguration else { return }
+            apply(configuration: newConfig)
+        }
+    }
+    private func setupInternalViews() {
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, genreButton, contentLabel])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(stackView)
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        self.layoutMargins = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.insetsLayoutMarginsFromSafeArea = false
+//        stackView.setCustomSpacing(20, after: poetLabel)
+//        stackView.setCustomSpacing(10, after: titleLabel)
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor)
+        ])
+
+        genreButton.addAction(UIAction(handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.genreButtonClickBlock?(self.genreButton)
+        }), for: .touchUpInside)
+    }
+
+    private func apply(configuration: HPoemSummaryGenreContentConfiguration) {
+        guard appliedConfiguration != configuration else { return }
+        appliedConfiguration = configuration
+        titleLabel.text = appliedConfiguration.title
+        genreButton.setTitle(appliedConfiguration.genre, for: .normal)
+        contentLabel.text = appliedConfiguration.content
+    }
+
+}
+
+@available(iOS 14.0, *)
+struct HPoemSummaryGenreContentConfiguration: UIContentConfiguration, Equatable {
+    var title: String?
+    var genre: String?
+    var content: String?
+
+    func makeContentView() -> UIView & UIContentView {
+        return HPoemSummaryGenreContentView(configuration: self)
+    }
+
+    func updated(for state: UIConfigurationState) -> Self {
+        guard let state = state as? UICellConfigurationState else { return self }
+        var updatedConfig = self
+        updatedConfig.title = state.poem?.title
+        updatedConfig.genre = state.poem?.genre.displayName
+        updatedConfig.content = state.poem?.contentSummary
+        return updatedConfig
+    }
+}
+
+@available(iOS 14.0, *)
+class HPoemSummaryGenreCell: HPoemSummaryCell {
+    var clickGenreBlock: ((Poem?) -> Void)? 
+    override func updateConfiguration(using state: UICellConfigurationState) {
+        contentConfiguration = HPoemSummaryGenreContentConfiguration().updated(for: state)
+        configButton()
+    }
+
+    private func configButton() {
+        (contentView as? HPoemSummaryGenreContentView)?.genreButtonClickBlock = { [weak self] _ in
+            self?.clickGenreBlock?(self?.configurationState.poem)
+        }
+    }
+}
