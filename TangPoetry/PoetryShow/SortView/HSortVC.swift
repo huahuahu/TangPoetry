@@ -93,6 +93,7 @@ extension HSortVC {
         ])
 
         configDataSource()
+        collectionView.delegate = self
     }
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
@@ -188,5 +189,17 @@ extension HSortVC {
             }
         }
         return snapShot
+    }
+}
+
+@available(iOS 14.0, *)
+extension HSortVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let poem = dataSource.itemIdentifier(for: indexPath)?.poem else {
+            HAssert.assertFailure("can not find poem in \(indexPath)")
+            return
+        }
+        let detailVC = DetailVC(poem: poem)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
