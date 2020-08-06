@@ -108,15 +108,16 @@ class DetailVC: BaseVC {
         contentScrollView.addSubview(stackView)
         view.addSubview(contentScrollView)
         NSLayoutConstraint.activate([
-            contentScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            contentScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            contentScrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            contentScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            contentScrollView.frameLayoutGuide.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            contentScrollView.frameLayoutGuide.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            contentScrollView.frameLayoutGuide.topAnchor.constraint(equalTo: view.topAnchor),
+            contentScrollView.frameLayoutGuide.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            contentScrollView.frameLayoutGuide.widthAnchor.constraint(equalTo: contentScrollView.contentLayoutGuide.widthAnchor),
             contentTextView.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             stackView.leadingAnchor.constraint(equalTo: contentScrollView.readableContentGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: contentScrollView.readableContentGuide.trailingAnchor),
-            stackView.topAnchor.constraint(equalTo: contentScrollView.topAnchor, constant: Constants.spaceBeforeTitle),
-            stackView.bottomAnchor.constraint(equalTo: contentScrollView.bottomAnchor, constant: -Constants.spaceAfterContent)
+            stackView.topAnchor.constraint(equalTo: contentScrollView.contentLayoutGuide.topAnchor, constant: Constants.spaceBeforeTitle),
+            stackView.bottomAnchor.constraint(equalTo: contentScrollView.contentLayoutGuide.bottomAnchor, constant: -Constants.spaceAfterContent)
         ])
 
         if #available(iOS 14.0, *) {
