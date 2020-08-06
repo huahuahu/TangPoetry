@@ -108,14 +108,17 @@ class DetailVC: BaseVC {
         contentScrollView.addSubview(stackView)
         view.addSubview(contentScrollView)
         NSLayoutConstraint.activate([
+            // Use frameLayoutGuide to constraint frame
             contentScrollView.frameLayoutGuide.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             contentScrollView.frameLayoutGuide.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             contentScrollView.frameLayoutGuide.topAnchor.constraint(equalTo: view.topAnchor),
             contentScrollView.frameLayoutGuide.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            //  Don't scroll horizontally
             contentScrollView.frameLayoutGuide.widthAnchor.constraint(equalTo: contentScrollView.contentLayoutGuide.widthAnchor),
             contentTextView.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             stackView.leadingAnchor.constraint(equalTo: contentScrollView.readableContentGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: contentScrollView.readableContentGuide.trailingAnchor),
+            // Use contentLayoutGuide to determine content size
             stackView.topAnchor.constraint(equalTo: contentScrollView.contentLayoutGuide.topAnchor, constant: Constants.spaceBeforeTitle),
             stackView.bottomAnchor.constraint(equalTo: contentScrollView.contentLayoutGuide.bottomAnchor, constant: -Constants.spaceAfterContent)
         ])
