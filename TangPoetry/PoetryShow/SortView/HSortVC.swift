@@ -15,6 +15,7 @@ final class HSortVC: UIViewController {
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
     private var sortType: PoetSortType = .genre
+    private let sfvcDelegate = SFVCDelegate()
 
     struct Section: Hashable {
         let title: String
@@ -119,7 +120,9 @@ extension HSortVC {
                 guard let url = poem?.genre.url else {
                     HFatalError.fatalError("no genre url for \(poem?.genre.displayName)")
                 }
-                let sfVC = SFSafariViewController(url: url)
+                let configuration = SFSafariViewController.Configuration()
+                let sfVC = SFSafariViewController(url: url, configuration: configuration)
+                sfVC.dismissButtonStyle = .close
                 self.present(sfVC, animated: true, completion: nil)
             }
         }
