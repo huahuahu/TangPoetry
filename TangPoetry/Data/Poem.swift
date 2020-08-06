@@ -29,6 +29,13 @@ enum Genre: String, Codable, CaseIterable {
     }
 }
 
+extension String {
+    var baikeURL: URL? {
+        let baseUrl = URL(staticString: "https://baike.baidu.com/item")
+        return baseUrl.appendingPathComponent(self, isDirectory: false)
+    }
+}
+
 struct Poem: Codable, Hashable {
     let uniqueId: Int
     let author: String

@@ -8,6 +8,7 @@
 // Poem Detail VC
 
 import UIKit
+import SafariServices
 
 class DetailVC: BaseVC {
     private enum Constants {
@@ -117,6 +118,16 @@ class DetailVC: BaseVC {
             stackView.topAnchor.constraint(equalTo: contentScrollView.topAnchor, constant: Constants.spaceBeforeTitle),
             stackView.bottomAnchor.constraint(equalTo: contentScrollView.bottomAnchor, constant: -Constants.spaceAfterContent)
         ])
+
+        if #available(iOS 14.0, *) {
+            authorButton.addAction(UIAction(handler: { [weak self] _ in
+                guard let self = self, let url = self.poem.author.baikeURL else { return }
+                let sfvc = SFSafariViewController(url: url)
+                self.present(sfvc, animated: true, completion: nil)
+            }), for: .primaryActionTriggered)
+        } else {
+            // Fallback on earlier versions
+        }
     }
 
     private func updateView(_ poem: Poem) {
