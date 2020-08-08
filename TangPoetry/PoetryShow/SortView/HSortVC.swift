@@ -199,7 +199,59 @@ extension HSortVC: UICollectionViewDelegate {
             HAssert.assertFailure("can not find poem in \(indexPath)")
             return
         }
+        show(poem)
+    }
+
+    func show(_ poem: Poem) {
+        let options: [UIPageViewController.OptionsKey: Any] = [
+            .spineLocation: NSNumber(value: UIPageViewController.SpineLocation.min.rawValue)
+            ]
+        let pageVC = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: options)
+        pageVC.dataSource = self
         let detailVC = DetailVC(poem: poem)
-        navigationController?.pushViewController(detailVC, animated: true)
+        pageVC.setViewControllers([detailVC], direction: .forward, animated: true)
+        pageVC.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(pageVC, animated: true)
+    }
+}
+
+@available(iOS 14.0, *)
+extension HSortVC: UIPageViewControllerDataSource {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let detailVC = viewController as? DetailVC else {
+            HAssert.assertFailure()
+            return nil
+        }
+        let poem = detailVC.poem
+        let snapShot = dataSource.snapshot()
+        guard let index = snapShot.indexOfItem(Item(poem: poem)) else {
+            HAssert.assertFailure("\(poem) not in snapshot")
+            return nil
+        }
+        guard index > 0 else {
+            HLog.log(scene: .pageVC, str: "first poem, nothing before")
+            return nil
+        }
+        let preiviousPoem = snapShot.itemIdentifiers[index-1].poem
+        return DetailVC(poem: preiviousPoem)
+    }
+
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let detailVC = viewController as? DetailVC else {
+            HAssert.assertFailure()
+            return nil
+        }
+        let poem = detailVC.poem
+        let snapShot = dataSource.snapshot()
+        guard let index = snapShot.indexOfItem(Item(poem: poem)) else {
+            HAssert.assertFailure("\(poem) not in snapshot")
+            return nil
+        }
+        guard index < snapShot.numberOfItems - 1  else {
+            HLog.log(scene: .pageVC, str: "last poem, nothing after")
+            return nil
+        }
+        let nextPoem = snapShot.itemIdentifiers[index+1].poem
+        return DetailVC(poem: nextPoem)
     }
 }

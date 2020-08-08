@@ -49,3 +49,20 @@ extension UIModalPresentationStyle {
         .none
     ]
 }
+
+extension UIScrollView.ContentInsetAdjustmentBehavior {
+    var displayName: String {
+        switch self {
+        case .automatic:
+            return "automatic"
+        case .never:
+            return "never"
+        case .always:
+            return "always"
+        case .scrollableAxes:
+            return "scrollableAxes"
+        @unknown default:
+            fatalError()
+        }
+    }
+}

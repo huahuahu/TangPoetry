@@ -66,6 +66,7 @@ class DetailVC: BaseVC {
         contentScrollView.accessibilityIdentifier = "contentScrollView"
         contentScrollView.translatesAutoresizingMaskIntoConstraints = false
         contentScrollView.backgroundColor = Constants.backgroundColor
+        contentScrollView.contentInsetAdjustmentBehavior = .always
         return contentScrollView
     }()
 
@@ -80,7 +81,6 @@ class DetailVC: BaseVC {
     }
 
     private func configNavItem() {
-//        navigationItem.title = poem.title
         self.navigationItem.largeTitleDisplayMode = .never
     }
 
