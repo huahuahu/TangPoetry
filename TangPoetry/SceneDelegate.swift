@@ -94,8 +94,6 @@ extension SceneDelegate {
         splitVC.preferredDisplayMode = settings.splitVCPreferredDisplayMode
         splitVC.preferredSplitBehavior = settings.splitVCSplitBehavior
         splitVC.showsSecondaryOnlyButton = settings.splitVCShowSecondaryOnlyButton
-        splitVC.presentsWithGesture = settings.splitVCPresentsWithGesture
-        splitVC.presentsWithGesture = true
         splitVC.preferredSupplementaryColumnWidthFraction = settings.splitVCPreferredSupplementaryColumnWidthFraction
     }
 
