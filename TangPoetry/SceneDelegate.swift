@@ -89,7 +89,7 @@ extension SceneDelegate {
         window?.rootViewController = splitVC
         configureCompact(splitVC)
         splitVC.setViewController(SideBarVC(), for: .primary)
-        splitVC.setViewController(PoemGenreVC(), for: .supplementary)
+        splitVC.setViewController(HSortVC(), for: .supplementary)
         splitVC.setViewController(DetailVC(poem: DataProvider.shared.allPoetryEntries.first! ), for: .secondary)
         splitVC.preferredDisplayMode = settings.splitVCPreferredDisplayMode
         splitVC.preferredSplitBehavior = settings.splitVCSplitBehavior

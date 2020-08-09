@@ -14,8 +14,11 @@ import SafariServices
 final class HSortVC: UIViewController {
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
-    private var sortType: PoetSortType = .genre
-    private let sfvcDelegate = SFVCDelegate()
+    var sortType: PoetSortType = .genre {
+        didSet {
+            onSortTypeChange()
+        }
+    }
 
     struct Section: Hashable {
         let title: String
@@ -42,30 +45,31 @@ final class HSortVC: UIViewController {
 
     private func configNav() {
         navigationItem.title = "按照\(sortType.textForDisplay)浏览"
+        if self.splitViewController?.isCollapsed == true {
 
-        let poetryAction =  UIAction(title: "诗人", handler: { [weak self] (_) in
-            self?.sortType = .poet
-            self?.onSortTypeChange()
-        })
-        let genreAction = UIAction(title: "体裁", handler: { [weak self] (_) in
-            self?.sortType = .genre
-            self?.onSortTypeChange()
-        })
-        switch sortType {
-        case .genre:
-            genreAction.state = .on
-        case .poet:
-            poetryAction.state = .on
+            let poetryAction =  UIAction(title: "诗人", handler: { [weak self] (_) in
+                self?.sortType = .poet
+                self?.onSortTypeChange()
+            })
+            let genreAction = UIAction(title: "体裁", handler: { [weak self] (_) in
+                self?.sortType = .genre
+                self?.onSortTypeChange()
+            })
+            switch sortType {
+            case .genre:
+                genreAction.state = .on
+            case .poet:
+                poetryAction.state = .on
+            }
+
+            let menu = UIMenu(title: "切换排序方式", children: [
+                poetryAction, genreAction
+            ])
+            let primaryAction = UIAction(handler: { _ in
+                HLog.log(scene: .navBar, str: "primaryAction clicked")
+            })
+            navigationItem.rightBarButtonItem = UIBarButtonItem.init(systemItem: .organize, primaryAction: nil, menu: menu)
         }
-
-        let menu = UIMenu(title: "切换排序方式", children: [
-            poetryAction, genreAction
-        ])
-        let primaryAction = UIAction(handler: { _ in
-            HLog.log(scene: .navBar, str: "primaryAction clicked")
-        })
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(systemItem: .organize, primaryAction: nil, menu: menu)
-
     }
 
     private func configTabBar() {
@@ -73,7 +77,7 @@ final class HSortVC: UIViewController {
     }
 
     private func onSortTypeChange() {
-        dataSource.apply(getSnapShot(), animatingDifferences: true)
+        dataSource.apply(getSnapShot(), animatingDifferences: false)
         configNav()
     }
 }
@@ -205,13 +209,50 @@ extension HSortVC: UICollectionViewDelegate {
     func show(_ poem: Poem) {
         let options: [UIPageViewController.OptionsKey: Any] = [
             .spineLocation: NSNumber(value: UIPageViewController.SpineLocation.min.rawValue)
-            ]
-        let pageVC = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: options)
-        pageVC.dataSource = self
-        let detailVC = DetailVC(poem: poem)
-        pageVC.setViewControllers([detailVC], direction: .forward, animated: true)
-        pageVC.navigationItem.largeTitleDisplayMode = .never
-        navigationController?.pushViewController(pageVC, animated: true)
+        ]
+        if self.splitViewController?.isCollapsed == true {
+            let pageVC = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: options)
+            pageVC.dataSource = self
+            let detailVC = DetailVC(poem: poem)
+            pageVC.setViewControllers([detailVC], direction: .forward, animated: true)
+            pageVC.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(pageVC, animated: true)
+        } else {
+            if let pageVC = self.splitViewController?.viewController(for: .secondary) as? UIPageViewController {
+                let direction: UIPageViewController.NavigationDirection? = {
+                    guard let detailsVC = pageVC.viewControllers as? [DetailVC] else {
+                        HAssert.assertFailure()
+                        return nil
+                    }
+                    let displayingPoems = detailsVC.compactMap { $0.poem }
+                    if displayingPoems.contains(poem) {
+                        HLog.log(scene: .collectionView, str: "poem is showings")
+                        return nil
+                    }
+                    let snapShot = dataSource.snapshot()
+                    guard let targetIndex = snapShot.indexOfItem(Item(poem: poem)),
+                    let firstDisplayIndex = snapShot.indexOfItem(Item(poem: displayingPoems[0])) else {
+                        HAssert.assertFailure("can not found index for poem")
+                        return nil
+                    }
+                    if targetIndex < firstDisplayIndex {
+                        return .reverse
+                    } else {
+                        return .forward
+                    }
+                }()
+                if let direction = direction {
+                    pageVC.setViewControllers([DetailVC(poem: poem)], direction: direction, animated: true, completion: nil)
+                }
+            } else {
+                let pageVC = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: options)
+                pageVC.dataSource = self
+                let detailVC = DetailVC(poem: poem)
+                pageVC.setViewControllers([detailVC], direction: .forward, animated: true)
+                pageVC.navigationItem.largeTitleDisplayMode = .never
+                self.splitViewController?.setViewController(pageVC, for: .secondary)
+            }
+        }
     }
 }
 

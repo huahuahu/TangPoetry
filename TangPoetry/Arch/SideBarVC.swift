@@ -48,24 +48,29 @@ extension SideBarVC {
         var items: [Item] {
             switch self {
             case .sort:
-                return PoetSortType.allCases.map { Item(text: $0.textForDisplay, hasChildren: false)}
+                return PoetSortType.allCases.map { Item(text: $0.textForDisplay, hasChildren: false, value: $0)}
             case .activity:
-                return ActivityCategory.allCases.map { Item(text: $0.description, hasChildren: false)}
+                return ActivityCategory.allCases.map { Item(text: $0.description, hasChildren: false, value: $0)}
             case .write:
-                return WriteType.allCases.map { Item(text: $0.description, hasChildren: false)}
+                return WriteType.allCases.map { Item(text: $0.description, hasChildren: false, value: $0)}
             case .personal:
                 return []
             }
         }
     }
 
-    struct Item: Hashable {
+    struct Item: Hashable, Equatable {
         let text: String
         let hasChildren: Bool
+        let value: Any
         let identifier = UUID()
 
         func hash(into hasher: inout Hasher) {
             hasher.combine(identifier)
+        }
+
+        static func == (lhs: SideBarVC.Item, rhs: SideBarVC.Item) -> Bool {
+            return lhs.identifier == rhs.identifier
         }
     }
 
@@ -116,7 +121,7 @@ extension SideBarVC {
         }
 
         let headerCellRegisteration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { (cell, _, item) in
-            var content = cell.defaultContentConfiguration()
+            var content = UIListContentConfiguration.sidebarCell()
             content.text = item.text
             guard item.hasChildren else {
                 fatalError()
@@ -127,7 +132,7 @@ extension SideBarVC {
         }
 
         let cellRegisteration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { (cell, _, item) in
-            var content = UIListContentConfiguration.sidebarCell()
+            var content = UIListContentConfiguration.subtitleCell()
             content.text = item.text
             guard !item.hasChildren else {
                 fatalError()
@@ -160,10 +165,10 @@ extension SideBarVC {
         var snapshot = NSDiffableDataSourceSectionSnapshot<Item>()
         for category in Category.allCases {
             if category.items.isEmpty {
-                let categoryItem = Item(text: category.textInCell, hasChildren: false)
+                let categoryItem = Item(text: category.textInCell, hasChildren: false, value: category)
                 snapshot.append([categoryItem])
             } else {
-                let categoryItem = Item(text: category.textInCell, hasChildren: true)
+                let categoryItem = Item(text: category.textInCell, hasChildren: true, value: category)
                 snapshot.append([categoryItem])
                 snapshot.append(category.items, to: categoryItem)
             }
@@ -179,10 +184,26 @@ extension SideBarVC: UICollectionViewDelegate {
         guard #available(iOS 14.0, *) else {
             fatalError()
         }
-//        collectionView.deselectItem(at: indexPath, animated: true)
+
+        //        collectionView.deselectItem(at: indexPath, animated: true)
         let item = dataSource.itemIdentifier(for: indexPath)
-        if item?.text == Category.personal.textInCell {
+        if let category = item?.value as? Category, category == .personal {
             splitViewController?.setViewController(SettingsVC(), for: .secondary)
+        } else if let sortType = item?.value as? PoetSortType {
+            switch sortType {
+            case .genre:
+                HLog.log(scene: .collectionView, str: "click genre")
+            case .poet:
+                HLog.log(scene: .collectionView, str: "click poet")
+            }
+
+            if let sortVC = self.splitViewController?.viewController(for: .supplementary) as? HSortVC {
+                sortVC.sortType = sortType
+            } else {
+                let sortVC = HSortVC()
+                sortVC.sortType = sortType
+                self.splitViewController?.setViewController(sortVC, for: .supplementary)
+            }
         }
     }
 }
