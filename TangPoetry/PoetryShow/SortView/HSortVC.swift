@@ -14,6 +14,7 @@ import SafariServices
 final class HSortVC: UIViewController {
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
+    private var selectedIndexPath: IndexPath?
     var sortType: PoetSortType = .genre {
         didSet {
             onSortTypeChange()
@@ -41,6 +42,23 @@ final class HSortVC: UIViewController {
         super.viewDidLoad()
         configNav()
         configCollectionView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
+            if let transitionCoordinator = transitionCoordinator {
+                transitionCoordinator.animate(alongsideTransition: { _ in
+                    self.collectionView.deselectItem(at: selectedIndexPath, animated: true)
+                }, completion: { [weak self] context in
+                    if context.isCancelled {
+                        self?.collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: [])
+                    }
+                })
+            } else {
+                self.collectionView.deselectItem(at: selectedIndexPath, animated: true)
+            }
+        }
     }
 
     private func configNav() {
@@ -204,6 +222,9 @@ extension HSortVC: UICollectionViewDelegate {
             return
         }
         show(poem)
+        if self.splitViewController?.isCollapsed != true {
+            collectionView.deselectItem(at: indexPath, animated: true)
+        }
     }
 
     func show(_ poem: Poem) {

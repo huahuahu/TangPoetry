@@ -22,9 +22,12 @@ import UIKit
 private extension UIConfigurationStateCustomKey {
     static let poem = UIConfigurationStateCustomKey("com.tiger.suzhen.tang.poem")
 }
-
 @available(iOS 14.0, *)
 class HPoemSummaryCell: UICollectionViewCell {
+    fileprivate enum Constants {
+        static let selectedBackgroundColor = UIColor.secondarySystemFill
+    }
+
     private var poem: Poem?
 
     func updatePoem(_ newPoem: Poem?) {
@@ -152,6 +155,11 @@ extension UICellConfigurationState {
 class HPoemSummaryPoetCell: HPoemSummaryCell {
     override func updateConfiguration(using state: UICellConfigurationState) {
         contentConfiguration = HPoemSummaryPoetContentConfiguration().updated(for: state)
+        var backgroundConfig = UIBackgroundConfiguration.listPlainCell()
+        if state.isSelected {
+            backgroundConfig.backgroundColor = Constants.selectedBackgroundColor
+        }
+        backgroundConfiguration = backgroundConfig
     }
 }
 
@@ -263,6 +271,11 @@ class HPoemSummaryGenreCell: HPoemSummaryCell {
     var clickGenreBlock: ((Poem?) -> Void)? 
     override func updateConfiguration(using state: UICellConfigurationState) {
         contentConfiguration = HPoemSummaryGenreContentConfiguration().updated(for: state)
+        var backgroundConfig = UIBackgroundConfiguration.listPlainCell()
+        if state.isSelected {
+            backgroundConfig.backgroundColor = Constants.selectedBackgroundColor
+        }
+        backgroundConfiguration = backgroundConfig
         configButton()
     }
 
