@@ -225,6 +225,8 @@ extension SettingsVC: UICollectionViewDelegate {
             handleClickSpliVCOption(indexPath: indexPath)
         case .vc:
             handleClickVCOption(indexPath: indexPath)
+        case .debug:
+            handleClickDebugOption()
         }
     }
 
@@ -260,6 +262,15 @@ extension SettingsVC: UICollectionViewDelegate {
     }
 
     private func handleClickVCOption(indexPath: IndexPath) {
+    }
+
+    private func handleClickDebugOption() {
+        if #available(iOS 14, *) {
+            let debugVC = DebugVC()
+            self.navigationController?.pushViewController(debugVC, animated: true)
+        } else {
+            // Fallback on earlier versions
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {

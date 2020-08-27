@@ -17,6 +17,7 @@ enum HLog {
         case navBar
         case sfvc
         case pageVC
+        case debug
     }
 
     static func log(scene: Scenario, str: String) {

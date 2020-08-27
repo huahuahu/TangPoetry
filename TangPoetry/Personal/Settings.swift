@@ -130,10 +130,11 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
     case tintColor
     case splitVC
     case vc
+    case debug
 
     var supportContextualMenu: Bool {
         switch self {
-        case .tintColor: return false
+        case .tintColor, .debug: return false
         case .splitVC, .vc: return true
         }
     }
@@ -146,6 +147,8 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
             return "SplitVC"
         case .vc:
             return "UIViewController"
+        case .debug:
+            return "Debug"
         }
     }
 
@@ -253,6 +256,8 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
             return SplitVCOption.allCases.map { $0.item }
         case .vc:
             return VCOption.allCases.map { $0.item }
+        case .debug:
+            return [SettingsVC.Item(title: "debug", valueType: .empty)]
         }
     }
 }
