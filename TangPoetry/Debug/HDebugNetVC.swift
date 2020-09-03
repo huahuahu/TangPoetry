@@ -67,7 +67,9 @@ class HDebugNetVC: UIViewController {
             guard let self = self else { return }
             if let error = error {
                 HLog.log(scene: .debug, str: "net error: \(error)")
-                self.textView.text = self.textView.text.appending("\n\(error)")
+                DispatchQueue.main.async {
+                    self.textView.text = self.textView.text.appending("\n\(error)")
+                }
             } else if let data = data {
                 let serverString = String(data: data, encoding: .utf8) ?? "nil"
                 let mimeType = response?.mimeType ?? "nil"
