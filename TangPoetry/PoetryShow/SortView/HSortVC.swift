@@ -234,6 +234,7 @@ extension HSortVC: UICollectionViewDelegate {
         if self.splitViewController?.isCollapsed == true {
             let pageVC = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: options)
             pageVC.dataSource = self
+            pageVC.delegate = self
             let detailVC = DetailVC(poem: poem)
             pageVC.setViewControllers([detailVC], direction: .forward, animated: true)
             pageVC.navigationItem.largeTitleDisplayMode = .never
@@ -268,6 +269,7 @@ extension HSortVC: UICollectionViewDelegate {
             } else {
                 let pageVC = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: options)
                 pageVC.dataSource = self
+                pageVC.delegate = self
                 let detailVC = DetailVC(poem: poem)
                 pageVC.setViewControllers([detailVC], direction: .forward, animated: true)
                 pageVC.navigationItem.largeTitleDisplayMode = .never
@@ -315,5 +317,15 @@ extension HSortVC: UIPageViewControllerDataSource {
         }
         let nextPoem = snapShot.itemIdentifiers[index+1].poem
         return DetailVC(poem: nextPoem)
+    }
+}
+
+@available(iOS 14.0, *)
+extension HSortVC: UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if finished {
+            let detailVC = pageViewController.viewControllers?.first as? DetailVC
+            pageViewController.navigationItem.rightBarButtonItem = detailVC?.navigationItem.rightBarButtonItem
+        }
     }
 }

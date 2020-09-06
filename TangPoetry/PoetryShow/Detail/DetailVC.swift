@@ -73,7 +73,6 @@ class DetailVC: BaseVC {
     init(poem: Poem) {
         self.poem = poem
         super.init(nibName: nil, bundle: nil)
-        configNavItem()
     }
 
     required init?(coder: NSCoder) {
@@ -87,7 +86,14 @@ class DetailVC: BaseVC {
     override func loadView() {
         super.loadView()
         view.backgroundColor = .systemBackground
-        navigationItem.rightBarButtonItem = .init(title: "exit", style: .done, target: self, action: #selector(destroyScene))
+        if #available(iOS 14.0, *) {
+            navigationItem.rightBarButtonItem = .init(systemItem: .action, primaryAction: .init(handler: { (action) in
+                print("action")
+            }), menu: UIMenu(title: "Menu", image: UIImage(systemName: "triangle"), identifier: nil, options: .init(), children: createMenuItem()))
+        } else {
+            // Fallback on earlier versions
+        }
+        configNavItem()
     }
 
     override func viewDidLoad() {
@@ -149,6 +155,18 @@ class DetailVC: BaseVC {
         UIApplication.shared.requestSceneSessionDestruction(session, options: option) { (error) in
             sceneLog("requestSceneSessionDestruction \(error)")
         }
+    }
+
+    private func createMenuItem() -> [UIMenuElement] {
+        let first = UIAction(title: "share", image: UIImage(systemName: "square.and.arrow.up"), identifier: nil, discoverabilityTitle: nil, attributes: .init(), state: .off) { _ in
+            print("share")
+            let activityVC = UIActivityViewController(activityItems: ["hahah"], applicationActivities: [])
+            activityVC.completionWithItemsHandler = { activityType, completed, returnedItems, activityError in
+                print("\(activityType), \(completed), error \(activityError)")
+            }
+            self.present(activityVC, animated: true, completion: nil)
+        }
+        return [first]
     }
 }
 
