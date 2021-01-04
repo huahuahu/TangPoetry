@@ -21,9 +21,11 @@ class TangPoetryTests: XCTestCase {
         super.tearDown()
     }
 
-    func testExample() {
+    func testDataOK() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let dataProvider = DataProvider.init()
+        assert(dataProvider.poetryCount == 319)
     }
 
     func testPerformanceExample() {
@@ -31,6 +33,20 @@ class TangPoetryTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }
+
+    func testAsItemProvider() {
+        let poem = PoemClass.testPoem()
+        let itemProvider = NSItemProvider.init(object: poem)
+
+        let expectation = XCTestExpectation(description: "load")
+        itemProvider.loadObject(ofClass: PoemClass.self) { (result, error) in
+            XCTAssertNil(error)
+            let poem = result as? PoemClass
+            XCTAssertNotNil(poem)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10)
     }
 
 }
