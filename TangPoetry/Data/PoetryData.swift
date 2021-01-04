@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class DataProvider: NSObject {
     
@@ -42,12 +43,13 @@ class DataProvider: NSObject {
             }
         }
         super.init()
+
     }
 
     var poetryCount: Int {
         return allPoetryEntries.count
     }
-    
+
     func searchFor(_ str: String?) -> [Poem] {
         if nil == str || str!.isEmpty {
             return []
@@ -62,6 +64,46 @@ class DataProvider: NSObject {
         return allPoetryEntries.filter( { $0.genre == genre}).sorted {
             $0.title.compareUsingChs($1.title) == .orderedAscending
         }
+    }
+
+    func fetchDataFromFirebase() {
+        FirebaseApp.configure()
+        let db = Firestore.firestore()
+        let docRef = db.collection("Poems")
+
+        docRef.getDocument { (document, error) in
+            // Construct a Result type to encapsulate deserialization errors or
+            // successful deserialization. Note that if there is no error thrown
+            // the value may still be `nil`, indicating a successful deserialization
+            // of a value that does not exist.
+            //
+            // There are thus three cases to handle, which Swift lets us describe
+            // nicely with built-in Result types:
+            //
+            //      Result
+            //        /\
+            //   Error  Optional<City>
+            //               /\
+            //            Nil  City
+            let result = Result {
+              try document?.data(as: City.self)
+            }
+            switch result {
+            case .success(let city):
+                if let city = city {
+                    // A `City` value was successfully initialized from the DocumentSnapshot.
+                    print("City: \(city)")
+                } else {
+                    // A nil value was successfully initialized from the DocumentSnapshot,
+                    // or the DocumentSnapshot was nil.
+                    print("Document does not exist")
+                }
+            case .failure(let error):
+                // A `City` value could not be initialized from the DocumentSnapshot.
+                print("Error decoding city: \(error)")
+            }
+        }
+
     }
 }
 
