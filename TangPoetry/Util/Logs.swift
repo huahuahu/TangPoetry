@@ -18,6 +18,7 @@ enum HLog {
         case sfvc
         case pageVC
         case debug
+        case firebase
     }
 
     static func log(scene: Scenario, str: String) {

@@ -43,7 +43,7 @@ class DataProvider: NSObject {
             }
         }
         super.init()
-
+        fetchDataFromFirebase()
     }
 
     var poetryCount: Int {
@@ -70,37 +70,14 @@ class DataProvider: NSObject {
         FirebaseApp.configure()
         let db = Firestore.firestore()
         let docRef = db.collection("Poems")
-
-        docRef.getDocument { (document, error) in
-            // Construct a Result type to encapsulate deserialization errors or
-            // successful deserialization. Note that if there is no error thrown
-            // the value may still be `nil`, indicating a successful deserialization
-            // of a value that does not exist.
-            //
-            // There are thus three cases to handle, which Swift lets us describe
-            // nicely with built-in Result types:
-            //
-            //      Result
-            //        /\
-            //   Error  Optional<City>
-            //               /\
-            //            Nil  City
-            let result = Result {
-              try document?.data(as: City.self)
-            }
-            switch result {
-            case .success(let city):
-                if let city = city {
-                    // A `City` value was successfully initialized from the DocumentSnapshot.
-                    print("City: \(city)")
-                } else {
-                    // A nil value was successfully initialized from the DocumentSnapshot,
-                    // or the DocumentSnapshot was nil.
-                    print("Document does not exist")
+        docRef.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                HLog.log(scene: .firebase, str: "get Poems fail \(error)")
+            } else if let querySnapshot = querySnapshot{
+                for document in querySnapshot.documents {
+                    let poem = document.data()
+                    HLog.log(scene: .firebase, str: "\(poem)")
                 }
-            case .failure(let error):
-                // A `City` value could not be initialized from the DocumentSnapshot.
-                print("Error decoding city: \(error)")
             }
         }
 
