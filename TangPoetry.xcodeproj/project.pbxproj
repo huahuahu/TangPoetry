@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		262198C920E8A0A000F249BF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 262198CB20E8A0A000F249BF /* Localizable.strings */; };
 		262198D020E8A20700F249BF /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262198CF20E8A20700F249BF /* util.swift */; };
-		2626182C25A34DB1001F1A11 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2626182B25A34DB1001F1A11 /* GoogleService-Info.plist */; };
 		262D05E324D99D8C00C265BB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262D05E224D99D8C00C265BB /* String+Extension.swift */; };
 		263A47BF24F10D3200F22988 /* DebugVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263A47BE24F10D3200F22988 /* DebugVC.swift */; };
 		263A47C124F10F6B00F22988 /* DebugItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263A47C024F10F6B00F22988 /* DebugItem.swift */; };
@@ -39,7 +38,7 @@
 		26EAA71A20E86DD200E42E7E /* PoemGenreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAA71920E86DD200E42E7E /* PoemGenreVC.swift */; };
 		26EBED2224D1AFE10057B83E /* HSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EBED2124D1AFE10057B83E /* HSplitViewController.swift */; };
 		26F113AC210FE8D1004CDAB6 /* PoetryEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F113AB210FE8D1004CDAB6 /* PoetryEntryCell.swift */; };
-		26F3444525A362580014743B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26F3444425A362580014743B /* GoogleService-Info.plist */; };
+		26F3446425A3E4FB0014743B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26F3446325A3E4FB0014743B /* GoogleService-Info.plist */; };
 		26F8A80C24D5481700D2E7C0 /* HSortVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F8A80B24D5481700D2E7C0 /* HSortVC.swift */; };
 		371676705799498C7014A77A /* Pods_TangPoetry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BC4972E4B57E36A372D99C /* Pods_TangPoetry.framework */; };
 		6008F8A424D2B0A000D15664 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6008F8A324D2B0A000D15664 /* Settings.swift */; };
@@ -91,7 +90,6 @@
 		262198CA20E8A0A000F249BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		262198CC20E8A0A200F249BF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		262198CF20E8A20700F249BF /* util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
-		2626182B25A34DB1001F1A11 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		262D05E224D99D8C00C265BB /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		263A47BE24F10D3200F22988 /* DebugVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugVC.swift; sourceTree = "<group>"; };
 		263A47C024F10F6B00F22988 /* DebugItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugItem.swift; sourceTree = "<group>"; };
@@ -130,7 +128,7 @@
 		26EAA71920E86DD200E42E7E /* PoemGenreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemGenreVC.swift; sourceTree = "<group>"; };
 		26EBED2124D1AFE10057B83E /* HSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSplitViewController.swift; sourceTree = "<group>"; };
 		26F113AB210FE8D1004CDAB6 /* PoetryEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetryEntryCell.swift; sourceTree = "<group>"; };
-		26F3444425A362580014743B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		26F3446325A3E4FB0014743B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		26F8A80B24D5481700D2E7C0 /* HSortVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSortVC.swift; sourceTree = "<group>"; };
 		6008F8A324D2B0A000D15664 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		6008F8A524D2B42A00D15664 /* Hcolor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hcolor.swift; sourceTree = "<group>"; };
@@ -263,8 +261,7 @@
 				2663E523210C34830036300E /* Data */,
 				268D1F6020E76517000C6AA9 /* Main.storyboard */,
 				268D1F6320E76518000C6AA9 /* Assets.xcassets */,
-				2626182B25A34DB1001F1A11 /* GoogleService-Info.plist */,
-				26F3444425A362580014743B /* GoogleService-Info.plist */,
+				26F3446325A3E4FB0014743B /* GoogleService-Info.plist */,
 				262198CB20E8A0A000F249BF /* Localizable.strings */,
 				268D1F6520E76518000C6AA9 /* LaunchScreen.storyboard */,
 				268D1F6820E76518000C6AA9 /* Info.plist */,
@@ -590,10 +587,9 @@
 			files = (
 				262198C920E8A0A000F249BF /* Localizable.strings in Resources */,
 				268D1F6720E76518000C6AA9 /* LaunchScreen.storyboard in Resources */,
-				2626182C25A34DB1001F1A11 /* GoogleService-Info.plist in Resources */,
+				26F3446425A3E4FB0014743B /* GoogleService-Info.plist in Resources */,
 				268D1F6420E76518000C6AA9 /* Assets.xcassets in Resources */,
 				268D1F6220E76517000C6AA9 /* Main.storyboard in Resources */,
-				26F3444525A362580014743B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
