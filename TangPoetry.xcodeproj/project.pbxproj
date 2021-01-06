@@ -47,6 +47,8 @@
 		6008F8AB24D3B25E00D15664 /* SplitVCSettings+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6008F8AA24D3B25E00D15664 /* SplitVCSettings+Extension.swift */; };
 		6008F8AD24D3C69800D15664 /* UIViewControllerSettings+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6008F8AC24D3C69800D15664 /* UIViewControllerSettings+Extension.swift */; };
 		6008F8AF24D3FAEB00D15664 /* HSliderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6008F8AE24D3FAEB00D15664 /* HSliderListCell.swift */; };
+		6013FE8825A5EC08006C9E54 /* SwiftUISettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6013FE8725A5EC08006C9E54 /* SwiftUISettings.swift */; };
+		6013FE8E25A5F212006C9E54 /* SwiftUISettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6013FE8D25A5F212006C9E54 /* SwiftUISettingsVC.swift */; };
 		6096D1002461550F001176FF /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6096D0FF2461550F001176FF /* Route.swift */; };
 		6096D1032461ACD5001176FF /* SpotlightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6096D1022461ACD5001176FF /* SpotlightController.swift */; };
 		60BA61A7245C51C100233698 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61A6245C51C100233698 /* BaseVC.swift */; };
@@ -136,6 +138,8 @@
 		6008F8AA24D3B25E00D15664 /* SplitVCSettings+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplitVCSettings+Extension.swift"; sourceTree = "<group>"; };
 		6008F8AC24D3C69800D15664 /* UIViewControllerSettings+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewControllerSettings+Extension.swift"; sourceTree = "<group>"; };
 		6008F8AE24D3FAEB00D15664 /* HSliderListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSliderListCell.swift; sourceTree = "<group>"; };
+		6013FE8725A5EC08006C9E54 /* SwiftUISettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUISettings.swift; sourceTree = "<group>"; };
+		6013FE8D25A5F212006C9E54 /* SwiftUISettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUISettingsVC.swift; sourceTree = "<group>"; };
 		6096D0FF2461550F001176FF /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		6096D1022461ACD5001176FF /* SpotlightController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightController.swift; sourceTree = "<group>"; };
 		60BA61A6245C51C100233698 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
@@ -307,6 +311,8 @@
 			isa = PBXGroup;
 			children = (
 				26D0B88624D2934F0017983C /* SettingsVC.swift */,
+				6013FE8725A5EC08006C9E54 /* SwiftUISettings.swift */,
+				6013FE8D25A5F212006C9E54 /* SwiftUISettingsVC.swift */,
 				6008F8A324D2B0A000D15664 /* Settings.swift */,
 			);
 			path = Personal;
@@ -686,6 +692,7 @@
 				2697D56524D1B29B00F821AB /* ActivityCategory.swift in Sources */,
 				262198D020E8A20700F249BF /* util.swift in Sources */,
 				60EB36A3245FC8520093E87A /* ImageDropDelegate.swift in Sources */,
+				6013FE8825A5EC08006C9E54 /* SwiftUISettings.swift in Sources */,
 				6008F8A624D2B42A00D15664 /* Hcolor.swift in Sources */,
 				60BA61AC245C55C600233698 /* DataSource.swift in Sources */,
 				60EB36A0245F9BA30093E87A /* PoetryWriteVC.swift in Sources */,
@@ -705,6 +712,7 @@
 				268D1F5D20E76517000C6AA9 /* AppDelegate.swift in Sources */,
 				26EAA71A20E86DD200E42E7E /* PoemGenreVC.swift in Sources */,
 				26CA616524D987F80029CE53 /* UIMenu+Extension.swift in Sources */,
+				6013FE8E25A5F212006C9E54 /* SwiftUISettingsVC.swift in Sources */,
 				60EB36B12461345C0093E87A /* SceneDelegate.swift in Sources */,
 				26D0B88524D261BD0017983C /* HSectionHeaderView.swift in Sources */,
 				60BA61AE245C577800233698 /* CollectionCell.swift in Sources */,

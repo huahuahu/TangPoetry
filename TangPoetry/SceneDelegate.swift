@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -105,7 +106,7 @@ extension SceneDelegate {
         let navigationVC1 = BaseNavigationVC.init(rootViewController: HSortVC())
         let navigationVC2 = BaseNavigationVC.init(rootViewController: PoemGenreVC.init(nibName: nil, bundle: nil))
         let writeNavVC = BaseNavigationVC.init(rootViewController: PoetryWriteVC.init(nibName: nil, bundle: nil))
-        let settingNavVC = BaseNavigationVC(rootViewController: SettingsVC())
+        let settingNavVC = BaseNavigationVC(rootViewController: SwiftUISettingVC(rootView: SwiftUISettings()))
         settingNavVC.navigationBar.prefersLargeTitles = true
 
         baseTabVC.viewControllers = [navigationVC1, navigationVC2, writeNavVC, settingNavVC]

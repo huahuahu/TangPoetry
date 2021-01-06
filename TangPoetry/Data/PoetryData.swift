@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
+import FirebaseFirestoreSwift
 
 class DataProvider: NSObject {
     
@@ -68,15 +69,15 @@ class DataProvider: NSObject {
 
     func fetchDataFromFirebase() {
         FirebaseApp.configure()
-        let db = Firestore.firestore()
-        let docRef = db.collection("Poems")
+        let firebaseDB = Firestore.firestore()
+        let docRef = firebaseDB.collection("Poems")
         docRef.getDocuments { (querySnapshot, error) in
             if let error = error {
                 HLog.log(scene: .firebase, str: "get Poems fail \(error)")
             } else if let querySnapshot = querySnapshot {
                 for document in querySnapshot.documents {
-                    let poem = document.data()
-                    HLog.log(scene: .firebase, str: "\(poem)")
+                    let poemData = document.data()
+                    HLog.log(scene: .firebase, str: "\(poemData)")
                 }
             }
         }
