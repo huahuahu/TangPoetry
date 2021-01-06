@@ -298,7 +298,7 @@ extension SettingsVC: UICollectionViewDelegate {
                     .twoDisplaceSecondary
                 ]
                 let actions = modes.map { mode in
-                    UIAction(title: mode.displayName) { [weak self] (action) in
+                    UIAction(title: mode.displayName) { [weak self] (_) in
                         guard let self = self else { return }
                         self.settings.splitVCPreferredDisplayMode = mode
                         self.dataSource.apply(self.getCurrentSnapShot())
@@ -312,7 +312,7 @@ extension SettingsVC: UICollectionViewDelegate {
             let actionProvider: UIContextMenuActionProvider = { [weak self] _ in
                 guard let self = self else { return nil }
                 let actions = UIModalPresentationStyle.allStyles.map { style in
-                    UIAction(title: style.displayName) { [weak self] (action) in
+                    UIAction(title: style.displayName) { [weak self] (_) in
                         guard let self = self else { return }
                         self.settings.vcDefaultModalPresentationStyle = style
                         self.dataSource.apply(self.getCurrentSnapShot())

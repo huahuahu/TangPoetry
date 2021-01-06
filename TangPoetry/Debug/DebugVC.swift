@@ -27,7 +27,7 @@ final class DebugVC: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
         collectionView.delegate = self
@@ -46,7 +46,7 @@ final class DebugVC: UIViewController {
     }
 
     private func getCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, HDebugItem> {
-        return UICollectionView.CellRegistration { (cell, indexPath, item) in
+        return UICollectionView.CellRegistration { (cell, _, item) in
             HLog.log(scene: .collectionView, str: "cell")
             var content = UIListContentConfiguration.groupedFooter()
             content.text = item.title
@@ -107,4 +107,3 @@ extension DebugVC: UICollectionViewDelegate {
         item.action(self)
     }
 }
-

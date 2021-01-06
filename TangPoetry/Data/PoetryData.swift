@@ -61,7 +61,7 @@ class DataProvider: NSObject {
     }
 
     public func poemsOfGenre(_ genre: Genre) -> [Poem] {
-        return allPoetryEntries.filter( { $0.genre == genre}).sorted {
+        return allPoetryEntries.filter({ $0.genre == genre}).sorted {
             $0.title.compareUsingChs($1.title) == .orderedAscending
         }
     }
@@ -73,7 +73,7 @@ class DataProvider: NSObject {
         docRef.getDocuments { (querySnapshot, error) in
             if let error = error {
                 HLog.log(scene: .firebase, str: "get Poems fail \(error)")
-            } else if let querySnapshot = querySnapshot{
+            } else if let querySnapshot = querySnapshot {
                 for document in querySnapshot.documents {
                     let poem = document.data()
                     HLog.log(scene: .firebase, str: "\(poem)")
