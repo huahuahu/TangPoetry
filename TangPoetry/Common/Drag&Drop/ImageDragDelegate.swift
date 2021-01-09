@@ -92,7 +92,7 @@ class ImageViewDragDelegate: NSObject, UIDragInteractionDelegate {
 
     func dragInteraction(_ interaction: UIDragInteraction, session: UIDragSession, willAdd items: [UIDragItem], for addingInteraction: UIDragInteraction) {
         dragDropLog("\(#function)")
-//        self.imageView.alpha = 1
+        //        self.imageView.alpha = 1
 
     }
 
@@ -112,7 +112,7 @@ class ImageViewDragDelegate: NSObject, UIDragInteractionDelegate {
             self.imageView.animationImages = nil
             self.imageView.stopAnimating()
             self.imageView.image = nil
-        } 
+        }
         self.imageView.alpha = 1
     }
 

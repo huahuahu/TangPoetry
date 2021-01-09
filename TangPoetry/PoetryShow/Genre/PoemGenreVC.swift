@@ -30,7 +30,7 @@ class PoemGenreVC: BaseVC {
 
     override func loadView() {
         super.loadView()
-//        self.view = GenreView()
+        //        self.view = GenreView()
         view.backgroundColor = .systemBackground
         view.addSubview(genreView)
         setupConstraints()
@@ -38,7 +38,7 @@ class PoemGenreVC: BaseVC {
     }
 
     func setupConstraints() {
-//        view.translatesAutoresizingMaskIntoConstraints = false
+        //        view.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
             genreView.topAnchor.constraint(equalTo: view.topAnchor),
             genreView.bottomAnchor.constraint(equalTo: view.bottomAnchor),

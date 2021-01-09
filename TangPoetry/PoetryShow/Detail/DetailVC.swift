@@ -29,7 +29,7 @@ class DetailVC: BaseVC {
         static let spaceAfterContent: CGFloat = 10
     }
     let poem: Poem
-//    private var userActivity: NSUserActivity!
+    //    private var userActivity: NSUserActivity!
 
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -151,7 +151,7 @@ class DetailVC: BaseVC {
             fatalError("no scene connected to \(#file)")
         }
         let option = UIWindowSceneDestructionRequestOptions()
-//        option.windowDismissalAnimation = .standard
+        //        option.windowDismissalAnimation = .standard
         UIApplication.shared.requestSceneSessionDestruction(session, options: option) { (error) in
             sceneLog("requestSceneSessionDestruction \(error)")
         }
@@ -173,14 +173,14 @@ class DetailVC: BaseVC {
 extension DetailVC {
     override func updateUserActivityState(_ activity: NSUserActivity) {
         var userInfo = [String: Any]()
-//        userInfo["test"] = "test"
+        //        userInfo["test"] = "test"
         userInfo["phoneNumber"] = "+86 185 6565 8170"
 
         activity.addUserInfoEntries(from: userInfo)
         activity.contentAttributeSet?.supportsNavigation = true
         activity.contentAttributeSet?.supportsPhoneCall = true
         activity.contentAttributeSet?.phoneNumbers = ["+86 185 6565 8170"]
-//        activity.contentAttributeSet?.thumbnailData = #imageLiteral(resourceName: "pizza").pngData()
+        //        activity.contentAttributeSet?.thumbnailData = #imageLiteral(resourceName: "pizza").pngData()
 
     }
 }

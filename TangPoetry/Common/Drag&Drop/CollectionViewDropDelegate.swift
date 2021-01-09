@@ -22,10 +22,10 @@ class CollectionViewDropDelegate: NSObject, UICollectionViewDropDelegate {
     func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
         collectionViewDropLog("\(#function)")
         guard let destinationIndexPath = coordinator.destinationIndexPath,
-            let dragItem = coordinator.items.first?.dragItem,
-            let poem = dragItem.localObject as? Poem
-            else {
-                return
+              let dragItem = coordinator.items.first?.dragItem,
+              let poem = dragItem.localObject as? Poem
+        else {
+            return
         }
 
         //swiftlint:disable multiple_closures_with_trailing_closure
@@ -35,7 +35,7 @@ class CollectionViewDropDelegate: NSObject, UICollectionViewDropDelegate {
             sectionData.insert(poem, at: destinationIndexPath.row)
             models[destinationIndexPath.section] = sectionData
             dataSource.models = models
-//            collectionView.deleteItems(at: [UICollectionViewDropItem.sou])
+            //            collectionView.deleteItems(at: [UICollectionViewDropItem.sou])
             collectionView.insertItems(at: [destinationIndexPath])
         }) { succ in
             collectionViewDropLog("performBatchUpdates \(succ)")

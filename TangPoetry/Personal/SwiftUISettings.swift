@@ -10,13 +10,41 @@ import SwiftUI
 import UIKit
 
 struct SwiftUISettings: View {
+    @ObservedObject var settingData: SettingsData
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        return NavigationView {
+            VStack {
+                List {
+                    ForEach(SettingSection.allCases) { settingSection in
+                        Section(header: Text(settingSection.description)) {
+                            ForEach(settingSection.swiftUICellModelsWith(settingData)) { cellModel -> SwiftUISwitchCell in
+                                print("SwiftUISwitchCell for \(cellModel.title), value is \(settingData.uuid)")
+                                return SwiftUISwitchCell(title: cellModel.title, showGreeting: $settingData.colorPickerSupportAlpha)
+                            }
+                        }
+
+                    }
+                }
+            }
+        }.navigationTitle("Settings").navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Text("bar"))
     }
 }
 
 struct SwiftUISettings_Previews: PreviewProvider {
     static var previews: some View {
-        SwiftUISettings()
+        Group {
+            SwiftUISettings(settingData: SettingsData())
+        }.previewDevice(.init(stringLiteral: "iPhone 8"))
+
+    }
+}
+
+extension SwiftUISettings {
+    struct CellModel: Identifiable {
+        let title: String
+        let secondaryText: String?
+        let valueType: SettingSection.OptionType
+        let id = UUID()
+        @Binding var value: Any
     }
 }

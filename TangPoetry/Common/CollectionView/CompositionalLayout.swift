@@ -27,7 +27,7 @@ class CompositionalFlowLayout {
                     heightDimension: .absolute(300)
                 )
 
-//                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupsize1, subitems: [item1])
+                //                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupsize1, subitems: [item1])
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupsize1, subitem: item1, count: 1)
                 group.interItemSpacing = .fixed(10)
 
@@ -56,7 +56,7 @@ class CompositionalFlowLayout {
             }
         }, configuration: layoutConfig)
         print(layout.configuration.scrollDirection.rawValue)
-//        layout.configuration.scrollDirection = .
+        //        layout.configuration.scrollDirection = .
         return layout
     }
 }

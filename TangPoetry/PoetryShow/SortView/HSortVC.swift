@@ -127,10 +127,10 @@ extension HSortVC {
 
     private func getPoetSummaryCellConfiguration() -> UICollectionView.CellRegistration<HPoemSummaryPoetCell, Item> {
         return .init { cell, indexPath, item in
-//            var configuration = cell.defaultContentConfiguration()
-//            configuration.text = item.poem.title
-//            configuration.secondaryText = item.poem.author
-//            cell.contentConfiguration = configuration
+            //            var configuration = cell.defaultContentConfiguration()
+            //            configuration.text = item.poem.title
+            //            configuration.secondaryText = item.poem.author
+            //            cell.contentConfiguration = configuration
             cell.updatePoem(item.poem)
         }
     }
@@ -253,7 +253,7 @@ extension HSortVC: UICollectionViewDelegate {
                     }
                     let snapShot = dataSource.snapshot()
                     guard let targetIndex = snapShot.indexOfItem(Item(poem: poem)),
-                    let firstDisplayIndex = snapShot.indexOfItem(Item(poem: displayingPoems[0])) else {
+                          let firstDisplayIndex = snapShot.indexOfItem(Item(poem: displayingPoems[0])) else {
                         HAssert.assertFailure("can not found index for poem")
                         return nil
                     }

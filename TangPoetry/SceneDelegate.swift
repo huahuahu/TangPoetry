@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
             handleUseActivity(userActivity, for: scene)
         }
-//        baseTabVC.selectedIndex = 1
+        //        baseTabVC.selectedIndex = 1
     }
 
     func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
@@ -65,7 +65,7 @@ extension SceneDelegate {
         }
         if activity.activityType == Constants.UserActivity.detail.rawValue {
             if let data = activity.userInfo?[Constants.Keys.userActivity] as? Data,
-                let poem = try? JSONDecoder().decode(Poem.self, from: data) {
+               let poem = try? JSONDecoder().decode(Poem.self, from: data) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     Route.goTo(poem: poem, scene: windowScene)
                     scene.activationConditions = {
@@ -106,7 +106,9 @@ extension SceneDelegate {
         let navigationVC1 = BaseNavigationVC.init(rootViewController: HSortVC())
         let navigationVC2 = BaseNavigationVC.init(rootViewController: PoemGenreVC.init(nibName: nil, bundle: nil))
         let writeNavVC = BaseNavigationVC.init(rootViewController: PoetryWriteVC.init(nibName: nil, bundle: nil))
-        let settingNavVC = BaseNavigationVC(rootViewController: SwiftUISettingVC(rootView: SwiftUISettings()))
+
+        let settingNavVC: BaseNavigationVC = BaseNavigationVC(rootViewController: SwiftUISettingVCFactory.createSettingsVC())
+        //        let settingNavVC = BaseNavigationVC(rootViewController: SettingsVC())
         settingNavVC.navigationBar.prefersLargeTitles = true
 
         baseTabVC.viewControllers = [navigationVC1, navigationVC2, writeNavVC, settingNavVC]

@@ -26,7 +26,7 @@ struct SpotlightController {
             let item = CSSearchableItem(uniqueIdentifier: "\(index)", domainIdentifier: "com.tiger.shenzhen.poem", attributeSet: attributeSet)
             items.append(item)
         }
-        
+
         CSSearchableIndex.default().indexSearchableItems(items) { error in
             if let error = error {
                 print("Indexing error: \(error.localizedDescription)")

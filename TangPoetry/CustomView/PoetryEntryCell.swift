@@ -9,9 +9,9 @@
 import UIKit
 
 class PoetryEntryCell: UITableViewCell {
-    
+
     lazy var titleLable: UILabel = {
-       let label = UILabel.init()
+        let label = UILabel.init()
         label.textColor = UIColor.darkText
         label.font = UIFont.preferredFont(forTextStyle: .headline)
         label.adjustsFontForContentSizeCategory = true
@@ -19,9 +19,9 @@ class PoetryEntryCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     lazy var subTitleLabel: UILabel = {
-       let label = UILabel.init()
+        let label = UILabel.init()
         label.textColor = UIColor.darkGray
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.adjustsFontForContentSizeCategory = true
@@ -39,23 +39,23 @@ class PoetryEntryCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
     func updateTitle(_ title: String, subTitle: String) {
         titleLable.text = title
         subTitleLabel.text = subTitle
     }
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(titleLable)
         contentView.addSubview(subTitleLabel)
         setConstraint()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("not inplement \(#function)")
     }
-    
+
     func setConstraint() {
 
         let guide = contentView.layoutMarginsGuide
@@ -69,7 +69,7 @@ class PoetryEntryCell: UITableViewCell {
 
         NSLayoutConstraint.activate(titleConstraints + subTitleConstraints)
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         titleLable.text = nil

@@ -75,12 +75,12 @@ extension SideBarVC {
     }
 
     struct ElementKind {
-//        static let badge = "badge-element-kind"
-//        static let background = "background-element-kind"
+        //        static let badge = "badge-element-kind"
+        //        static let background = "background-element-kind"
         static let sectionHeader = "section-header-element-kind"
         static let sectionFooter = "section-footer-element-kind"
-//        static let layoutHeader = "layout-header-element-kind"
-//        static let layoutFooter = "layout-footer-element-kind"
+        //        static let layoutHeader = "layout-header-element-kind"
+        //        static let layoutFooter = "layout-footer-element-kind"
     }
 
     private func setupCollectionView() {
@@ -109,7 +109,7 @@ extension SideBarVC {
 
         var listConfiguration = UICollectionLayoutListConfiguration(appearance: .sidebar)
         listConfiguration.headerMode = .supplementary
-//        listConfiguration.backgroundColor = .systemRed
+        //        listConfiguration.backgroundColor = .systemRed
         let layout = UICollectionViewCompositionalLayout.list(using: listConfiguration)
 
         return layout
@@ -150,7 +150,7 @@ extension SideBarVC {
         })
 
         let headerRegisteration = UICollectionView.SupplementaryRegistration<HSectionHeaderView>(elementKind: "Header8") { (headerView, _, _) in
-//            let category = Category(rawValue: indexPath.section)
+            //            let category = Category(rawValue: indexPath.section)
             headerView.updateTitle("预置")
         }
         dataSource.supplementaryViewProvider = { (collectionView, kind, index) in

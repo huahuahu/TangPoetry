@@ -12,9 +12,9 @@ import SafariServices
 class SFVCDelegate: NSObject, SFSafariViewControllerDelegate {
 
     /** @abstract Called when the view controller is about to show UIActivityViewController after the user taps the action button.
-        @param URL the URL of the web page.
-        @param title the title of the web page.
-        @result Returns an array of UIActivity instances that will be appended to UIActivityViewController.
+     @param URL the URL of the web page.
+     @param title the title of the web page.
+     @result Returns an array of UIActivity instances that will be appended to UIActivityViewController.
      */
     func safariViewController(_ controller: SFSafariViewController, activityItemsFor URL: URL, title: String?) -> [UIActivity] {
         HLog.log(scene: .sfvc, str: "\(#function)")
@@ -23,10 +23,10 @@ class SFVCDelegate: NSObject, SFSafariViewControllerDelegate {
     }
 
     /** @abstract Allows you to exclude certain UIActivityTypes from the UIActivityViewController presented when the user taps the action button.
-        @discussion Called when the view controller is about to show a UIActivityViewController after the user taps the action button.
-        @param URL the URL of the current web page.
-        @param title the title of the current web page.
-        @result Returns an array of any UIActivityType that you want to be excluded from the UIActivityViewController.
+     @discussion Called when the view controller is about to show a UIActivityViewController after the user taps the action button.
+     @param URL the URL of the current web page.
+     @param title the title of the current web page.
+     @result Returns an array of any UIActivityType that you want to be excluded from the UIActivityViewController.
      */
     @available(iOS 11.0, *)
     func safariViewController(_ controller: SFSafariViewController, excludedActivityTypesFor URL: URL, title: String?) -> [UIActivity.ActivityType] {
@@ -40,18 +40,18 @@ class SFVCDelegate: NSObject, SFSafariViewControllerDelegate {
     }
 
     /** @abstract Invoked when the initial URL load is complete.
-        @param didLoadSuccessfully YES if loading completed successfully, NO if loading failed.
-        @discussion This method is invoked when SFSafariViewController completes the loading of the URL that you pass
-        to its initializer. It is not invoked for any subsequent page loads in the same SFSafariViewController instance.
+     @param didLoadSuccessfully YES if loading completed successfully, NO if loading failed.
+     @discussion This method is invoked when SFSafariViewController completes the loading of the URL that you pass
+     to its initializer. It is not invoked for any subsequent page loads in the same SFSafariViewController instance.
      */
     func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
         HLog.log(scene: .sfvc, str: "\(#function)")
     }
 
     /** @abstract Called when the browser is redirected to another URL while loading the initial page.
-        @param URL The new URL to which the browser was redirected.
-        @discussion This method may be called even after -safariViewController:didCompleteInitialLoad: if
-        the web page performs additional redirects without user interaction.
+     @param URL The new URL to which the browser was redirected.
+     @discussion This method may be called even after -safariViewController:didCompleteInitialLoad: if
+     the web page performs additional redirects without user interaction.
      */
     @available(iOS 11.0, *)
     func safariViewController(_ controller: SFSafariViewController, initialLoadDidRedirectTo URL: URL) {

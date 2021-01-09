@@ -54,21 +54,21 @@ class CollectionViewDragDelegate: NSObject, UICollectionViewDragDelegate {
         collectionViewDragLog("\(#function)")
     }
 
-//    // MARK: - Providing a Custom Preview
-//    func collectionView(_ collectionView: UICollectionView, dragPreviewParametersForItemAt indexPath: IndexPath) -> UIDragPreviewParameters? {
-//        collectionViewDragLog("\(#function)")
-//        return nil
-//    }
-//    // MARK: - Controlling the Drag Session
-//    func collectionView(_ collectionView: UICollectionView, dragSessionAllowsMoveOperation session: UIDragSession) -> Bool {
-//        collectionViewDragLog("\(#function)")
-//        return true
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, dragSessionIsRestrictedToDraggingApplication session: UIDragSession) -> Bool {
-//        collectionViewDragLog("\(#function)")
-//        return true
-//    }
+    //    // MARK: - Providing a Custom Preview
+    //    func collectionView(_ collectionView: UICollectionView, dragPreviewParametersForItemAt indexPath: IndexPath) -> UIDragPreviewParameters? {
+    //        collectionViewDragLog("\(#function)")
+    //        return nil
+    //    }
+    //    // MARK: - Controlling the Drag Session
+    //    func collectionView(_ collectionView: UICollectionView, dragSessionAllowsMoveOperation session: UIDragSession) -> Bool {
+    //        collectionViewDragLog("\(#function)")
+    //        return true
+    //    }
+    //
+    //    func collectionView(_ collectionView: UICollectionView, dragSessionIsRestrictedToDraggingApplication session: UIDragSession) -> Bool {
+    //        collectionViewDragLog("\(#function)")
+    //        return true
+    //    }
 }
 
 private func collectionViewDragLog(_ str: String) {

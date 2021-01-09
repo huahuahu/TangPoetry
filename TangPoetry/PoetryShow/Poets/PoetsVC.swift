@@ -10,12 +10,12 @@ import UIKit
 
 /// 按照诗人分类
 class PoetsVC: UITableViewController {
-    
+
     private let cellIdentifier = "PoetsVC.cellIdentifier"
     private let poetries = DataProvider.shared.allPoetryEntries
     private var searchVC: UISearchController!
     private var searchResultVC: SearchResultVC!
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("not implement method \(#function)")
     }
@@ -40,7 +40,7 @@ class PoetsVC: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 70
         tableView.cellLayoutMarginsFollowReadableWidth = true
-        
+
         configSearchVC()
     }
 }
@@ -54,7 +54,7 @@ extension PoetsVC {
         cell.updateTitle(poetry.title, subTitle: poetry.author)
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return poetries.count
     }
@@ -75,14 +75,14 @@ extension PoetsVC: UISearchResultsUpdating, UISearchControllerDelegate, UISearch
     func updateSearchResults(for searchController: UISearchController) {
         let searchWord = searchController.searchBar.text?.trimmingCharacters(in: CharacterSet.whitespaces)
         let searchResult = DataProvider.shared.searchFor(searchWord)
-        
+
         if let resultsController = searchController.searchResultsController as? SearchResultVC {
             resultsController.poetries = searchResult
             resultsController.tableView.reloadData()
         }
-    
+
     }
-    
+
     func configSearchVC() {
         searchResultVC = SearchResultVC()
         searchVC = UISearchController.init(searchResultsController: searchResultVC)
@@ -92,11 +92,11 @@ extension PoetsVC: UISearchResultsUpdating, UISearchControllerDelegate, UISearch
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchVC
         navigationItem.hidesSearchBarWhenScrolling = false
-        
+
         searchVC.delegate = self
         searchVC.searchBar.delegate = self
     }
-    
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }

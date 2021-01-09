@@ -21,7 +21,7 @@ class GenreView: UIView {
         collectionView = UICollectionView.init(frame: .zero, collectionViewLayout: collectionViewLayout)
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
-//        backgroundColor = .red
+        //        backgroundColor = .red
         addSubview(collectionView)
         setupConstraints()
         collectionView.backgroundColor = .systemBackground
@@ -44,7 +44,7 @@ class GenreView: UIView {
         })
         collectionView.delegate = self
         collectionView.dataSource = dataSource
-//        collectionView.reloadData()
+        //        collectionView.reloadData()
         dragDelegate = CollectionViewDragDelegate(collectionView: collectionView)
         collectionView.dragDelegate = dragDelegate
         dragDelegate.models = models

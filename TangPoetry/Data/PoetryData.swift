@@ -12,7 +12,7 @@ import Firebase
 import FirebaseFirestoreSwift
 
 class DataProvider: NSObject {
-    
+
     static var shared = DataProvider.init()
 
     public private(set) var allPoetryEntries: [Poem]
@@ -55,7 +55,7 @@ class DataProvider: NSObject {
         if nil == str || str!.isEmpty {
             return []
         }
-        
+
         return allPoetryEntries.filter({ (poetry) -> Bool in
             poetry.author.contains(str!)
         })

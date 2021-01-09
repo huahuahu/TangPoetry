@@ -61,11 +61,11 @@ final class DebugVC: UIViewController {
             guard let self = self else { return }
             HLog.log(scene: .collectionView, str: "header")
             let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
-//            var content = UIListContentConfiguration.groupedHeader()
-//            content.text = section.rawValue
-//            headerView.contentConfiguration = content
-//            let backgroundContent = UIBackgroundConfiguration.listGroupedHeaderFooter()
-//            headerView.backgroundConfiguration = backgroundContent
+            //            var content = UIListContentConfiguration.groupedHeader()
+            //            content.text = section.rawValue
+            //            headerView.contentConfiguration = content
+            //            let backgroundContent = UIBackgroundConfiguration.listGroupedHeaderFooter()
+            //            headerView.backgroundConfiguration = backgroundContent
             headerView.updateTitle(section.rawValue)
         }
     }

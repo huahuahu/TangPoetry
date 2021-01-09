@@ -26,13 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setupShortcut() {
-//        var shortcutItems: [UIApplicationShortcutItem] = {
-//            let items = [UIApplicationShortcutItem]()
-//            let item = UIApplicationShortcutItem.init(type: "test", localizedTitle: "openDetail")
-//            item.targetContentIdentifier = "openDetail"
-//            return items
-//        }()
-//        UIApplication.shared.shortcutItems = shortcutItems
+        //        var shortcutItems: [UIApplicationShortcutItem] = {
+        //            let items = [UIApplicationShortcutItem]()
+        //            let item = UIApplicationShortcutItem.init(type: "test", localizedTitle: "openDetail")
+        //            item.targetContentIdentifier = "openDetail"
+        //            return items
+        //        }()
+        //        UIApplication.shared.shortcutItems = shortcutItems
     }
 
     // This will not be called on iOS 13

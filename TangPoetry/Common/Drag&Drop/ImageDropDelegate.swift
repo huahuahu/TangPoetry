@@ -38,8 +38,8 @@ class ImageViewDropDelegate: NSObject, UIDropInteractionDelegate {
     func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
         dragDropLog("\(#function)")
 
-            // Consume drag items (in this example, of type UIImage).
-         session.loadObjects(ofClass: UIImage.self) { imageItems in
+        // Consume drag items (in this example, of type UIImage).
+        session.loadObjects(ofClass: UIImage.self) { imageItems in
             guard let images = imageItems as? [UIImage] else {
                 return
             }
@@ -55,7 +55,7 @@ class ImageViewDropDelegate: NSObject, UIDropInteractionDelegate {
         dragDropLog("\(#function)")
         if session.allowsMoveOperation {
             let proposal = UIDropProposal.init(operation: .move)
-//            proposal.isPrecise = true
+            //            proposal.isPrecise = true
             proposal.prefersFullSizePreview = true
             return proposal
         } else {
@@ -76,7 +76,7 @@ class ImageViewDropDelegate: NSObject, UIDropInteractionDelegate {
             dragDropLog("\(#function) animator.addAnimations")
 
             self.imageView.alpha = 0.5
-//            self.imageView.contentMode = .scaleAspectFill
+            //            self.imageView.contentMode = .scaleAspectFill
         }
         animator.addCompletion { (_) in
             dragDropLog("\(#function) animator.addCompletion")
@@ -92,15 +92,15 @@ class ImageViewDropDelegate: NSObject, UIDropInteractionDelegate {
         label.text = "dropped"
         label.frame = .init(origin: .zero, size: .init(width: 100, height: 100))
         let size = self.imageView.bounds.size
-//        let preview = UITargetedPreview.init(view: label)
+        //        let preview = UITargetedPreview.init(view: label)
         let target = UIDragPreviewTarget.init(container: self.imageView, center: .init(x: size.width/2, y: size.height/2), transform: .init(rotationAngle: 3.14))
-//        return defaultPreview.retargetedPreview(with: target)
+        //        return defaultPreview.retargetedPreview(with: target)
         let dragPreview = UITargetedDragPreview.init(view: label, parameters: .init(), target: target)
         return dragPreview
     }
 
     func dropInteraction(_ interaction: UIDropInteraction, concludeDrop session: UIDropSession) {
-//        self.imageView.contentMode = .scaleAspectFit
+        //        self.imageView.contentMode = .scaleAspectFit
         dragDropLog("\(#function)")
     }
 }

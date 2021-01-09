@@ -8,8 +8,10 @@
 
 import Foundation
 import UIKit
+import Combine
+import SwiftUI
 
-class Settings {
+class Settings: ObservableObject {
     private init() {}
     static let shared = Settings()
     private let userDefaults = UserDefaults.standard
@@ -126,7 +128,11 @@ class Settings {
     }
 }
 
-enum SettingSection: Int, CaseIterable, CustomStringConvertible {
+enum SettingSection: Int, CaseIterable, CustomStringConvertible, Identifiable {
+    var id: String {
+        return description
+    }
+
     case tintColor
     case splitVC
     case vc
@@ -180,7 +186,16 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
                 return .init(title: description, valueType: .bool)
             }
         }
-     }
+
+        func swiftUICellModelWith(_ settingData: SettingsData) -> SwiftUISettings.CellModel {
+            switch self {
+            case .changeTintColor:
+                return .init(title: description, secondaryText: nil, valueType: .empty, value: Binding(get: {settingData.tintColor}, set: { settingData.tintColor = $0 as? UIColor }))
+            case .supportAlpha:
+                return .init(title: description, secondaryText: nil, valueType: .bool, value: Binding(get: {settingData.colorPickerSupportAlpha}, set: { settingData.colorPickerSupportAlpha = ($0 as? Bool ?? false) }))
+            }
+        }
+    }
 
     enum SplitVCOption: CaseIterable, CustomStringConvertible {
         case preferredDisplayMode
@@ -228,6 +243,11 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
                 return .init(title: description, valueType: .slider)
             }
         }
+
+        func swiftUICellModelWith(_ settingData: SettingsData) -> SwiftUISettings.CellModel {
+            return .init(title: description, secondaryText: nil, valueType: .empty, value: Binding(get: {settingData.tintColor}, set: { settingData.tintColor = $0 as? UIColor }))
+        }
+
     }
 
     enum VCOption: CaseIterable, CustomStringConvertible {
@@ -246,6 +266,10 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
                 return .init(title: description, valueType: .select, secondaryText: Settings.shared.vcDefaultModalPresentationStyle.displayName)
             }
         }
+
+        func swiftUICellModelWith(_ settingData: SettingsData) -> SwiftUISettings.CellModel {
+            return .init(title: description, secondaryText: nil, valueType: .empty, value: Binding(get: {settingData.tintColor}, set: { settingData.tintColor = $0 as? UIColor }))
+        }
     }
 
     var items: [SettingsVC.Item] {
@@ -260,8 +284,76 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible {
             return [SettingsVC.Item(title: "debug", valueType: .empty)]
         }
     }
+
+    func swiftUICellModelsWith(_ settingData: SettingsData) -> [SwiftUISettings.CellModel] {
+        switch self {
+        case .tintColor:
+            return ColorOption.allCases.map { $0.swiftUICellModelWith(settingData) }
+        case .splitVC:
+            return SplitVCOption.allCases.map { $0.swiftUICellModelWith(settingData) }
+        case .vc:
+            return VCOption.allCases.map { $0.swiftUICellModelWith(settingData) }
+        case .debug:
+            return [ .init(title: description, secondaryText: nil, valueType: .empty, value: Binding(get: {settingData.tintColor}, set: { settingData.tintColor = $0 as? UIColor }))
+            ]
+        }
+    }
+
 }
 
-//protocol UIContextualMenuDataSource {
-//    var contextualMenus: UIContextMenuConfiguration? { get }
-//}
+class SettingsData: ObservableObject {
+    var settings: Settings {
+        return Settings.shared
+    }
+    let uuid = UUID()
+
+    @Published var tintColor: UIColor? = Settings.shared.tintColor {
+        didSet {
+            settings.tintColor = tintColor
+        }
+    }
+
+    @Published var colorPickerSupportAlpha: Bool = Settings.shared.colorPickerSupportAlpha {
+        didSet {
+            print("colorPickerSupportAlpha \(colorPickerSupportAlpha)")
+            settings.colorPickerSupportAlpha = colorPickerSupportAlpha
+        }
+    }
+
+    @Published var splitVCPreferredDisplayMode: UISplitViewController.DisplayMode = Settings.shared.splitVCPreferredDisplayMode {
+        didSet {
+            settings.splitVCPreferredDisplayMode = splitVCPreferredDisplayMode
+        }
+    }
+
+    @Published var splitVCSplitBehavior: UISplitViewController.SplitBehavior =  Settings.shared.splitVCSplitBehavior {
+        didSet {
+            settings.splitVCSplitBehavior = splitVCSplitBehavior
+        }
+    }
+
+    @Published var splitVCShowSecondaryOnlyButton: Bool =  Settings.shared.splitVCShowSecondaryOnlyButton {
+        didSet {
+            settings.splitVCShowSecondaryOnlyButton = splitVCShowSecondaryOnlyButton
+        }
+    }
+
+    @Published var splitVCPresentsWithGesture: Bool =  Settings.shared.splitVCPresentsWithGesture {
+        didSet {
+            settings.splitVCPresentsWithGesture = splitVCPresentsWithGesture
+        }
+    }
+
+    @Published var splitVCPreferredSupplementaryColumnWidthFraction: CGFloat =  Settings.shared.splitVCPreferredSupplementaryColumnWidthFraction {
+        didSet {
+            settings.splitVCPreferredSupplementaryColumnWidthFraction = splitVCPreferredSupplementaryColumnWidthFraction
+        }
+    }
+
+    @Published var vcDefaultModalPresentationStyle: UIModalPresentationStyle  =  Settings.shared.vcDefaultModalPresentationStyle {
+        didSet {
+            settings.vcDefaultModalPresentationStyle = vcDefaultModalPresentationStyle
+        }
+    }
+
+}

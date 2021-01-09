@@ -80,7 +80,7 @@ extension SettingsVC {
             var listConfiguration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
             listConfiguration.headerMode = .supplementary
             let layoutSection = NSCollectionLayoutSection.list(using: listConfiguration,
-                                                         layoutEnvironment: layoutEnvironment)
+                                                               layoutEnvironment: layoutEnvironment)
             return layoutSection
         }, configuration: configuration)
     }
@@ -179,10 +179,10 @@ extension SettingsVC {
             }
             HLog.log(scene: .collectionView, str: "headercell")
 
-//            var contentConfiguration = UIListContentConfiguration.groupedHeader()
-//            contentConfiguration.text = section.description
-//            cell.contentConfiguration = contentConfiguration
-//            cell.backgroundConfiguration = UIBackgroundConfiguration.listGroupedHeaderFooter()
+            //            var contentConfiguration = UIListContentConfiguration.groupedHeader()
+            //            contentConfiguration.text = section.description
+            //            cell.contentConfiguration = contentConfiguration
+            //            cell.backgroundConfiguration = UIBackgroundConfiguration.listGroupedHeaderFooter()
             cell.updateTitle(section.description)
         }
         dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
@@ -278,7 +278,7 @@ extension SettingsVC: UICollectionViewDelegate {
             HFatalError.fatalError()
         }
         guard let section = SettingSection(rawValue: indexPath.section),
-            let item = dataSource.itemIdentifier(for: indexPath) else {
+              let item = dataSource.itemIdentifier(for: indexPath) else {
             HFatalError.fatalError()
         }
         guard section.supportContextualMenu else {
@@ -367,14 +367,14 @@ extension SettingsVC {
         settings.colorPickerSupportAlpha = sender.isOn
         var snapShotShot = NSDiffableDataSourceSectionSnapshot<Item>()
         snapShotShot.append(SettingSection.tintColor.items)
-//        dataSource.apply(snapShotShot, animatingDifferences: true) {
-//            HLog.log(scene: .collectionView, str: "onColorPickerSwitchChange")
-//        }
+        //        dataSource.apply(snapShotShot, animatingDifferences: true) {
+        //            HLog.log(scene: .collectionView, str: "onColorPickerSwitchChange")
+        //        }
         dataSource.apply(snapShotShot, to: SettingSection.tintColor, animatingDifferences: true) {
             HLog.log(scene: .collectionView, str: "apply section snapshot")
 
         }
-//        dataSource.apply(getCurrentSnapShot())
+        //        dataSource.apply(getCurrentSnapShot())
     }
 
     @objc private func onSplitVCShowSecondaryButtonSwitchChange(sender: UISwitch) {

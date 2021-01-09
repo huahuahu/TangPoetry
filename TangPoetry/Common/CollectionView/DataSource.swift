@@ -28,5 +28,5 @@ class CustomDataSource<T: Any>: NSObject, UICollectionViewDataSource {
         self.models = models
         self.block = modelToCellBlock
     }
-    
+
 }

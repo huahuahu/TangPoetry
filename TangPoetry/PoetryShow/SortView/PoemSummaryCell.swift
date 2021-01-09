@@ -100,8 +100,8 @@ class HPoemSummaryPoetContentView: UIView, UIContentView {
         self.layoutMargins = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.insetsLayoutMarginsFromSafeArea = false
-//        stackView.setCustomSpacing(20, after: poetLabel)
-//        stackView.setCustomSpacing(10, after: titleLabel)
+        //        stackView.setCustomSpacing(20, after: poetLabel)
+        //        stackView.setCustomSpacing(10, after: titleLabel)
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
@@ -221,8 +221,8 @@ class HPoemSummaryGenreContentView: UIView, UIContentView {
         self.layoutMargins = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.insetsLayoutMarginsFromSafeArea = false
-//        stackView.setCustomSpacing(20, after: poetLabel)
-//        stackView.setCustomSpacing(10, after: titleLabel)
+        //        stackView.setCustomSpacing(20, after: poetLabel)
+        //        stackView.setCustomSpacing(10, after: titleLabel)
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
@@ -268,7 +268,7 @@ struct HPoemSummaryGenreContentConfiguration: UIContentConfiguration, Equatable 
 
 @available(iOS 14.0, *)
 class HPoemSummaryGenreCell: HPoemSummaryCell {
-    var clickGenreBlock: ((Poem?) -> Void)? 
+    var clickGenreBlock: ((Poem?) -> Void)?
     override func updateConfiguration(using state: UICellConfigurationState) {
         contentConfiguration = HPoemSummaryGenreContentConfiguration().updated(for: state)
         var backgroundConfig = UIBackgroundConfiguration.listPlainCell()

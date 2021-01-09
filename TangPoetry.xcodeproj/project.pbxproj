@@ -57,6 +57,7 @@
 		60BA61AE245C577800233698 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61AD245C577800233698 /* CollectionCell.swift */; };
 		60BA61B0245C668C00233698 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61AF245C668C00233698 /* FlowLayout.swift */; };
 		60BA61B2245D153D00233698 /* CompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA61B1245D153D00233698 /* CompositionalLayout.swift */; };
+		60E1210A25A7FDE700B23A26 /* SwiftUISwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E1210925A7FDE700B23A26 /* SwiftUISwitchCell.swift */; };
 		60EB36A0245F9BA30093E87A /* PoetryWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB369F245F9BA30093E87A /* PoetryWriteVC.swift */; };
 		60EB36A3245FC8520093E87A /* ImageDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36A2245FC8520093E87A /* ImageDropDelegate.swift */; };
 		60EB36A5245FC8880093E87A /* Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB36A4245FC8880093E87A /* Logs.swift */; };
@@ -138,7 +139,7 @@
 		6008F8AA24D3B25E00D15664 /* SplitVCSettings+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplitVCSettings+Extension.swift"; sourceTree = "<group>"; };
 		6008F8AC24D3C69800D15664 /* UIViewControllerSettings+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewControllerSettings+Extension.swift"; sourceTree = "<group>"; };
 		6008F8AE24D3FAEB00D15664 /* HSliderListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSliderListCell.swift; sourceTree = "<group>"; };
-		6013FE8725A5EC08006C9E54 /* SwiftUISettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUISettings.swift; sourceTree = "<group>"; };
+		6013FE8725A5EC08006C9E54 /* SwiftUISettings.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SwiftUISettings.swift; sourceTree = "<group>"; tabWidth = 4; };
 		6013FE8D25A5F212006C9E54 /* SwiftUISettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUISettingsVC.swift; sourceTree = "<group>"; };
 		6096D0FF2461550F001176FF /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		6096D1022461ACD5001176FF /* SpotlightController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightController.swift; sourceTree = "<group>"; };
@@ -148,6 +149,7 @@
 		60BA61AD245C577800233698 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		60BA61AF245C668C00233698 /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		60BA61B1245D153D00233698 /* CompositionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionalLayout.swift; sourceTree = "<group>"; };
+		60E1210925A7FDE700B23A26 /* SwiftUISwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUISwitchCell.swift; sourceTree = "<group>"; };
 		60EB369F245F9BA30093E87A /* PoetryWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetryWriteVC.swift; sourceTree = "<group>"; };
 		60EB36A2245FC8520093E87A /* ImageDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDropDelegate.swift; sourceTree = "<group>"; };
 		60EB36A4245FC8880093E87A /* Logs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logs.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				26D0B88424D261BD0017983C /* HSectionHeaderView.swift */,
 				26F113AB210FE8D1004CDAB6 /* PoetryEntryCell.swift */,
 				6008F8A724D2FC3200D15664 /* HSwitchListCell.swift */,
+				60BDDD0725A94FF000537744 /* SwiftUI */,
 				6008F8AE24D3FAEB00D15664 /* HSliderListCell.swift */,
 			);
 			path = CustomView;
@@ -434,6 +437,14 @@
 				60BA61B1245D153D00233698 /* CompositionalLayout.swift */,
 			);
 			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		60BDDD0725A94FF000537744 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				60E1210925A7FDE700B23A26 /* SwiftUISwitchCell.swift */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		60EB369E245F9B6F0093E87A /* Write */ = {
@@ -703,6 +714,7 @@
 				26D0B88724D2934F0017983C /* SettingsVC.swift in Sources */,
 				60EB36A7245FC8E10093E87A /* ImageDragDelegate.swift in Sources */,
 				2693A16324DC0EF1003813D0 /* SFVCDelegate.swift in Sources */,
+				60E1210A25A7FDE700B23A26 /* SwiftUISwitchCell.swift in Sources */,
 				26EAA71820E86D9D00E42E7E /* PoetsVC.swift in Sources */,
 				26EAA71620E86CF400E42E7E /* BaseTabVC.swift in Sources */,
 				60BA61A9245C523200233698 /* GenreView.swift in Sources */,
@@ -918,7 +930,7 @@
 				DEVELOPMENT_TEAM = R6P284TSWY;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = TangPoetry/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -940,7 +952,7 @@
 				DEVELOPMENT_TEAM = L353C5X2WQ;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = TangPoetry/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

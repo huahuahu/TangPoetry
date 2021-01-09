@@ -9,27 +9,15 @@
 import SwiftUI
 import UIKit
 
-class SwiftUISettingVC: UIHostingController<SwiftUISettings> {
-    override init(rootView: SwiftUISettings) {
-        super.init(rootView: rootView)
-        configTabBarItem()
-    }
+final class SwiftUISettingVCFactory {
+    static func createSettingsVC() -> UIViewController {
+        let settingVC = UIHostingController(rootView: SwiftUISettings(settingData: SettingsData()))
 
-    @objc required dynamic init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+        // configNav
+        settingVC.navigationItem.title = "Settings"
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configNav()
+        // config tabBar
+        settingVC.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(systemName: "gear"), tag: 0)
+        return settingVC
     }
-
-    private func configNav() {
-        navigationItem.title = "Settings"
-    }
-
-    private func configTabBarItem() {
-        tabBarItem = UITabBarItem(title: "Setting", image: UIImage(systemName: "gear"), tag: 0)
-    }
-
 }
