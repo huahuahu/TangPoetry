@@ -11,40 +11,78 @@ import UIKit
 
 struct SwiftUISettings: View {
     @ObservedObject var settingData: SettingsData
+    @State var presentChangeTintColor = false
     var body: some View {
+        print("presentChangeTintColor \(presentChangeTintColor)")
         return NavigationView {
             VStack {
                 List {
                     ForEach(SettingSection.allCases) { settingSection in
                         Section(header: Text(settingSection.description)) {
-                            ForEach(settingSection.swiftUICellModelsWith(settingData)) { cellModel -> SwiftUISwitchCell in
-                                print("SwiftUISwitchCell for \(cellModel.title), value is \(settingData.uuid)")
-                                return SwiftUISwitchCell(title: cellModel.title, showGreeting: $settingData.colorPickerSupportAlpha)
+                            ForEach(settingSection.items) { item in
+                                cellForItem(item)
                             }
                         }
 
                     }
                 }
-            }
-        }.navigationTitle("Settings").navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Text("bar"))
+            }.sheet(isPresented: $presentChangeTintColor, content: {
+                ColorPicker("select color", selection: ($settingData.tintColor)).frame( height: 200)
+            })
+        }.navigationTitle("Settings").navigationBarTitleDisplayMode(.automatic).navigationBarItems(trailing: Text("bar"))
     }
 }
 
 struct SwiftUISettings_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            SwiftUISettings(settingData: SettingsData())
+            NavigationView {
+                SwiftUISettings(settingData: SettingsData())
+            }
         }.previewDevice(.init(stringLiteral: "iPhone 8"))
 
     }
 }
 
 extension SwiftUISettings {
-    struct CellModel: Identifiable {
-        let title: String
-        let secondaryText: String?
-        let valueType: SettingSection.OptionType
-        let id = UUID()
-        @Binding var value: Any
+    func cellForItem(_ item: SettingsVC.Item) -> some View {
+        switch item.valueType {
+        case .bool:
+            return  AnyView( switchCellForItem(item))
+        case .empty :
+            return AnyView( emptyCellForItem(item))
+        default:
+            return  AnyView(SwiftUISwitchCell(title: item.title, tintColor: .constant(.yellow), showGreeting: .constant(false)))
+        }
+    }
+
+    func emptyCellForItem(_ item: SettingsVC.Item) -> SwiftUITitleCell {
+        switch item.title {
+        case SettingSection.ColorOption.changeTintColor.description:
+            return SwiftUITitleCell(title: item.title) {
+                presentChangeTintColor.toggle()
+            }
+
+        case SettingSection.debug.description:
+            return SwiftUITitleCell(title: item.title) {
+                print("tap debug")
+            }
+        default:
+            fatalError("un handled setting title \(item.title)")
+        }
+    }
+
+    func switchCellForItem(_ item: SettingsVC.Item) -> SwiftUISwitchCell {
+        switch item.title {
+        case  SettingSection.ColorOption.supportAlpha.description:
+            return SwiftUISwitchCell(title: item.title, tintColor: $settingData.tintColor, showGreeting: $settingData.colorPickerSupportAlpha)
+        case SettingSection.SplitVCOption.showSecondaryOnlyButton.description:
+            return SwiftUISwitchCell(title: item.title, tintColor: $settingData.tintColor, showGreeting: $settingData.splitVCShowSecondaryOnlyButton)
+
+        case SettingSection.SplitVCOption.presentsWithGesture.description:
+            return SwiftUISwitchCell(title: item.title, tintColor: $settingData.tintColor, showGreeting: $settingData.splitVCPresentsWithGesture)
+        default:
+            fatalError("not implemented toggle for \(item.title)")
+        }
     }
 }

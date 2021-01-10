@@ -37,12 +37,14 @@ class SettingsVC: UIViewController {
 }
 
 extension SettingsVC {
-    struct Item: Hashable {
+    struct Item: Hashable, Identifiable {
         let title: String
         let secondaryText: String?
         let valueType: SettingSection.OptionType
         let identifier = UUID()
-
+        var id: UUID {
+            return identifier
+        }
         init(title: String, valueType: SettingSection.OptionType, secondaryText: String? = nil) {
             self.title = title
             self.valueType = valueType

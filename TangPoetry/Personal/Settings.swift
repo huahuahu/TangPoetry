@@ -186,15 +186,6 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible, Identifiable {
                 return .init(title: description, valueType: .bool)
             }
         }
-
-        func swiftUICellModelWith(_ settingData: SettingsData) -> SwiftUISettings.CellModel {
-            switch self {
-            case .changeTintColor:
-                return .init(title: description, secondaryText: nil, valueType: .empty, value: Binding(get: {settingData.tintColor}, set: { settingData.tintColor = $0 as? UIColor }))
-            case .supportAlpha:
-                return .init(title: description, secondaryText: nil, valueType: .bool, value: Binding(get: {settingData.colorPickerSupportAlpha}, set: { settingData.colorPickerSupportAlpha = ($0 as? Bool ?? false) }))
-            }
-        }
     }
 
     enum SplitVCOption: CaseIterable, CustomStringConvertible {
@@ -243,11 +234,6 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible, Identifiable {
                 return .init(title: description, valueType: .slider)
             }
         }
-
-        func swiftUICellModelWith(_ settingData: SettingsData) -> SwiftUISettings.CellModel {
-            return .init(title: description, secondaryText: nil, valueType: .empty, value: Binding(get: {settingData.tintColor}, set: { settingData.tintColor = $0 as? UIColor }))
-        }
-
     }
 
     enum VCOption: CaseIterable, CustomStringConvertible {
@@ -266,10 +252,6 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible, Identifiable {
                 return .init(title: description, valueType: .select, secondaryText: Settings.shared.vcDefaultModalPresentationStyle.displayName)
             }
         }
-
-        func swiftUICellModelWith(_ settingData: SettingsData) -> SwiftUISettings.CellModel {
-            return .init(title: description, secondaryText: nil, valueType: .empty, value: Binding(get: {settingData.tintColor}, set: { settingData.tintColor = $0 as? UIColor }))
-        }
     }
 
     var items: [SettingsVC.Item] {
@@ -281,24 +263,9 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible, Identifiable {
         case .vc:
             return VCOption.allCases.map { $0.item }
         case .debug:
-            return [SettingsVC.Item(title: "debug", valueType: .empty)]
+            return [SettingsVC.Item(title: "Debug", valueType: .empty)]
         }
     }
-
-    func swiftUICellModelsWith(_ settingData: SettingsData) -> [SwiftUISettings.CellModel] {
-        switch self {
-        case .tintColor:
-            return ColorOption.allCases.map { $0.swiftUICellModelWith(settingData) }
-        case .splitVC:
-            return SplitVCOption.allCases.map { $0.swiftUICellModelWith(settingData) }
-        case .vc:
-            return VCOption.allCases.map { $0.swiftUICellModelWith(settingData) }
-        case .debug:
-            return [ .init(title: description, secondaryText: nil, valueType: .empty, value: Binding(get: {settingData.tintColor}, set: { settingData.tintColor = $0 as? UIColor }))
-            ]
-        }
-    }
-
 }
 
 class SettingsData: ObservableObject {
@@ -307,9 +274,9 @@ class SettingsData: ObservableObject {
     }
     let uuid = UUID()
 
-    @Published var tintColor: UIColor? = Settings.shared.tintColor {
+    @Published var tintColor: Color = Color(Settings.shared.tintColor ?? .systemGreen) {
         didSet {
-            settings.tintColor = tintColor
+            settings.tintColor = UIColor(tintColor)
         }
     }
 
@@ -334,6 +301,7 @@ class SettingsData: ObservableObject {
 
     @Published var splitVCShowSecondaryOnlyButton: Bool =  Settings.shared.splitVCShowSecondaryOnlyButton {
         didSet {
+            print("splitVCShowSecondaryOnlyButton \(splitVCShowSecondaryOnlyButton)")
             settings.splitVCShowSecondaryOnlyButton = splitVCShowSecondaryOnlyButton
         }
     }

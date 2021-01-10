@@ -14,7 +14,7 @@ final class SwiftUISettingVCFactory {
         let settingVC = UIHostingController(rootView: SwiftUISettings(settingData: SettingsData()))
 
         // configNav
-        settingVC.navigationItem.title = "Settings"
+        //        settingVC.navigationItem.title = "Settings"
 
         // config tabBar
         settingVC.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(systemName: "gear"), tag: 0)
