@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension UIModalPresentationStyle {
+extension UIModalPresentationStyle: Identifiable, CustomStringConvertible {
     var displayName: String {
         switch self {
         case .automatic:
@@ -36,6 +36,12 @@ extension UIModalPresentationStyle {
             HFatalError.fatalError("unhandled UIModalPresentationStyle \(self)")
         }
     }
+
+    public var id: String {
+        displayName
+    }
+
+    public var description: String { displayName }
 
     static var allStyles: [UIModalPresentationStyle] = [
         .automatic,

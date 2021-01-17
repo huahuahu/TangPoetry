@@ -299,15 +299,7 @@ extension SettingsVC: UICollectionViewDelegate {
         if item.title == SettingSection.SplitVCOption.preferredDisplayMode.description {
             let actionProvider: UIContextMenuActionProvider = { [weak self] _ in
                 guard let self = self else { return nil }
-                let modes: [UISplitViewController.DisplayMode] = [
-                    .automatic,
-                    .secondaryOnly,
-                    .oneBesideSecondary,
-                    .oneOverSecondary,
-                    .twoBesideSecondary,
-                    .twoOverSecondary,
-                    .twoDisplaceSecondary
-                ]
+                let modes = UISplitViewController.DisplayMode.allModes
                 let actions = modes.map { mode in
                     UIAction(title: mode.displayName) { [weak self] (_) in
                         guard let self = self else { return }

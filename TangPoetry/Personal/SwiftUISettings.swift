@@ -51,8 +51,25 @@ extension SwiftUISettings {
             return  AnyView( switchCellForItem(item))
         case .empty :
             return AnyView( emptyCellForItem(item))
+        case .select:
+            return AnyView(selectCellForItem(item))
         default:
-            return  AnyView(SwiftUISwitchCell(title: item.title, tintColor: .constant(.yellow), isOn: .constant(false)))
+            return  AnyView(SwiftUISwitchCell(title: item.title, tintColor: .yellow, isOn: .constant(false)))
+        }
+    }
+
+    func selectCellForItem(_ item: SettingsVC.Item) -> some View {
+        switch item.title {
+        case SettingSection.SplitVCOption.preferredDisplayMode.description:
+            return AnyView(SwiftUIContextMenuCell(title: item.title, currentValue: $settingData.splitVCPreferredDisplayMode, allValues: UISplitViewController.DisplayMode.allModes))
+        case SettingSection.VCOption.modalPresentationStyle.description:
+            return AnyView(SwiftUIContextMenuCell(title: item.title, currentValue: $settingData.vcDefaultModalPresentationStyle, allValues: UIModalPresentationStyle.allStyles))
+
+        case SettingSection.SplitVCOption.splitBehavior.description:
+            return AnyView(SwiftUIContextMenuCell(title: item.title, currentValue: $settingData.splitVCSplitBehavior, allValues: UISplitViewController.SplitBehavior.all))
+
+        default:
+            fatalError()
         }
     }
 
@@ -75,14 +92,14 @@ extension SwiftUISettings {
     func switchCellForItem(_ item: SettingsVC.Item) -> SwiftUISwitchCell {
         switch item.title {
         case  SettingSection.ColorOption.supportAlpha.description:
-            return SwiftUISwitchCell(title: item.title, tintColor: $settingData.tintColor, isOn: $settingData.colorPickerSupportAlpha)
+            return SwiftUISwitchCell(title: item.title, tintColor: settingData.tintColor, isOn: $settingData.colorPickerSupportAlpha)
         case SettingSection.SplitVCOption.showSecondaryOnlyButton.description:
-            return SwiftUISwitchCell(title: item.title, tintColor: $settingData.tintColor, isOn: $settingData.splitVCShowSecondaryOnlyButton)
+            return SwiftUISwitchCell(title: item.title, tintColor: settingData.tintColor, isOn: $settingData.splitVCShowSecondaryOnlyButton)
 
         case SettingSection.SplitVCOption.presentsWithGesture.description:
-            return SwiftUISwitchCell(title: item.title, tintColor: $settingData.tintColor, isOn: $settingData.splitVCPresentsWithGesture)
+            return SwiftUISwitchCell(title: item.title, tintColor: settingData.tintColor, isOn: $settingData.splitVCPresentsWithGesture)
         case SettingSection.useSwiftUI.description:
-            return SwiftUISwitchCell(title: item.title, tintColor: $settingData.tintColor, isOn: $settingData.useSwiftUISettings)
+            return SwiftUISwitchCell(title: item.title, tintColor: settingData.tintColor, isOn: $settingData.useSwiftUISettings)
         default:
             fatalError("not implemented toggle for \(item.title)")
         }

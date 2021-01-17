@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension UISplitViewController.DisplayMode {
+extension UISplitViewController.DisplayMode: Identifiable, CustomStringConvertible {
     var displayName: String {
         switch self {
         case .automatic:
@@ -30,10 +30,32 @@ extension UISplitViewController.DisplayMode {
             fatalError("unhandled displaymode \(self)")
         }
     }
+
+    public var id: String { displayName }
+    public var description: String { displayName }
+
+    static var allModes: [UISplitViewController.DisplayMode] =
+        [
+            .automatic,
+            .secondaryOnly,
+            .oneBesideSecondary,
+            .oneOverSecondary,
+            .twoBesideSecondary,
+            .twoOverSecondary,
+            .twoDisplaceSecondary]
+
 }
 
 @available(iOS 14.0, *)
-extension UISplitViewController.SplitBehavior {
+extension UISplitViewController.SplitBehavior: CustomStringConvertible, Identifiable {
+    public var id: String {
+        return description
+    }
+
+    public var description: String {
+        displayName
+    }
+
     var displayName: String {
         switch self {
         case .automatic:
