@@ -27,7 +27,7 @@ struct SwiftUISettings: View {
                     }
                 }
             }.sheet(isPresented: $presentChangeTintColor, content: {
-                ColorPicker("select color", selection: ($settingData.tintColor)).frame( height: 200)
+                ColorPicker("select color", selection: ($settingData.tintColor), supportsOpacity: settingData.colorPickerSupportAlpha).frame( height: 200)
             })
         }.navigationTitle("Settings").navigationBarTitleDisplayMode(.automatic).navigationBarItems(trailing: Text("bar"))
     }
