@@ -16,6 +16,15 @@ class Settings: ObservableObject {
     static let shared = Settings()
     private let userDefaults = UserDefaults.standard
 
+    var useSwiftUISettings: Bool {
+        get {
+            return userDefaults.bool(forKey: Settings.Key.useSwiftUISettings)
+        }
+        set {
+            userDefaults.setValue(newValue, forKey: Settings.Key.useSwiftUISettings)
+        }
+    }
+
     var tintColor: UIColor? {
         get {
             if let colorData = userDefaults.data(forKey: Key.TintColor.tintColor) {
@@ -110,6 +119,7 @@ class Settings: ObservableObject {
     }
 
     enum Key {
+        static let useSwiftUISettings = "h-useSwiftUISettings"
         enum TintColor {
             static let tintColor = "h-tintColor-selected"
             static let supportAlpha = "h-tintColor-supportAlpha"
@@ -133,6 +143,7 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible, Identifiable {
         return description
     }
 
+    case useSwiftUI
     case tintColor
     case splitVC
     case vc
@@ -140,7 +151,7 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible, Identifiable {
 
     var supportContextualMenu: Bool {
         switch self {
-        case .tintColor, .debug: return false
+        case .tintColor, .debug, .useSwiftUI: return false
         case .splitVC, .vc: return true
         }
     }
@@ -155,6 +166,8 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible, Identifiable {
             return "UIViewController"
         case .debug:
             return "Debug"
+        case .useSwiftUI:
+            return "Use SwiftUI"
         }
     }
 
@@ -264,6 +277,8 @@ enum SettingSection: Int, CaseIterable, CustomStringConvertible, Identifiable {
             return VCOption.allCases.map { $0.item }
         case .debug:
             return [SettingsVC.Item(title: "Debug", valueType: .empty)]
+        case .useSwiftUI:
+            return [SettingsVC.Item(title: "Use SwiftUI", valueType: .bool)]
         }
     }
 }
@@ -321,6 +336,12 @@ class SettingsData: ObservableObject {
     @Published var vcDefaultModalPresentationStyle: UIModalPresentationStyle  =  Settings.shared.vcDefaultModalPresentationStyle {
         didSet {
             settings.vcDefaultModalPresentationStyle = vcDefaultModalPresentationStyle
+        }
+    }
+
+    @Published var useSwiftUISettings: Bool = Settings.shared.useSwiftUISettings {
+        didSet {
+            settings.useSwiftUISettings = useSwiftUISettings
         }
     }
 

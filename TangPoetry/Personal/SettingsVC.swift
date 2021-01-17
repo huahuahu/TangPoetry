@@ -154,6 +154,9 @@ extension SettingsVC {
             } else if item.title == SettingSection.SplitVCOption.presentsWithGesture.description {
                 cell.switchControl.addTarget(self, action: #selector(self.onSplitVCPresentsWithGesture(sender:)), for: .valueChanged)
                 cell.switchControl.isOn = self.settings.splitVCPresentsWithGesture
+            } else if item.title == SettingSection.useSwiftUI.description {
+                cell.switchControl.addTarget(self, action: #selector(self.onUseSwiftUISwitched(sender:)), for: .valueChanged)
+                cell.switchControl.isOn = self.settings.useSwiftUISettings
             } else {
                 HFatalError.fatalError()
             }
@@ -229,7 +232,13 @@ extension SettingsVC: UICollectionViewDelegate {
             handleClickVCOption(indexPath: indexPath)
         case .debug:
             handleClickDebugOption()
+        case .useSwiftUI:
+            handleUseSwiftUITapped()
         }
+    }
+
+    private func handleUseSwiftUITapped() {
+        // Do nothing
     }
 
     private func handleSelectTintColor(indexPath: IndexPath) {
@@ -388,4 +397,8 @@ extension SettingsVC {
         dataSource.apply(getCurrentSnapShot())
     }
 
+    @objc private func onUseSwiftUISwitched(sender: UISwitch) {
+        settings.useSwiftUISettings = sender.isOn
+        dataSource.apply(getCurrentSnapShot())
+    }
 }

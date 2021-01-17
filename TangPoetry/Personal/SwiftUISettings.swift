@@ -52,7 +52,7 @@ extension SwiftUISettings {
         case .empty :
             return AnyView( emptyCellForItem(item))
         default:
-            return  AnyView(SwiftUISwitchCell(title: item.title, tintColor: .constant(.yellow), showGreeting: .constant(false)))
+            return  AnyView(SwiftUISwitchCell(title: item.title, tintColor: .constant(.yellow), isOn: .constant(false)))
         }
     }
 
@@ -75,12 +75,14 @@ extension SwiftUISettings {
     func switchCellForItem(_ item: SettingsVC.Item) -> SwiftUISwitchCell {
         switch item.title {
         case  SettingSection.ColorOption.supportAlpha.description:
-            return SwiftUISwitchCell(title: item.title, tintColor: $settingData.tintColor, showGreeting: $settingData.colorPickerSupportAlpha)
+            return SwiftUISwitchCell(title: item.title, tintColor: $settingData.tintColor, isOn: $settingData.colorPickerSupportAlpha)
         case SettingSection.SplitVCOption.showSecondaryOnlyButton.description:
-            return SwiftUISwitchCell(title: item.title, tintColor: $settingData.tintColor, showGreeting: $settingData.splitVCShowSecondaryOnlyButton)
+            return SwiftUISwitchCell(title: item.title, tintColor: $settingData.tintColor, isOn: $settingData.splitVCShowSecondaryOnlyButton)
 
         case SettingSection.SplitVCOption.presentsWithGesture.description:
-            return SwiftUISwitchCell(title: item.title, tintColor: $settingData.tintColor, showGreeting: $settingData.splitVCPresentsWithGesture)
+            return SwiftUISwitchCell(title: item.title, tintColor: $settingData.tintColor, isOn: $settingData.splitVCPresentsWithGesture)
+        case SettingSection.useSwiftUI.description:
+            return SwiftUISwitchCell(title: item.title, tintColor: $settingData.tintColor, isOn: $settingData.useSwiftUISettings)
         default:
             fatalError("not implemented toggle for \(item.title)")
         }

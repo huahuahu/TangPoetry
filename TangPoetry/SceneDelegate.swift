@@ -107,8 +107,12 @@ extension SceneDelegate {
         let navigationVC2 = BaseNavigationVC.init(rootViewController: PoemGenreVC.init(nibName: nil, bundle: nil))
         let writeNavVC = BaseNavigationVC.init(rootViewController: PoetryWriteVC.init(nibName: nil, bundle: nil))
 
-        let settingNavVC: BaseNavigationVC = BaseNavigationVC(rootViewController: SwiftUISettingVCFactory.createSettingsVC())
-        //        let settingNavVC = BaseNavigationVC(rootViewController: SettingsVC())
+        let settingNavVC: BaseNavigationVC
+        if settings.useSwiftUISettings {
+            settingNavVC = BaseNavigationVC(rootViewController: SwiftUISettingVCFactory.createSettingsVC())
+        } else {
+            settingNavVC = BaseNavigationVC(rootViewController: SettingsVC())
+        }
         settingNavVC.navigationBar.prefersLargeTitles = true
 
         baseTabVC.viewControllers = [navigationVC1, navigationVC2, writeNavVC, settingNavVC]
